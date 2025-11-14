@@ -1,6 +1,7 @@
-package com.example.finance_tracker.service.importcsv;
+package com.example.finance_tracker.service.impl;
 
 import com.example.finance_tracker.common.contants.CSVFormatOption;
+import com.example.finance_tracker.common.utils.csv.CSVUtils;
 import com.example.finance_tracker.exception.InvalidCSVFormatException;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
@@ -38,21 +39,12 @@ public class CSVFormatValidator {
         if(formatOption != CSVFormatOption.MONY && formatOption != CSVFormatOption.MONEY_TRACKER)
             throw new InvalidCSVFormatException("Format harus antara MONY atau Money Tracker");
 
-        try (Reader reader = new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8)) {
-            CSVReader csvReader = new CSVReader(reader);
+        List <String> expected = this.expectedHeader(formatOption);
 
-            List <String> header = Arrays.stream(csvReader.readNext()).map(String::trim).toList();
-            List <String> expected = this.expectedHeader(formatOption);
+        List <String> header = CSVUtils.parseHeader(file);
 
-            if (!header.equals(expected))
-                throw new InvalidCSVFormatException("Format tidak sesuai format MONY. Harus berisi kolom : %s".formatted(expected));
-
-
-            System.out.println("Success");
-
-        } catch (IOException | CsvValidationException e) {
-            throw new RuntimeException(e);
-        }
+        if (!header.equals(expected))
+            throw new InvalidCSVFormatException("Format tidak sesuai format MONY. Harus berisi kolom : %s".formatted(expected));
 
     }
 

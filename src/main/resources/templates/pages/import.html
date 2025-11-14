@@ -17,15 +17,14 @@
 
         <select
                 th:field="*{formatOptionId}"
-                class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 pr-10 text-sm shadow-sm focus:outline-none mb-5 focus:ring-2 focus:ring-blue-500 <!---->focus:border-blue-500"
+                class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 pr-10 text-sm shadow-sm focus:outline-none mb-5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 name="format-selector"
                 id="format-selector">
             <option
-
                     th:each="item : ${formatOptions}"
                     th:text="${item.name}"
-                    th:value="${item.formatId}"
-            ></option>
+                    th:value="${item.formatId}">
+            </option>
         </select>
 
         <!-- hidden file input -->
@@ -56,6 +55,38 @@
             Upload CSV
         </button>
     </form>
+
+    <!-- TABLE PREVIEW -->
+    <div class="mt-8" th:if="${transactions != null and !#lists.isEmpty(transactions)}">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Preview Transactions</h2>
+
+        <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full text-sm text-left text-gray-700">
+                <thead class="bg-gray-100 text-xs uppercase tracking-wide text-gray-600">
+                <tr>
+                    <th class="px-4 py-3">Date</th>
+                    <th class="px-4 py-3">Type</th>
+                    <th class="px-4 py-3">Category</th>
+                    <th class="px-4 py-3">Sub Category</th>
+                    <th class="px-4 py-3">Amount</th>
+                    <th class="px-4 py-3">Currency</th>
+                    <th class="px-4 py-3">Note</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tx : ${transactions}" class="border-t border-gray-200">
+                    <td class="px-4 py-2" th:text="${tx.date}"></td>
+                    <td class="px-4 py-2" th:text="${tx.transactionType}"></td>
+                    <td class="px-4 py-2" th:text="${tx.category}"></td>
+                    <td class="px-4 py-2" th:text="${tx.subCategory}"></td>
+                    <td class="px-4 py-2" th:text="${tx.amount}"></td>
+                    <td class="px-4 py-2" th:text="${tx.currency}"></td>
+                    <td class="px-4 py-2" th:text="${tx.note}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <script th:src="@{/js/importCSV.js}"></script>
 </th:block>
