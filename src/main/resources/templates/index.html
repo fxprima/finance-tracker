@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: base(~{::pageTitle}, ~{::content})}">
+
+<head>
+    <!-- ini dikirim ke layout sebagai pageTitle -->
+    <title th:fragment="pageTitle">Dashboard - Finance Tracker</title>
+</head>
+
+<body>
+<!-- ini dikirim ke layout sebagai content -->
+<th:block th:fragment="content">
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">
+        Welcome, <span th:text="${name}">Fel</span> 👋
+    </h1>
+
+    <p class="text-gray-600 mb-6">
+        Ini halaman dashboard pertama finance tracker lu.
+    </p>
+
+    <div class="grid grid-cols-3 gap-4">
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-lg font-semibold">Total Spending</h2>
+            <p class="text-xl font-bold mt-2 text-red-600" th:text="${totalSpending}">0s</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-lg font-semibold">This Month Income</h2>
+            <p class="text-xl font-bold mt-2 text-green-600" th:text="${income}">0</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-lg font-semibold">Remaining Budget</h2>
+            <p class="text-xl font-bold mt-2 text-blue-600" th:text="${budget}">0</p>
+        </div>
+    </div>
+</th:block>
+</body>
+</html>
