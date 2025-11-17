@@ -58,7 +58,7 @@
     </form>
 
     <!-- TABLE PREVIEW -->
-    <div class="mt-8" th:if="${transactions != null and !#lists.isEmpty(transactions)}">
+    <div class="mt-8" th:if="${transactions != null}">
         <h2 class="text-2xl font-semibold text-gray-800 mb-4">All Transactions</h2>
 
         <!-- Summary cards -->
@@ -184,7 +184,12 @@
 
         </form>
 
-        <div class="overflow-x-auto rounded-lg border border-gray-200">
+        <div th:if="${#lists.isEmpty(transactions)}"
+             class="mt-4 px-4 py-4 rounded-lg border border-gray-200 bg-white text-center text-gray-500">
+            No transactions found for this filter.
+        </div>
+
+        <div class="overflow-x-auto rounded-lg border border-gray-200" th:if="${!#lists.isEmpty(transactions)}">
             <table id="transactions-table" class="min-w-full text-sm text-left text-gray-700">
                 <thead class="bg-gray-100 text-xs uppercase tracking-wide text-gray-600">
                 <tr>
@@ -198,17 +203,23 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="tx : ${transactions}" class="border-t border-gray-200">
+                <tr th:if="${#lists.isEmpty(transactions)}">
+                    <td colspan="7" class="px-4 py-4 text-center text-gray-500">
+                        No transactions found for this filter.
+                    </td>
+                </tr>
+
+                <tr th:each="tx : ${transactions}">
                     <td class="px-4 py-2" th:text="${#temporals.format(tx.date, 'dd MMMM yyyy HH:mm')}"></td>
                     <td class="px-4 py-2" th:text="${tx.transactionType}"></td>
                     <td class="px-4 py-2" th:text="${tx.category}"></td>
                     <td class="px-4 py-2" th:text="${tx.subCategory}"></td>
                     <td class="px-4 py-2" th:text="${tx.currency}"></td>
-                    <td class="px-4 py-2" th:text="${#numbers.formatInteger(tx.amount, 0, 'COMMA')}"
-                    ></td>
+                    <td class="px-4 py-2" th:text="${#numbers.formatInteger(tx.amount, 0, 'COMMA')}"></td>
                     <td class="px-4 py-2" th:text="${tx.note}"></td>
                 </tr>
                 </tbody>
+
             </table>
         </div>
     </div>
