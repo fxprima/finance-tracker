@@ -55,8 +55,20 @@ public class CSVImportController {
         List<TransactionRowDto> transactions =
                 (List<TransactionRowDto>) session.getAttribute("IMPORTED_TRANSACTIONS");
 
-        if (!model.containsAttribute("transactions") && transactions != null)
-            model.addAttribute("transactions", transactions);
+        if (transactions != null) {
+            if (!model.containsAttribute("transactions"))
+                model.addAttribute("transactions", transactions);
+
+            if (!model.containsAttribute("categories")) {
+                List<String> categories = csvImportService.extractUniqueCategories(transactions);
+                model.addAttribute("categories", categories);
+            }
+
+            if (!model.containsAttribute("subCategories")) {
+                List<String> subCategories = csvImportService.extractUniqueSubCategories(transactions);
+                model.addAttribute("subCategories", subCategories);
+            }
+        }
 
         return "pages/import";
     }

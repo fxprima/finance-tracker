@@ -14,5 +14,9 @@ import java.util.List;
 public interface CSVImportService {
     public List<TransactionRowDto> parseAllTransactions (MultipartFile file, CSVFormatOption formatOption);
 
+    public List <String> extractUniqueCategories(List <TransactionRowDto> transactions);
+
+    public List <String> extractUniqueSubCategories(List <TransactionRowDto> transactions);
+
     public List<TransactionRowDto> filterTransactions (List <TransactionRowDto> transactions, FilterTransactionsForm filter);
 }

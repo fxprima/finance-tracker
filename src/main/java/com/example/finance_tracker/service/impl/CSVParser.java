@@ -56,7 +56,11 @@ public class CSVParser {
                                         line[4] : line[2]
                         );
 
-                        row.setSubCategory(line[3]);
+                        row.setSubCategory(
+                                (transactionType == TransactionType.EXPENSE) ?
+                                        line[5] : line[3]
+                        );
+
                         row.setAmount(Double.parseDouble(line[6]));
                         row.setCurrency(Currency.getInstance(line[7]));
                         row.setNote(line[14]);
