@@ -21,7 +21,7 @@ public class CSVImportServiceImpl implements CSVImportService {
     private final CSVParser parser;
 
     @Override
-    public List<TransactionRowDto> preview(MultipartFile file, CSVFormatOption formatOption) {
+    public List<TransactionRowDto> parseAllTransactions(MultipartFile file, CSVFormatOption formatOption) {
         validator.validate(file, formatOption);
         return parser.parse(file, formatOption);
     }

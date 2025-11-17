@@ -60,34 +60,63 @@
     <div class="mt-8" th:if="${transactions != null and !#lists.isEmpty(transactions)}">
         <h2 class="text-2xl font-semibold text-gray-800 mb-4">Preview Transactions</h2>
 
+        <!-- Summary cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+                <p class="text-xs uppercase text-gray-500 mb-1">Total Transactions</p>
+                <p id="summary-total-transactions" class="text-xl font-semibold text-gray-800">-</p>
+            </div>
+            <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+                <p class="text-xs uppercase text-gray-500 mb-1">Total Amount</p>
+                <p id="summary-total-amount" class="text-xl font-semibold text-gray-800">-</p>
+            </div>
+            <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+                <p class="text-xs uppercase text-gray-500 mb-1">Average Amount</p>
+                <p id="summary-average-amount" class="text-xl font-semibold text-gray-800">-</p>
+            </div>
+            <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+                <p class="text-xs uppercase text-gray-500 mb-1">Max Amount</p>
+                <p id="summary-max-amount" class="text-xl font-semibold text-gray-800">-</p>
+            </div>
+        </div>
+
         <div class="overflow-x-auto rounded-lg border border-gray-200">
-            <table class="min-w-full text-sm text-left text-gray-700">
+            <table id="transactions-table" class="min-w-full text-sm text-left text-gray-700">
                 <thead class="bg-gray-100 text-xs uppercase tracking-wide text-gray-600">
                 <tr>
                     <th class="px-4 py-3">Date</th>
                     <th class="px-4 py-3">Type</th>
                     <th class="px-4 py-3">Category</th>
                     <th class="px-4 py-3">Sub Category</th>
-                    <th class="px-4 py-3">Amount</th>
                     <th class="px-4 py-3">Currency</th>
+                    <th class="px-4 py-3">Amount</th>
                     <th class="px-4 py-3">Note</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="tx : ${transactions}" class="border-t border-gray-200">
-                    <td class="px-4 py-2" th:text="${tx.date}"></td>
+                    <td class="px-4 py-2" th:text="${#temporals.format(tx.date, 'dd MMMM yyyy HH:mm')}"></td>
                     <td class="px-4 py-2" th:text="${tx.transactionType}"></td>
                     <td class="px-4 py-2" th:text="${tx.category}"></td>
                     <td class="px-4 py-2" th:text="${tx.subCategory}"></td>
-                    <td class="px-4 py-2" th:text="${tx.amount}"></td>
                     <td class="px-4 py-2" th:text="${tx.currency}"></td>
+                    <td class="px-4 py-2" th:text="${#numbers.formatInteger(tx.amount, 0, 'COMMA')}"
+                    ></td>
                     <td class="px-4 py-2" th:text="${tx.note}"></td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css"/>
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
     <script th:src="@{/js/importCSV.js}"></script>
 </th:block>
 </body>

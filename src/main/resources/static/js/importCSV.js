@@ -55,3 +55,27 @@ function handleFile(file) {
     fileNameLabel.textContent = `Selected: ${file.name}`;
     submitBtn.disabled = false;
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const table = document.getElementById('transactions-table');
+
+    if (table) {
+        $('#transactions-table').DataTable({
+            pageLength: 10,                   // default 25 row per page
+            lengthMenu: [10, 25, 50, 100],    // opsi dropdown
+            ordering: true,                   // enable sorting
+            searching: true,                  // enable search box
+            // biar ga auto sort kolom pertama
+            order: [],
+            language: {
+                lengthMenu: "Show _MENU_ rows",
+                search: "Search:",
+                info: "Showing _START_ to _END_ of _TOTAL_ rows",
+                paginate: {
+                    previous: "Prev",
+                    next: "Next"
+                }
+            }
+        });
+    }
+});

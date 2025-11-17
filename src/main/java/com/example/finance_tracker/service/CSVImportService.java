@@ -10,5 +10,5 @@ import java.util.List;
 
 @Service
 public interface CSVImportService {
-    public List<TransactionRowDto> preview (MultipartFile file, CSVFormatOption formatOption);
+    public List<TransactionRowDto> parseAllTransactions (MultipartFile file, CSVFormatOption formatOption);
 }

@@ -51,7 +51,7 @@ public class CSVImportController {
         try {
             log.info("Start import CSV, filename = {}, format = {}", form.getFile().getOriginalFilename(), form.getFormatOptionId());
 
-            List <TransactionRowDto> transactions = csvImportService.preview(
+            List <TransactionRowDto> transactions = csvImportService.parseAllTransactions(
                     form.getFile(),
                     form.getFormatOptionId()
             );

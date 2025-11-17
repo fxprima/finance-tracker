@@ -48,7 +48,7 @@ public class CSVParser {
                         LocalDateTime date = DateTimeParser.convertUtcToLocalDateTime(line[0]);
                         row.setDate(date);
 
-                        TransactionType transactionType = "EXPENSE".equals(line[1]) ? TransactionType.EXPENSE : TransactionType.INCOME;
+                        TransactionType transactionType = "EXPENSE".toLowerCase().equals(line[1].toLowerCase()) ? TransactionType.EXPENSE : TransactionType.INCOME;
                         row.setTransactionType(transactionType);
 
                         row.setCategory(
