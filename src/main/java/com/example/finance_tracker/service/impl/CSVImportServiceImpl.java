@@ -1,9 +1,9 @@
 package com.example.finance_tracker.service.impl;
 
 import com.example.finance_tracker.common.contants.CSVFormatOption;
-import com.example.finance_tracker.common.contants.TransactionType;
+import com.example.finance_tracker.dto.FilterTransactionDto;
 import com.example.finance_tracker.dto.TransactionRowDto;
-import com.example.finance_tracker.exception.InvalidCSVFormatException;
+import com.example.finance_tracker.form.FilterTransactionsForm;
 import com.example.finance_tracker.service.CSVImportService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,5 +24,41 @@ public class CSVImportServiceImpl implements CSVImportService {
     public List<TransactionRowDto> parseAllTransactions(MultipartFile file, CSVFormatOption formatOption) {
         validator.validate(file, formatOption);
         return parser.parse(file, formatOption);
+    }
+
+    @Override
+    public List<TransactionRowDto> filterTransactions(List<TransactionRowDto> transactions, FilterTransactionsForm filter) {
+        return transactions.stream()
+                // Start Date
+                .filter(tx -> {
+                    if (filter.getStartDate() == null) return true;
+                    return !tx.getDate().isBefore(filter.getStartDate().atStartOfDay());
+                })
+
+                // End Date
+                .filter(tx -> {
+                    if (filter.getEndDate() == null) return true;
+                    return !tx.getDate().isAfter(filter.getEndDate().atTime(23, 59, 59));
+                })
+
+                // Category
+                .filter(tx -> {
+                    if (filter.getCategory() == null || filter.getCategory().isEmpty()) return true;
+                    return filter.getCategory().equalsIgnoreCase(tx.getCategory());
+                })
+
+                // Sub Category
+                .filter(tx -> {
+                    if (filter.getSubCategory() == null || filter.getSubCategory().isEmpty()) return true;
+                    return filter.getSubCategory().equalsIgnoreCase(tx.getSubCategory());
+                })
+
+                // Type
+                .filter(tx -> {
+                    if (filter.getType() == null || filter.getType().isEmpty()) return true;
+                    return filter.getType().equalsIgnoreCase(tx.getTransactionType().name());
+                })
+
+                .toList();
     }
 }

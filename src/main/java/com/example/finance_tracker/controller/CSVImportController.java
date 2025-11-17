@@ -1,6 +1,7 @@
 package com.example.finance_tracker.controller;
 
 import com.example.finance_tracker.common.contants.CSVFormatOption;
+import com.example.finance_tracker.dto.FilterTransactionDto;
 import com.example.finance_tracker.dto.ImportFormatOptionsDto;
 import com.example.finance_tracker.dto.TransactionRowDto;
 import com.example.finance_tracker.exception.InvalidCSVFormatException;
@@ -41,18 +42,21 @@ public class CSVImportController {
     }
 
     @ModelAttribute("filterTransactionsForm")
-    public FilterTransactionsForm initFilterTransactionsForm() {
-        return new FilterTransactionsForm();
+    public FilterTransactionsForm initFilterTransactionsForm(Model model) {
+        if (!model.containsAttribute("filterTransactionsForm")) {
+            return new FilterTransactionsForm();
+        }
+        return (FilterTransactionsForm) model.getAttribute("filterTransactionsForm");
     }
+
 
     @GetMapping({"/", "/index"})
     public String view(Model model, HttpSession session) {
         List<TransactionRowDto> transactions =
                 (List<TransactionRowDto>) session.getAttribute("IMPORTED_TRANSACTIONS");
 
-        if (transactions != null)
+        if (!model.containsAttribute("transactions") && transactions != null)
             model.addAttribute("transactions", transactions);
-
 
         return "pages/import";
     }
@@ -98,7 +102,7 @@ public class CSVImportController {
             return "redirect:/import/";
         }
 
-        List<TransactionRowDto> filtered = all;
+        List<TransactionRowDto> filtered = csvImportService.filterTransactions(all, form);
 
         ra.addFlashAttribute("transactions", filtered);
         ra.addFlashAttribute("filterTransactionsForm", form);
