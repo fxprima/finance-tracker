@@ -90,6 +90,30 @@ public class CSVImportServiceImpl implements CSVImportService {
                             .anyMatch(t -> t.equalsIgnoreCase(tx.getTransactionType().name()));
                 })
 
+                // Exclude Categories
+                .filter(tx -> {
+                    List<String> exCats = filter.getExcludeCategories();
+                    if (exCats == null || exCats.isEmpty()) return true;
+                    return exCats.stream()
+                            .noneMatch(cat -> cat.equalsIgnoreCase(tx.getCategory()));
+                })
+
+                // Exclude SubCategories
+                .filter(tx -> {
+                    List<String> exSubCats = filter.getExcludeSubCategories();
+                    if (exSubCats == null || exSubCats.isEmpty()) return true;
+                    return exSubCats.stream()
+                            .noneMatch(sc -> sc.equalsIgnoreCase(tx.getSubCategory()));
+                })
+
+                // Exclude Types
+                .filter(tx -> {
+                    List<String> exTypes = filter.getExcludeTypes();
+                    if (exTypes == null || exTypes.isEmpty()) return true;
+                    return exTypes.stream()
+                            .noneMatch(t -> t.equalsIgnoreCase(tx.getTransactionType().name()));
+                })
+
                 .toList();
     }
 

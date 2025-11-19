@@ -142,3 +142,6 @@ function setupMultiSelect({ id }) {
 setupMultiSelect({ id: 'category' });
 setupMultiSelect({ id: 'sub-category' });
 setupMultiSelect({ id: 'type' });
+setupMultiSelect({ id: 'exclude-category' });
+setupMultiSelect({ id: 'exclude-sub-category' });
+setupMultiSelect({ id: 'exclude-type' });
