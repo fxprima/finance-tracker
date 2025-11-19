@@ -19,7 +19,4 @@ public interface CSVImportService {
 
     public List <String> extractUniqueSubCategories(List <TransactionRowDto> transactions);
 
-    public List<TransactionRowDto> filterTransactions (List <TransactionRowDto> transactions, FilterTransactionsForm filter);
-
-    public InsightSummaryDTO getInsightSummary (List <TransactionRowDto> transactions);
 }

@@ -1,0 +1,270 @@
+<th:block th:fragment="filterTransactionsForm">
+    <form th:action="@{/import/filter}" method="get" th:object="${filterTransactionsForm}" class="w-full mb-8">
+
+        <div class="border-t border-gray-200 pt-4 mt-2">
+            <p class="text-xs font-semibold text-gray-500 mb-3 uppercase tracking-wide">
+                INCLUDE (OPTIONAL)
+            </p>
+        </div>
+
+        <div class="filter-section grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+
+            <!-- Start Date -->
+            <div>
+                <label for="start-date" class="block text-xs font-semibold text-gray-600 mb-1">
+                    Start Date
+                </label>
+                <input type="date" th:field="*{startDate}"
+                    class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+
+            <!-- End Date -->
+            <div>
+                <label for="end-date" class="block text-xs font-semibold text-gray-600 mb-1">
+                    End Date
+                </label>
+                <input
+                    class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    th:field="*{endDate}" type="date" />
+            </div>
+
+
+            <!-- Category (Multi-select + chips full-width + placeholder "All") -->
+            <div class="md:col-span-1">
+                <label for="category-input" class="block text-xs font-semibold text-gray-600 mb-1">
+                    Category
+                </label>
+
+                <!-- hidden select yang dikirim ke server -->
+                <select id="category-hidden" th:field="*{categories}" name="category" multiple class="hidden">
+                    <option th:each="category : ${categories}" th:text="${category}" th:value="${category}">
+                    </option>
+                </select>
+
+                <!-- UI multiselect -->
+                <div id="category-multi" class="relative w-full rounded-lg border border-gray-300 bg-white px-2 py-2 text-sm shadow-sm
+           focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 pr-16">
+
+                    <!-- Clear all -->
+                    <button type="button" id="category-clear" class="absolute top-2 right-2 text-xs px-2 py-1 rounded-md border border-gray-300 hover:bg-gray-100
+             disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        Clear
+                    </button>
+
+                    <!-- chips (full width) + input -->
+                    <div id="category-chips" class="flex flex-col gap-2 max-h-32 overflow-y-auto">
+                        <!-- placeholder "All" saat belum ada pilihan -->
+                        <span id="category-placeholder" class="w-full inline-flex items-center justify-between bg-gray-100 border border-gray-200
+                   text-gray-600 text-xs px-2 py-1 rounded-full select-none">
+                            All
+                        </span>
+                        <input id="category-input" type="text" autocomplete="off" placeholder="Search category..."
+                            class="w-full bg-transparent outline-none py-1 px-1 placeholder:text-gray-400" />
+                    </div>
+
+                    <!-- dropdown -->
+                    <div id="category-dropdown" class="absolute left-0 right-0 z-20 mt-2 max-h-56 overflow-y-auto rounded-lg border border-gray-200
+             bg-white shadow-lg hidden">
+                        <!-- opsi dirender via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub Category -->
+            <div>
+                <label for="sub-category-input" class="block text-xs font-semibold text-gray-600 mb-1">
+                    Sub Category
+                </label>
+                <select id="sub-category-hidden" name="subCategory" multiple class="hidden" th:field="*{subCategories}">
+                    <option value="" selected>All</option>
+                    <option th:each="sc : ${subCategories}" th:text="${sc}" th:value="${sc}"></option>
+                </select>
+                <div id="sub-category-multi"
+                    class="relative w-full rounded-lg border border-gray-300 bg-white px-2 py-2 text-sm shadow-sm focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 pr-16">
+                    <button type="button" id="sub-category-clear"
+                        class="absolute top-2 right-2 text-xs px-2 py-1 rounded-md border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled>Clear</button>
+                    <div id="sub-category-chips" class="flex flex-col gap-2 max-h-32 overflow-y-auto">
+                        <span id="sub-category-placeholder"
+                            class="w-full inline-flex items-center justify-between bg-gray-100 border border-gray-200 text-gray-600 text-xs px-2 py-1 rounded-full select-none">All</span>
+                        <input id="sub-category-input" type="text" autocomplete="off"
+                            placeholder="Search subcategory..."
+                            class="w-full bg-transparent outline-none py-1 px-1 placeholder:text-gray-400" />
+                    </div>
+                    <div id="sub-category-dropdown"
+                        class="absolute left-0 right-0 z-20 mt-2 max-h-56 overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg hidden">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Type -->
+            <div>
+                <label for="type-input" class="block text-xs font-semibold text-gray-600 mb-1">
+                    Type
+                </label>
+                <select id="type-hidden" name="type" multiple class="hidden" th:field="*{types}">
+                    <option value="" selected>All</option>
+                    <option value="INCOME">Income</option>
+                    <option value="EXPENSE">Expense</option>
+                    <option value="TRANSFER">Transfer</option>
+                </select>
+                <div id="type-multi"
+                    class="relative w-full rounded-lg border border-gray-300 bg-white px-2 py-2 text-sm shadow-sm focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 pr-16">
+                    <button type="button" id="type-clear"
+                        class="absolute top-2 right-2 text-xs px-2 py-1 rounded-md border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled>Clear</button>
+                    <div id="type-chips" class="flex flex-col gap-2 max-h-32 overflow-y-auto">
+                        <span id="type-placeholder"
+                            class="w-full inline-flex items-center justify-between bg-gray-100 border border-gray-200 text-gray-600 text-xs px-2 py-1 rounded-full select-none">All</span>
+                        <input id="type-input" type="text" autocomplete="off" placeholder="Search type..."
+                            class="w-full bg-transparent outline-none py-1 px-1 placeholder:text-gray-400" />
+                    </div>
+                    <div id="type-dropdown"
+                        class="absolute left-0 right-0 z-20 mt-2 max-h-56 overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg hidden">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="border-t border-gray-200 pt-4 mt-2">
+            <p class="text-xs font-semibold text-gray-500 mb-3 uppercase tracking-wide">
+                Exclude (optional)
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                <!-- EXCLUDE CATEGORY -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">
+                        Exclude Category
+                    </label>
+
+                    <!-- hidden select -->
+                    <select id="exclude-category-hidden" th:field="*{excludeCategories}" multiple class="hidden">
+                        <option th:each="c : ${categories}" th:text="${c}" th:value="${c}"></option>
+                    </select>
+
+                    <!-- UI multi-select -->
+                    <div id="exclude-category-multi" class="relative w-full rounded-lg border border-gray-300 bg-white px-2 py-2
+                  text-sm shadow-sm focus-within:ring-2 focus-within:ring-red-500
+                  focus-within:border-red-500 pr-16">
+
+                        <button type="button" id="exclude-category-clear" class="absolute top-2 right-2 text-xs px-2 py-1 rounded-md border border-gray-300
+                       hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Clear
+                        </button>
+
+                        <div id="exclude-category-chips" class="flex flex-col gap-2 max-h-32 overflow-y-auto">
+                            <span id="exclude-category-placeholder" class="w-full inline-flex items-center justify-between bg-gray-100 border border-gray-200
+                       text-gray-600 text-xs px-2 py-1 rounded-full select-none">
+                                All
+                            </span>
+                            <input id="exclude-category-input" type="text" autocomplete="off"
+                                placeholder="Search category..."
+                                class="w-full bg-transparent outline-none py-1 px-1 placeholder:text-gray-400" />
+                        </div>
+
+                        <div id="exclude-category-dropdown" class="absolute left-0 right-0 z-20 mt-2 max-h-56 overflow-y-auto rounded-lg border
+                    border-gray-200 bg-white shadow-lg hidden">
+                        </div>
+                    </div>
+
+                    <p class="mt-1 text-[11px] text-gray-400">Exclude kategori tertentu dari hasil.</p>
+                </div>
+
+
+                <!-- EXCLUDE SUBCATEGORY -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">
+                        Exclude Sub Category
+                    </label>
+
+                    <select id="exclude-sub-category-hidden" th:field="*{excludeSubCategories}" multiple class="hidden">
+                        <option th:each="sc : ${subCategories}" th:text="${sc}" th:value="${sc}"></option>
+                    </select>
+
+                    <div id="exclude-sub-category-multi" class="relative w-full rounded-lg border border-gray-300 bg-white px-2 py-2
+                  text-sm shadow-sm focus-within:ring-2 focus-within:ring-red-500
+                  focus-within:border-red-500 pr-16">
+
+                        <button type="button" id="exclude-sub-category-clear" class="absolute top-2 right-2 text-xs px-2 py-1 rounded-md border border-gray-300
+                       hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Clear
+                        </button>
+
+                        <div id="exclude-sub-category-chips" class="flex flex-col gap-2 max-h-32 overflow-y-auto">
+                            <span id="exclude-sub-category-placeholder" class="w-full inline-flex items-center justify-between bg-gray-100 border border-gray-200
+                       text-gray-600 text-xs px-2 py-1 rounded-full select-none">
+                                All
+                            </span>
+                            <input id="exclude-sub-category-input" type="text" autocomplete="off"
+                                placeholder="Search..."
+                                class="w-full bg-transparent outline-none py-1 px-1 placeholder:text-gray-400" />
+                        </div>
+
+                        <div id="exclude-sub-category-dropdown" class="absolute left-0 right-0 z-20 mt-2 max-h-56 overflow-y-auto rounded-lg border
+                    border-gray-200 bg-white shadow-lg hidden">
+                        </div>
+                    </div>
+
+                    <p class="mt-1 text-[11px] text-gray-400">Exclude subcategory tertentu.</p>
+                </div>
+
+
+                <!-- EXCLUDE TYPE -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">
+                        Exclude Type
+                    </label>
+
+                    <select id="exclude-type-hidden" th:field="*{excludeTypes}" multiple class="hidden">
+                        <option value="INCOME">Income</option>
+                        <option value="EXPENSE">Expense</option>
+                        <option value="TRANSFER">Transfer</option>
+                    </select>
+
+                    <div id="exclude-type-multi" class="relative w-full rounded-lg border border-gray-300 bg-white px-2 py-2
+                  text-sm shadow-sm focus-within:ring-2 focus-within:ring-red-500
+                  focus-within:border-red-500 pr-16">
+
+                        <button type="button" id="exclude-type-clear" class="absolute top-2 right-2 text-xs px-2 py-1 rounded-md border border-gray-300
+                       hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Clear
+                        </button>
+
+                        <div id="exclude-type-chips" class="flex flex-col gap-2 max-h-32 overflow-y-auto">
+                            <span id="exclude-type-placeholder" class="w-full inline-flex items-center justify-between bg-gray-100 border border-gray-200
+                       text-gray-600 text-xs px-2 py-1 rounded-full select-none">
+                                All
+                            </span>
+                            <input id="exclude-type-input" type="text" autocomplete="off" placeholder="Search..."
+                                class="w-full bg-transparent outline-none py-1 px-1 placeholder:text-gray-400" />
+                        </div>
+
+                        <div id="exclude-type-dropdown" class="absolute left-0 right-0 z-20 mt-2 max-h-56 overflow-y-auto rounded-lg border
+                    border-gray-200 bg-white shadow-lg hidden">
+                        </div>
+                    </div>
+
+                    <p class="mt-1 text-[11px] text-gray-400">Exclude tipe tertentu.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Tombol Filter -->
+        <div class="flex justify-end">
+            <button type="submit"
+                class="rounded-lg bg-blue-600 px-5 py-2 text-white text-sm font-medium shadow-md hover:bg-blue-700 transition">
+                Filter
+            </button>
+        </div>
+
+    </form>
+
+    <div th:if="${#lists.isEmpty(transactions)}"
+        class="mt-4 px-4 py-4 rounded-lg border border-gray-200 bg-white text-center text-gray-500">
+        No transactions found for this filter.
+    </div>
+</th:block>

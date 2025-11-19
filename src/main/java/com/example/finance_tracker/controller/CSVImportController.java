@@ -7,6 +7,8 @@ import com.example.finance_tracker.exception.InvalidCSVFormatException;
 import com.example.finance_tracker.form.FilterTransactionsForm;
 import com.example.finance_tracker.form.ImportCSVForm;
 import com.example.finance_tracker.service.CSVImportService;
+import com.example.finance_tracker.service.InsightSummaryService;
+import com.example.finance_tracker.service.TransactionFilterService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,12 @@ public class CSVImportController {
 
     @Autowired
     private CSVImportService csvImportService;
+    
+    @Autowired
+    private TransactionFilterService transactionFilterService;
+
+    @Autowired
+    private InsightSummaryService insightSummaryService;
 
     @ModelAttribute("formatOptions")
     public List<ImportFormatOptionsDto> populateFormatOptions() {
@@ -55,7 +63,7 @@ public class CSVImportController {
         if (transactions != null) {
             if (!model.containsAttribute("transactions")) {
                 model.addAttribute("transactions", transactions);
-                model.addAttribute("summary", csvImportService.getInsightSummary(transactions));
+                model.addAttribute("summary", insightSummaryService.get(transactions));
             }
             if (!model.containsAttribute("categories")) {
                 List<String> categories = csvImportService.extractUniqueCategories(transactions);
@@ -89,7 +97,7 @@ public class CSVImportController {
             session.setAttribute("IMPORTED_TRANSACTIONS", transactions);
 
             ra.addFlashAttribute("transactions", transactions);
-            ra.addFlashAttribute("summary", csvImportService.getInsightSummary(transactions));
+            ra.addFlashAttribute("summary", insightSummaryService.get(transactions));
             ra.addFlashAttribute("filterTransactionsForm", new FilterTransactionsForm());
 
         } catch (InvalidCSVFormatException e) {
@@ -113,11 +121,11 @@ public class CSVImportController {
             return "redirect:/import/";
         }
 
-        List<TransactionRowDto> filtered = csvImportService.filterTransactions(all, form);
+        List<TransactionRowDto> filtered = transactionFilterService.applyFilter(all, form);
 
         ra.addFlashAttribute("transactions", filtered);
         ra.addFlashAttribute("filterTransactionsForm", form);
-        ra.addFlashAttribute("summary", csvImportService.getInsightSummary(filtered));
+        ra.addFlashAttribute("summary", insightSummaryService.get(filtered));
 
         return "redirect:/import/";
     }
