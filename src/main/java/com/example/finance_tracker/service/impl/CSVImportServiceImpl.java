@@ -52,6 +52,7 @@ public class CSVImportServiceImpl implements CSVImportService {
     @Override
     public List<TransactionRowDto> filterTransactions(List<TransactionRowDto> transactions, FilterTransactionsForm filter) {
         return transactions.stream()
+
                 // Start Date
                 .filter(tx -> {
                     if (filter.getStartDate() == null) return true;
@@ -64,26 +65,34 @@ public class CSVImportServiceImpl implements CSVImportService {
                     return !tx.getDate().isAfter(filter.getEndDate().atTime(23, 59, 59));
                 })
 
-                // Category
+                // Categories (multi-select)
                 .filter(tx -> {
-                    if (filter.getCategory() == null || filter.getCategory().isEmpty()) return true;
-                    return filter.getCategory().equalsIgnoreCase(tx.getCategory());
+                    List<String> cats = filter.getCategories();
+                    if (cats == null || cats.isEmpty()) return true;
+                    return cats.stream()
+                            .anyMatch(cat -> cat.equalsIgnoreCase(tx.getCategory()));
                 })
 
-                // Sub Category
+                // Sub Categories
                 .filter(tx -> {
-                    if (filter.getSubCategory() == null || filter.getSubCategory().isEmpty()) return true;
-                    return filter.getSubCategory().equalsIgnoreCase(tx.getSubCategory());
+                    List<String> cats = filter.getSubCategories();
+                    if (cats == null || cats.isEmpty()) return true;
+                    return cats.stream()
+                            .anyMatch(cat -> cat.equalsIgnoreCase(tx.getSubCategory()));
                 })
 
-                // Type
+                // Types
                 .filter(tx -> {
-                    if (filter.getType() == null || filter.getType().isEmpty()) return true;
-                    return filter.getType().equalsIgnoreCase(tx.getTransactionType().name());
+                    List<String> types = filter.getTypes();
+                    if (types == null || types.isEmpty()) return true;
+
+                    return types.stream()
+                            .anyMatch(t -> t.equalsIgnoreCase(tx.getTransactionType().name()));
                 })
 
                 .toList();
     }
+
 
     private double computeAverage (List <TransactionRowDto> transactions) {
         return transactions

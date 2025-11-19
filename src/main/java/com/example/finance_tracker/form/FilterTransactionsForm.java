@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class FilterTransactionsForm {
@@ -14,7 +15,7 @@ public class FilterTransactionsForm {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
-    private String category;
-    private String subCategory;
-    private String type;
+    private List <String> categories;
+    private List <String> subCategories;
+    private List <String> types;
 }

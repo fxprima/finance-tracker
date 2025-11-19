@@ -1,263 +1,277 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layout/base :: base(~{::pageTitle}, ~{::content})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/base :: base(~{::pageTitle}, ~{::content})}">
 
 <head>
-    <title th:fragment="pageTitle">Import from CSV</title>
+  <title th:fragment="pageTitle">Import from CSV</title>
 </head>
 
 <body>
-<th:block th:fragment="content">
+  <th:block th:fragment="content">
     <h1 class="text-3xl font-bold text-gray-800 mb-4">Import from CSV</h1>
 
     <form th:action="@{/import/}" method="post" enctype="multipart/form-data" id="upload-form"
-          th:object="${importCSVForm}">
-        <p class="text-gray-600 mb-6">
-            Please select your CSV format
+      th:object="${importCSVForm}">
+      <p class="text-gray-600 mb-6">
+        Please select your CSV format
+      </p>
+
+      <select th:field="*{formatOptionId}"
+        class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 pr-10 text-sm shadow-sm focus:outline-none mb-5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        name="format-selector" id="format-selector">
+        <option th:each="item : ${formatOptions}" th:text="${item.name}" th:value="${item.formatId}">
+        </option>
+      </select>
+
+      <!-- hidden file input -->
+      <input type="file" th:field="*{file}" id="file-input" name="file" accept=".csv" class="hidden" />
+
+      <!-- drop zone -->
+      <div id="dropzone"
+        class="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">
+
+        <p class="text-sm text-gray-600">
+          <span class="font-semibold">Drag & drop</span> your CSV file here
+          or <span class="text-blue-600 underline">click to browse</span>
         </p>
+        <p id="file-name" class="mt-2 text-xs text-gray-500">
+          No file selected
+        </p>
+      </div>
 
-        <select
-                th:field="*{formatOptionId}"
-                class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 pr-10 text-sm shadow-sm focus:outline-none mb-5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                name="format-selector"
-                id="format-selector">
-            <option
-                    th:each="item : ${formatOptions}"
-                    th:text="${item.name}"
-                    th:value="${item.formatId}">
-            </option>
-        </select>
-
-        <!-- hidden file input -->
-        <input type="file"
-               th:field="*{file}"
-               id="file-input"
-               name="file"
-               accept=".csv"
-               class="hidden"/>
-
-        <!-- drop zone -->
-        <div id="dropzone"
-             class="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">
-
-            <p class="text-sm text-gray-600">
-                <span class="font-semibold">Drag & drop</span> your CSV file here
-                or <span class="text-blue-600 underline">click to browse</span>
-            </p>
-            <p id="file-name" class="mt-2 text-xs text-gray-500">
-                No file selected
-            </p>
-        </div>
-
-        <button type="submit"
-                class="mt-4 px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
-                id="submit-btn"
-                disabled>
-            Upload CSV
-        </button>
+      <button type="submit"
+        class="mt-4 px-4 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed"
+        id="submit-btn" disabled>
+        Upload CSV
+      </button>
     </form>
 
     <!-- TABLE PREVIEW -->
     <div class="mt-8" th:if="${transactions != null}">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">All Transactions</h2>
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">All Transactions</h2>
 
-        <!-- Summary cards -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6" th:if="${summary != null}">
+      <!-- Summary cards -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6" th:if="${summary != null}">
 
-            <!-- Total Transactions -->
-            <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-                <p class="text-xs uppercase text-gray-500 mb-1">Total Transactions</p>
-                <p id="summary-total-transactions"
-                   class="text-xl font-semibold text-gray-800"
-                   th:text="${summary.totalTransactions}">
-                    -
-                </p>
-            </div>
-
-            <!-- Total Amount -->
-            <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-                <p class="text-xs uppercase text-gray-500 mb-1">Total Income</p>
-                <p id="summary-total-amount"
-                   class="text-xl font-semibold text-gray-800"
-                   th:text="${'Rp ' + #numbers.formatDecimal(summary.totalIncome, 0, 'COMMA', 2, 'POINT')}">
-                    -
-                </p>
-            </div>
-
-            <!-- Average Amount -->
-            <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-                <p class="text-xs uppercase text-gray-500 mb-1">Total Expenses</p>
-                <p id="summary-average-amount"
-                   class="text-xl font-semibold text-gray-800"
-                   th:text="${'Rp ' + #numbers.formatDecimal(summary.totalExpenses, 0, 'COMMA', 2, 'POINT')}">
-                    -
-                </p>
-            </div>
-
-            <!-- Max Amount -->
-            <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-                <p class="text-xs uppercase text-gray-500 mb-1">Cash Flow</p>
-                <p id="summary-max-amount"
-                   class="text-xl font-semibold text-gray-800"
-                   th:text="${'Rp ' + #numbers.formatDecimal(summary.cashFlow, 0, 'COMMA', 2, 'POINT')}">
-                    -
-                </p>
-            </div>
+        <!-- Total Transactions -->
+        <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+          <p class="text-xs uppercase text-gray-500 mb-1">Total Transactions</p>
+          <p id="summary-total-transactions" class="text-xl font-semibold text-gray-800"
+            th:text="${summary.totalTransactions}">
+            -
+          </p>
         </div>
 
-
-        <form
-                th:action="@{/import/filter}"
-                method="get"
-                th:object="${filterTransactionsForm}"
-                class="w-full mb-8"
-        >
-
-            <div class="filter-section grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-
-                <!-- Start Date -->
-                <div>
-                    <label for="start-date" class="block text-xs font-semibold text-gray-600 mb-1">
-                        Start Date
-                    </label>
-                    <input
-                            type="date"
-                            th:field="*{startDate}"
-                            class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    />
-                </div>
-
-                <!-- End Date -->
-                <div>
-                    <label for="end-date" class="block text-xs font-semibold text-gray-600 mb-1">
-                        End Date
-                    </label>
-                    <input
-                            class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            th:field="*{endDate}"
-                            type="date"
-                    />
-                </div>
-
-                <!-- Category -->
-                <div>
-                    <label for="category" class="block text-xs font-semibold text-gray-600 mb-1">
-                        Category
-                    </label>
-                    <select
-                            th:field="*{category}"
-                            class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 pr-10 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    >
-                        <option value="">All</option>
-                        <option
-                            th:each="category : ${categories}"
-                            th:text="${category}"
-                            th:value="${category}"
-                        >
-                        </option>
-                    </select>
-                </div>
-
-                <!-- Sub Category -->
-                <div>
-                    <label for="sub-category" class="block text-xs font-semibold text-gray-600 mb-1">
-                        Sub Category
-                    </label>
-                    <select
-                            th:field="*{subCategory}"
-                            class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 pr-10 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    >
-                        <option value="">All</option>
-                        <option
-                                th:each="sc : ${subCategories}"
-                                th:text="${sc}"
-                                th:value="${sc}"
-                        >
-                        </option>
-                    </select>
-                </div>
-
-                <!-- Type -->
-                <div>
-                    <label for="type" class="block text-xs font-semibold text-gray-600 mb-1">
-                        Type
-                    </label>
-                    <select
-                            id="type"
-                            name="type"
-                            th:field="*{type}"
-                            class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 pr-10 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    >
-                        <option value="">All</option>
-                        <option value="INCOME">Income</option>
-                        <option value="EXPENSE">Expense</option>
-                        <option value="TRANSFER">Transfer</option>
-                    </select>
-                </div>
-
-            </div>
-
-            <!-- Tombol Filter -->
-            <div class="flex justify-end">
-                <button
-                        type="submit"
-                        class="rounded-lg bg-blue-600 px-5 py-2 text-white text-sm font-medium shadow-md hover:bg-blue-700 transition"
-                >
-                    Filter
-                </button>
-            </div>
-
-        </form>
-
-        <div th:if="${#lists.isEmpty(transactions)}"
-             class="mt-4 px-4 py-4 rounded-lg border border-gray-200 bg-white text-center text-gray-500">
-            No transactions found for this filter.
+        <!-- Total Amount -->
+        <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+          <p class="text-xs uppercase text-gray-500 mb-1">Total Income</p>
+          <p id="summary-total-amount" class="text-xl font-semibold text-gray-800"
+            th:text="${'Rp ' + #numbers.formatDecimal(summary.totalIncome, 0, 'COMMA', 2, 'POINT')}">
+            -
+          </p>
         </div>
 
-        <div class="overflow-x-auto rounded-lg border border-gray-200" th:if="${!#lists.isEmpty(transactions)}">
-            <table id="transactions-table" class="min-w-full text-sm text-left text-gray-700">
-                <thead class="bg-gray-100 text-xs uppercase tracking-wide text-gray-600">
-                <tr>
-                    <th class="px-4 py-3">Date</th>
-                    <th class="px-4 py-3">Type</th>
-                    <th class="px-4 py-3">Category</th>
-                    <th class="px-4 py-3">Sub Category</th>
-                    <th class="px-4 py-3">Currency</th>
-                    <th class="px-4 py-3">Amount</th>
-                    <th class="px-4 py-3">Note</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:if="${#lists.isEmpty(transactions)}">
-                    <td colspan="7" class="px-4 py-4 text-center text-gray-500">
-                        No transactions found for this filter.
-                    </td>
-                </tr>
-
-                <tr th:each="tx : ${transactions}">
-                    <td class="px-4 py-2" th:text="${#temporals.format(tx.date, 'dd MMMM yyyy HH:mm')}"></td>
-                    <td class="px-4 py-2" th:text="${tx.transactionType}"></td>
-                    <td class="px-4 py-2" th:text="${tx.category}"></td>
-                    <td class="px-4 py-2" th:text="${tx.subCategory}"></td>
-                    <td class="px-4 py-2" th:text="${tx.currency}"></td>
-                    <td class="px-4 py-2" th:text="${#numbers.formatInteger(tx.amount, 0, 'COMMA')}"></td>
-                    <td class="px-4 py-2" th:text="${tx.note}"></td>
-                </tr>
-                </tbody>
-
-            </table>
+        <!-- Average Amount -->
+        <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+          <p class="text-xs uppercase text-gray-500 mb-1">Total Expenses</p>
+          <p id="summary-average-amount" class="text-xl font-semibold text-gray-800"
+            th:text="${'Rp ' + #numbers.formatDecimal(summary.totalExpenses, 0, 'COMMA', 2, 'POINT')}">
+            -
+          </p>
         </div>
+
+        <!-- Max Amount -->
+        <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+          <p class="text-xs uppercase text-gray-500 mb-1">Cash Flow</p>
+          <p id="summary-max-amount" class="text-xl font-semibold text-gray-800"
+            th:text="${'Rp ' + #numbers.formatDecimal(summary.cashFlow, 0, 'COMMA', 2, 'POINT')}">
+            -
+          </p>
+        </div>
+      </div>
+
+
+      <form th:action="@{/import/filter}" method="get" th:object="${filterTransactionsForm}" class="w-full mb-8">
+
+        <div class="filter-section grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+
+          <!-- Start Date -->
+          <div>
+            <label for="start-date" class="block text-xs font-semibold text-gray-600 mb-1">
+              Start Date
+            </label>
+            <input type="date" th:field="*{startDate}"
+              class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+          </div>
+
+          <!-- End Date -->
+          <div>
+            <label for="end-date" class="block text-xs font-semibold text-gray-600 mb-1">
+              End Date
+            </label>
+            <input
+              class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              th:field="*{endDate}" type="date" />
+          </div>
+
+
+          <!-- Category (Multi-select + chips full-width + placeholder "All") -->
+          <div class="md:col-span-1">
+            <label for="category-input" class="block text-xs font-semibold text-gray-600 mb-1">
+              Category
+            </label>
+
+            <!-- hidden select yang dikirim ke server -->
+            <select id="category-hidden" th:field="*{categories}" name="category" multiple class="hidden">
+              <option th:each="category : ${categories}" th:text="${category}" th:value="${category}">
+              </option>
+            </select>
+
+            <!-- UI multiselect -->
+            <div id="category-multi" class="relative w-full rounded-lg border border-gray-300 bg-white px-2 py-2 text-sm shadow-sm
+           focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 pr-16">
+
+              <!-- Clear all -->
+              <button type="button" id="category-clear" class="absolute top-2 right-2 text-xs px-2 py-1 rounded-md border border-gray-300 hover:bg-gray-100
+             disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                Clear
+              </button>
+
+              <!-- chips (full width) + input -->
+              <div id="category-chips" class="flex flex-col gap-2 max-h-32 overflow-y-auto">
+                <!-- placeholder "All" saat belum ada pilihan -->
+                <span id="category-placeholder" class="w-full inline-flex items-center justify-between bg-gray-100 border border-gray-200
+                   text-gray-600 text-xs px-2 py-1 rounded-full select-none">
+                  All
+                </span>
+                <input id="category-input" type="text" autocomplete="off" placeholder="Search category..."
+                  class="w-full bg-transparent outline-none py-1 px-1 placeholder:text-gray-400" />
+              </div>
+
+              <!-- dropdown -->
+              <div id="category-dropdown" class="absolute left-0 right-0 z-20 mt-2 max-h-56 overflow-y-auto rounded-lg border border-gray-200
+             bg-white shadow-lg hidden">
+                <!-- opsi dirender via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Sub Category -->
+          <div>
+            <label for="sub-category-input" class="block text-xs font-semibold text-gray-600 mb-1">
+              Sub Category
+            </label>
+            <select id="sub-category-hidden" name="subCategory" multiple class="hidden" th:field="*{subCategories}">
+              <option value="" selected>All</option>
+              <option th:each="sc : ${subCategories}" th:text="${sc}" th:value="${sc}"></option>
+            </select>
+            <div id="sub-category-multi"
+              class="relative w-full rounded-lg border border-gray-300 bg-white px-2 py-2 text-sm shadow-sm focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 pr-16">
+              <button type="button" id="sub-category-clear"
+                class="absolute top-2 right-2 text-xs px-2 py-1 rounded-md border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled>Clear</button>
+              <div id="sub-category-chips" class="flex flex-col gap-2 max-h-32 overflow-y-auto">
+                <span id="sub-category-placeholder"
+                  class="w-full inline-flex items-center justify-between bg-gray-100 border border-gray-200 text-gray-600 text-xs px-2 py-1 rounded-full select-none">All</span>
+                <input id="sub-category-input" type="text" autocomplete="off" placeholder="Search subcategory..."
+                  class="w-full bg-transparent outline-none py-1 px-1 placeholder:text-gray-400" />
+              </div>
+              <div id="sub-category-dropdown"
+                class="absolute left-0 right-0 z-20 mt-2 max-h-56 overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg hidden">
+              </div>
+            </div>
+          </div>
+
+          <!-- Type -->
+          <div>
+            <label for="type-input" class="block text-xs font-semibold text-gray-600 mb-1">
+              Type
+            </label>
+            <select id="type-hidden" name="type" multiple class="hidden" th:field="*{types}">
+              <option value="" selected>All</option>
+              <option value="INCOME">Income</option>
+              <option value="EXPENSE">Expense</option>
+              <option value="TRANSFER">Transfer</option>
+            </select>
+            <div id="type-multi"
+              class="relative w-full rounded-lg border border-gray-300 bg-white px-2 py-2 text-sm shadow-sm focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 pr-16">
+              <button type="button" id="type-clear"
+                class="absolute top-2 right-2 text-xs px-2 py-1 rounded-md border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled>Clear</button>
+              <div id="type-chips" class="flex flex-col gap-2 max-h-32 overflow-y-auto">
+                <span id="type-placeholder"
+                  class="w-full inline-flex items-center justify-between bg-gray-100 border border-gray-200 text-gray-600 text-xs px-2 py-1 rounded-full select-none">All</span>
+                <input id="type-input" type="text" autocomplete="off" placeholder="Search type..."
+                  class="w-full bg-transparent outline-none py-1 px-1 placeholder:text-gray-400" />
+              </div>
+              <div id="type-dropdown"
+                class="absolute left-0 right-0 z-20 mt-2 max-h-56 overflow-y-auto rounded-lg border border-gray-200 bg-white shadow-lg hidden">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tombol Filter -->
+        <div class="flex justify-end">
+          <button type="submit"
+            class="rounded-lg bg-blue-600 px-5 py-2 text-white text-sm font-medium shadow-md hover:bg-blue-700 transition">
+            Filter
+          </button>
+        </div>
+
+      </form>
+
+      <div th:if="${#lists.isEmpty(transactions)}"
+        class="mt-4 px-4 py-4 rounded-lg border border-gray-200 bg-white text-center text-gray-500">
+        No transactions found for this filter.
+      </div>
+
+      <div class="overflow-x-auto rounded-lg border border-gray-200" th:if="${!#lists.isEmpty(transactions)}">
+        <table id="transactions-table" class="min-w-full text-sm text-left text-gray-700">
+          <thead class="bg-gray-100 text-xs uppercase tracking-wide text-gray-600">
+            <tr>
+              <th class="px-4 py-3">Date</th>
+              <th class="px-4 py-3">Type</th>
+              <th class="px-4 py-3">Category</th>
+              <th class="px-4 py-3">Sub Category</th>
+              <th class="px-4 py-3">Currency</th>
+              <th class="px-4 py-3">Amount</th>
+              <th class="px-4 py-3">Note</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:if="${#lists.isEmpty(transactions)}">
+              <td colspan="7" class="px-4 py-4 text-center text-gray-500">
+                No transactions found for this filter.
+              </td>
+            </tr>
+
+            <tr th:each="tx : ${transactions}">
+              <td class="px-4 py-2" th:text="${#temporals.format(tx.date, 'dd MMMM yyyy HH:mm')}"></td>
+              <td class="px-4 py-2" th:text="${tx.transactionType}"></td>
+              <td class="px-4 py-2" th:text="${tx.category}"></td>
+              <td class="px-4 py-2" th:text="${tx.subCategory}"></td>
+              <td class="px-4 py-2" th:text="${tx.currency}"></td>
+              <td class="px-4 py-2" th:text="${#numbers.formatInteger(tx.amount, 0, 'COMMA')}"></td>
+              <td class="px-4 py-2" th:text="${tx.note}"></td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
     </div>
     <!-- DataTables CSS -->
-    <link rel="stylesheet"
-          href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
-    <script th:src="@{/js/importCSV.js}"></script>
-</th:block>
+
+    <script th:src="@{/js/pages/importCSV/table-dropzone.js}"></script>
+    <script th:src="@{/js/pages/importCSV/multi-select.js}"></script>
+  </th:block>
 </body>
+
 </html>
