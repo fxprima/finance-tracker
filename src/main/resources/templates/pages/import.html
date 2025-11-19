@@ -92,8 +92,8 @@
 
       </div>
 
-      
-      <th:block th:insert="~{fragments/filter-fragment :: filterTransactionsForm }" />
+
+        <th:block th:insert="~{fragments/filter-fragment :: transactionsFilter(@{/import/filter})}" />
       <th:block th:insert="~{fragments/table-fragment :: rowsOnly(${transactions})}" />
 
     </div>

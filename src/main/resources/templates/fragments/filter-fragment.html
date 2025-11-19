@@ -1,5 +1,5 @@
-<th:block th:fragment="filterTransactionsForm">
-    <form th:action="@{/import/filter}" method="get" th:object="${filterTransactionsForm}" class="w-full mb-8">
+<th:block th:fragment="transactionsFilter(formAction)">
+    <form th:action="${formAction}" method="get" th:object="${filterTransactionsForm}" class="w-full mb-8">
 
         <div class="border-t border-gray-200 pt-4 mt-2">
             <p class="text-xs font-semibold text-gray-500 mb-3 uppercase tracking-wide">
