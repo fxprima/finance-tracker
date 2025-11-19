@@ -37,19 +37,21 @@ function setupMultiSelect({ id }) {
 
     if (items.length === 0) {
       dropdown.innerHTML =
-        `<div class="px-3 py-2 text-sm text-gray-500">No results</div>`;
-      return; // FIX: jangan lanjut
+        `<div class="px-3 py-2 text-sm text-gray-500 dark:text-gray-400">No results</div>`;
+      return;
     }
 
     items.forEach(o => {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "w-full text-left px-3 py-2 text-sm hover:bg-gray-100";
+      btn.className =
+        "w-full text-left px-3 py-2 text-sm text-gray-800 dark:text-gray-100 " +
+        "hover:bg-gray-100 dark:hover:bg-slate-700";
       btn.textContent = o.label;
       btn.dataset.value = o.value;
 
       btn.addEventListener("click", (e) => {
-        e.stopPropagation(); // FIX: biar tidak dianggap klik luar
+        e.stopPropagation();
         selectValue(o.value, o.label);
         input.value = "";
         renderDropdown("");
@@ -65,14 +67,17 @@ function setupMultiSelect({ id }) {
 
     const chip = document.createElement("span");
     chip.dataset.value = value;
-    chip.className = `w-full inline-flex items-center justify-between
-        bg-blue-50 border border-blue-200
-        text-blue-700 text-xs px-2 py-1 rounded-full`;
+    chip.className =
+      `w-full inline-flex items-center justify-between
+        bg-blue-50 border border-blue-200 text-blue-700
+        dark:bg-blue-900/40 dark:border-blue-500/40 dark:text-blue-100
+        text-xs px-2 py-1 rounded-full`;
 
     chip.innerHTML = `
       <span>${label}</span>
       <button type="button"
-        class="ml-2 leading-none rounded hover:bg-blue-100 px-1">&times;</button>
+        class="ml-2 leading-none rounded px-1
+               hover:bg-blue-100 dark:hover:bg-blue-800/60">&times;</button>
     `;
 
     chip.querySelector("button").addEventListener("click", (e) => {
@@ -105,7 +110,7 @@ function setupMultiSelect({ id }) {
   };
 
   const clearAll = () => {
-    Array.from(hidden.options).forEach(o => o.selected = false);
+    Array.from(hidden.options).forEach(o => (o.selected = false));
     chips.querySelectorAll("[data-value]").forEach(el => el.remove());
     input.value = "";
     renderDropdown("");
@@ -124,7 +129,6 @@ function setupMultiSelect({ id }) {
     renderDropdown(e.target.value);
   });
 
-  // FIX: klik item dropdown tidak menutup dropdown
   document.addEventListener("click", (e) => {
     if (!wrapper.contains(e.target)) dropdown.classList.add("hidden");
   });
