@@ -56,10 +56,9 @@ public class CSVParser {
                                         line[4] : line[2]
                         );
 
-                        row.setSubCategory(
-                                (transactionType == TransactionType.EXPENSE) ?
-                                        line[5] : line[3]
-                        );
+                        // SubCategory
+                        String rawSubCategory = (transactionType == TransactionType.EXPENSE) ? line[5] : line[3];
+                        row.setSubCategory(emptyToNull(rawSubCategory));
 
                         row.setAmount(Double.parseDouble(line[6]));
                         row.setCurrency(Currency.getInstance(line[7]));
@@ -84,4 +83,9 @@ public class CSVParser {
         return result;
     }
 
+    private String emptyToNull(String s) {
+        if (s == null) return null;
+        String trimmed = s.trim();
+        return trimmed.isEmpty() ? null : trimmed;
+    }
 }
