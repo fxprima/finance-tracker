@@ -9,4 +9,5 @@ public class InsightSummaryDTO {
     private double totalExpenses;
     private double maxExpenses;
     private double cashFlow;
+    private double cashFlowPercentage;
 }

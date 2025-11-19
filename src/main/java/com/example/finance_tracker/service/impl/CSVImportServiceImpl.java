@@ -141,7 +141,7 @@ public class CSVImportServiceImpl implements CSVImportService {
         res.setMaxExpenses(maxExpenses);
         res.setTotalIncome(totalIncome);
         res.setCashFlow(totalIncome - totalExpenses);
-
+        res.setCashFlowPercentage((res.getCashFlow() / res.getTotalIncome()) * 100);
         return res;
     }
 }
