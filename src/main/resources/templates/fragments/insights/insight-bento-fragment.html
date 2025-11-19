@@ -1,0 +1,103 @@
+<th:block th:fragment="insight(transactions)">
+
+    <!-- inject data dari backend ke window -->
+    <script th:inline="javascript">
+        window.FINANCE_TRANSACTIONS = /*[[${transactions}]]*/[];
+    </script>
+
+    <!-- WRAPPER BENTO INSIGHT -->
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <!-- KIRI: Pie Chart Expenses by Category -->
+        <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm
+                    dark:bg-slate-900 dark:border-slate-700">
+            <p class="text-xs uppercase text-gray-500 mb-2 tracking-wide dark:text-slate-400">
+                Expenses by Category
+            </p>
+
+            <div class="flex justify-end mb-2">
+                <button id="toggleChartBtn" class="text-xs px-2 py-1 rounded border dark:border-slate-700">
+                    Switch to Bar
+                </button>
+            </div>
+
+            <div class="h-72 md:h-80 relative">
+                <canvas id="categoryPieChart" class="w-full h-full"></canvas>
+                <canvas id="categoryBarChart" class="w-full h-full hidden"></canvas>
+            </div>
+
+        </div>
+
+        <!-- KANAN: Top Spending Categories -->
+        <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm
+                    dark:bg-slate-900 dark:border-slate-700">
+            <p class="text-xs uppercase text-gray-500 mb-3 tracking-wide dark:text-slate-400">
+                Top Spending Categories
+            </p>
+
+            <ul id="top-categories-list" class="space-y-3">
+                <!-- akan diisi dari JS (top-categories-list.js) -->
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Chart.js (kalau nanti sudah di-include di layout/base, baris ini bisa dihapus) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- loader: mapping data transaksi -->
+    <script th:src="@{/js/insight/insight.js}"></script>
+
+    <!-- chart: pie per kategori -->
+    <script th:src="@{/js/insight/category-pie-chart.js}"></script>
+
+    <script th:src="@{/js/insight/category-bar-chart.js}"></script>
+
+    <!-- kanan: top categories list -->
+    <script th:src="@{/js/insight/top-categories-list.js}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn = document.getElementById('toggleChartBtn');
+            const pie = document.getElementById('categoryPieChart');
+            const bar = document.getElementById('categoryBarChart');
+
+            if (!btn || !pie || !bar) return;
+
+            // 🔒 pastikan state awal: pie ON, bar OFF
+            pie.classList.remove('hidden');
+            pie.style.display = 'block';
+
+            bar.classList.add('hidden');
+            bar.style.display = 'none';
+
+            btn.textContent = 'Switch to Bar';
+
+            btn.addEventListener('click', () => {
+                const showingBar = bar.style.display !== 'none';
+
+                if (showingBar) {
+                    // lagi BAR → switch ke PIE
+                    bar.style.display = 'none';
+                    bar.classList.add('hidden');
+
+                    pie.style.display = 'block';
+                    pie.classList.remove('hidden');
+
+                    btn.textContent = 'Switch to Bar';
+                } else {
+                    // lagi PIE → switch ke BAR
+                    pie.style.display = 'none';
+                    pie.classList.add('hidden');
+
+                    bar.style.display = 'block';
+                    bar.classList.remove('hidden');
+
+                    btn.textContent = 'Switch to Pie';
+                }
+            });
+        });
+    </script>
+
+
+</th:block>
