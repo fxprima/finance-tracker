@@ -2,6 +2,7 @@ package com.example.finance_tracker.service.impl;
 
 import com.example.finance_tracker.common.contants.CSVFormatOption;
 import com.example.finance_tracker.dto.FilterTransactionDto;
+import com.example.finance_tracker.dto.InsightSummaryDTO;
 import com.example.finance_tracker.dto.TransactionRowDto;
 import com.example.finance_tracker.form.FilterTransactionsForm;
 import com.example.finance_tracker.service.CSVImportService;
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Objects;
 
@@ -81,5 +83,56 @@ public class CSVImportServiceImpl implements CSVImportService {
                 })
 
                 .toList();
+    }
+
+    private double computeAverage (List <TransactionRowDto> transactions) {
+        return transactions
+                .stream()
+                .mapToDouble(TransactionRowDto::getAmount)
+                .average()
+                .orElse(0.0);
+
+    }
+
+    @Override
+    public InsightSummaryDTO getInsightSummary(List<TransactionRowDto> transactions) {
+        InsightSummaryDTO res = new InsightSummaryDTO();
+
+        if (transactions == null || transactions.isEmpty())
+            return res;
+
+        double totalIncome = transactions.stream()
+                .filter(
+                        tx -> tx.getTransactionType()
+                                .name()
+                                .equalsIgnoreCase("INCOME"))
+                .mapToDouble(TransactionRowDto::getAmount)
+                .sum();
+
+        double totalExpenses = transactions.stream()
+                .filter(
+                        tx -> tx.getTransactionType()
+                                .name()
+                                .equalsIgnoreCase("EXPENSE"))
+                .mapToDouble(TransactionRowDto::getAmount)
+                .sum();
+
+        double maxExpenses = transactions.stream()
+                .filter(
+                        tx -> tx.getTransactionType()
+                                .name()
+                                .equalsIgnoreCase("EXPENSE"))
+                .mapToDouble(TransactionRowDto::getAmount)
+                .max()
+                .orElse(0.0);
+
+
+        res.setTotalExpenses(totalExpenses);
+        res.setTotalTransactions(transactions.size());
+        res.setMaxExpenses(maxExpenses);
+        res.setTotalIncome(totalIncome);
+        res.setCashFlow(totalIncome - totalExpenses);
+
+        return res;
     }
 }

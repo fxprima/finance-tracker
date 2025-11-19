@@ -56,9 +56,10 @@ public class CSVImportController {
                 (List<TransactionRowDto>) session.getAttribute("IMPORTED_TRANSACTIONS");
 
         if (transactions != null) {
-            if (!model.containsAttribute("transactions"))
+            if (!model.containsAttribute("transactions")) {
                 model.addAttribute("transactions", transactions);
-
+                model.addAttribute("summary", csvImportService.getInsightSummary(transactions));
+            }
             if (!model.containsAttribute("categories")) {
                 List<String> categories = csvImportService.extractUniqueCategories(transactions);
                 model.addAttribute("categories", categories);
@@ -91,6 +92,7 @@ public class CSVImportController {
             session.setAttribute("IMPORTED_TRANSACTIONS", transactions);
 
             ra.addFlashAttribute("transactions", transactions);
+            ra.addFlashAttribute("summary", csvImportService.getInsightSummary(transactions));
             ra.addFlashAttribute("filterTransactionsForm", new FilterTransactionsForm());
 
         } catch (InvalidCSVFormatException e) {
@@ -118,6 +120,7 @@ public class CSVImportController {
 
         ra.addFlashAttribute("transactions", filtered);
         ra.addFlashAttribute("filterTransactionsForm", form);
+        ra.addFlashAttribute("summary", csvImportService.getInsightSummary(filtered));
 
         return "redirect:/import/";
     }

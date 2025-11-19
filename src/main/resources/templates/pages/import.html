@@ -62,24 +62,49 @@
         <h2 class="text-2xl font-semibold text-gray-800 mb-4">All Transactions</h2>
 
         <!-- Summary cards -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6" th:if="${summary != null}">
+
+            <!-- Total Transactions -->
             <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
                 <p class="text-xs uppercase text-gray-500 mb-1">Total Transactions</p>
-                <p id="summary-total-transactions" class="text-xl font-semibold text-gray-800">-</p>
+                <p id="summary-total-transactions"
+                   class="text-xl font-semibold text-gray-800"
+                   th:text="${summary.totalTransactions}">
+                    -
+                </p>
             </div>
+
+            <!-- Total Amount -->
             <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-                <p class="text-xs uppercase text-gray-500 mb-1">Total Amount</p>
-                <p id="summary-total-amount" class="text-xl font-semibold text-gray-800">-</p>
+                <p class="text-xs uppercase text-gray-500 mb-1">Total Income</p>
+                <p id="summary-total-amount"
+                   class="text-xl font-semibold text-gray-800"
+                   th:text="${'Rp ' + #numbers.formatDecimal(summary.totalIncome, 0, 'COMMA', 2, 'POINT')}">
+                    -
+                </p>
             </div>
+
+            <!-- Average Amount -->
             <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-                <p class="text-xs uppercase text-gray-500 mb-1">Average Amount</p>
-                <p id="summary-average-amount" class="text-xl font-semibold text-gray-800">-</p>
+                <p class="text-xs uppercase text-gray-500 mb-1">Total Expenses</p>
+                <p id="summary-average-amount"
+                   class="text-xl font-semibold text-gray-800"
+                   th:text="${'Rp ' + #numbers.formatDecimal(summary.totalExpenses, 0, 'COMMA', 2, 'POINT')}">
+                    -
+                </p>
             </div>
+
+            <!-- Max Amount -->
             <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-                <p class="text-xs uppercase text-gray-500 mb-1">Max Amount</p>
-                <p id="summary-max-amount" class="text-xl font-semibold text-gray-800">-</p>
+                <p class="text-xs uppercase text-gray-500 mb-1">Cash Flow</p>
+                <p id="summary-max-amount"
+                   class="text-xl font-semibold text-gray-800"
+                   th:text="${'Rp ' + #numbers.formatDecimal(summary.cashFlow, 0, 'COMMA', 2, 'POINT')}">
+                    -
+                </p>
             </div>
         </div>
+
 
         <form
                 th:action="@{/import/filter}"
