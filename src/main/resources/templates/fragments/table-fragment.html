@@ -23,83 +23,80 @@
         }
     </style>
 
-    <div
-            class="rounded-lg border border-gray-200 dark:border-gray-700
+    <div class="rounded-lg border border-gray-200 dark:border-gray-700
                bg-white dark:bg-slate-900 shadow-sm
-               overflow-x-auto p-4"
-            th:if="${!#lists.isEmpty(transactions)}"
-    >
-        <table
-                id="transactions-table"
-                class="min-w-full text-sm text-left text-gray-700 dark:text-gray-100"
-        >
-            <thead
-                    class="bg-gray-100 dark:bg-slate-800
+               overflow-x-auto p-4" th:if="${!#lists.isEmpty(transactions)}">
+        <table id="transactions-table" class="min-w-full text-sm text-left text-gray-700 dark:text-gray-100">
+            <thead class="bg-gray-100 dark:bg-slate-800
                        text-xs uppercase tracking-wide
-                       text-gray-600 dark:text-gray-300"
-            >
-            <tr>
-                <th class="px-4 py-3">Date</th>
-                <th class="px-4 py-3">Type</th>
-                <th class="px-4 py-3">Category</th>
-                <th class="px-4 py-3">Sub Category</th>
-                <th class="px-4 py-3">Currency</th>
-                <th class="px-4 py-3 text-right">Amount</th>
-                <th class="px-4 py-3">Note</th>
-            </tr>
+                       text-gray-600 dark:text-gray-300">
+                <tr>
+                    <th class="px-4 py-3">Date</th>
+                    <th class="px-4 py-3">Type</th>
+                    <th class="px-4 py-3">Category</th>
+                    <th class="px-4 py-3">Sub Category</th>
+                    <th class="px-4 py-3">Currency</th>
+                    <th class="px-4 py-3 text-right">Amount</th>
+                    <th class="px-4 py-3">Note</th>
+                </tr>
             </thead>
 
             <tbody class="divide-y divide-gray-100 dark:divide-slate-800">
-            <tr
-                    th:each="tx : ${transactions}"
-                    class="hover:bg-gray-50 dark:hover:bg-slate-800/70 transition-colors"
-            >
-                <td
-                        class="px-4 py-2 whitespace-nowrap text-gray-800 dark:text-gray-100"
-                        th:text="${#temporals.format(tx.date, 'dd MMMM yyyy HH:mm')}"
-                ></td>
+                <tr th:each="tx : ${transactions}"
+                    class="hover:bg-gray-50 dark:hover:bg-slate-800/70 transition-colors">
+                    <td class="px-4 py-2 whitespace-nowrap text-gray-800 dark:text-gray-100"
+                        th:text="${#temporals.format(tx.date, 'dd MMMM yyyy HH:mm')}"></td>
 
-                <td
-                        class="px-4 py-2 whitespace-nowrap text-gray-700 dark:text-gray-200"
-                        th:text="${tx.transactionType}"
-                ></td>
+                    <td class="px-4 py-2 whitespace-nowrap text-gray-700 dark:text-gray-200"
+                        th:text="${tx.transactionType}"></td>
 
-                <td
-                        class="px-4 py-2 whitespace-nowrap text-gray-700 dark:text-gray-200"
-                        th:text="${tx.category}"
-                ></td>
+                    <td class="px-4 py-2 whitespace-nowrap text-gray-700 dark:text-gray-200" th:text="${tx.category}">
+                    </td>
 
-                <td
-                        class="px-4 py-2 whitespace-nowrap text-gray-700 dark:text-gray-200"
-                        th:text="${tx.subCategory}"
-                ></td>
+                    <td class="px-4 py-2 whitespace-nowrap text-gray-700 dark:text-gray-200"
+                        th:text="${tx.subCategory}"></td>
 
-                <td
-                        class="px-4 py-2 whitespace-nowrap text-gray-700 dark:text-gray-200"
-                        th:text="${tx.currency}"
-                ></td>
+                    <td class="px-4 py-2 whitespace-nowrap text-gray-700 dark:text-gray-200" th:text="${tx.currency}">
+                    </td>
 
-                <td
-                        class="px-4 py-2 whitespace-nowrap text-right font-semibold
+                    <td class="px-4 py-2 whitespace-nowrap text-right font-semibold
                                text-gray-900 dark:text-gray-100"
-                        th:text="${#numbers.formatInteger(tx.amount, 0, 'COMMA')}"
-                ></td>
+                        th:text="${#numbers.formatInteger(tx.amount, 0, 'COMMA')}"></td>
 
-                <td
-                        class="px-4 py-2 max-w-xs truncate text-gray-700 dark:text-gray-200"
-                        th:text="${tx.note}"
-                ></td>
-            </tr>
+                    <td class="px-4 py-2 max-w-xs truncate text-gray-700 dark:text-gray-200" th:text="${tx.note}"></td>
+                </tr>
             </tbody>
         </table>
     </div>
 
-    <div
-            th:if="${#lists.isEmpty(transactions)}"
-            class="mt-4 px-4 py-4 rounded-lg border border-gray-200 dark:border-gray-700
+    <div th:if="${#lists.isEmpty(transactions)}" class="mt-4 px-4 py-4 rounded-lg border border-gray-200 dark:border-gray-700
                bg-white dark:bg-slate-900 text-center
-               text-gray-500 dark:text-gray-400"
-    >
+               text-gray-500 dark:text-gray-400">
         No transactions found for this filter.
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const table = document.getElementById('transactions-table');
+
+            if (table) {
+                $('#transactions-table').DataTable({
+                    pageLength: 10,                   // default 25 row per page
+                    lengthMenu: [10, 25, 50, 100],    // opsi dropdown
+                    ordering: true,                   // enable sorting
+                    searching: true,                  // enable search box
+                    order: [],
+                    language: {
+                        lengthMenu: "Show _MENU_ rows",
+                        search: "Search:",
+                        info: "Showing _START_ to _END_ of _TOTAL_ rows",
+                        paginate: {
+                            previous: "Prev",
+                            next: "Next"
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </th:block>

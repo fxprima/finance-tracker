@@ -63,69 +63,14 @@
             All Transactions
         </h2>
 
-        <!-- Summary cards -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6" th:if="${summary != null}">
-
-            <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm
-                    dark:bg-slate-900 dark:border-slate-700">
-                <p class="text-xs uppercase text-gray-500 mb-1 dark:text-slate-400">
-                    Total Transactions
-                </p>
-                <p id="summary-total-transactions"
-                   class="text-xl font-semibold text-gray-800 dark:text-slate-50"
-                   th:text="${summary.totalTransactions}">
-                    -
-                </p>
-            </div>
-
-            <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm
-                    dark:bg-slate-900 dark:border-slate-700">
-                <p class="text-xs uppercase text-gray-500 mb-1 dark:text-slate-400">
-                    Total Income
-                </p>
-                <p id="summary-total-amount"
-                   class="text-xl font-semibold text-gray-800 dark:text-slate-50"
-                   th:text="${'Rp ' + #numbers.formatDecimal(summary.totalIncome, 0, 'COMMA', 2, 'POINT')}">
-                    -
-                </p>
-            </div>
-
-            <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm
-                    dark:bg-slate-900 dark:border-slate-700">
-                <p class="text-xs uppercase text-gray-500 mb-1 dark:text-slate-400">
-                    Total Expenses
-                </p>
-                <p id="summary-average-amount"
-                   class="text-xl font-semibold text-gray-800 dark:text-slate-50"
-                   th:text="${'Rp ' + #numbers.formatDecimal(summary.totalExpenses, 0, 'COMMA', 2, 'POINT')}">
-                    -
-                </p>
-            </div>
-
-            <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm
-                    dark:bg-slate-900 dark:border-slate-700">
-                <p class="text-xs uppercase text-gray-500 mb-2 tracking-wide dark:text-slate-400">
-                    Cash Flow
-                </p>
-
-                <div class="flex flex-row items-center">
-                    <p id="summary-max-amount"
-                       class="text-xl font-semibold text-gray-800 leading-tight dark:text-slate-50"
-                       th:text="${'Rp ' + #numbers.formatDecimal(summary.cashFlow, 0, 'COMMA', 2, 'POINT')}">
-                        -
-                    </p>
-                    <p class="ms-2 text-xs text-green-900 text-end dark:text-green-300"
-                       th:text="${' (' + #numbers.formatDecimal(summary.cashFlowPercentage, 0, 'COMMA', 2, 'POINT') + '%)'}">
-                    </p>
-                </div>
-            </div>
-
-        </div>
-
+        <th:block th:insert="~{fragments/insight-summary-fragment :: summaryFragment}" />
         <th:block th:insert="~{fragments/filter-fragment :: transactionsFilter(@{/import/filter})}" />
         <th:block th:insert="~{fragments/table-fragment :: rowsOnly(${transactions})}" />
 
     </div>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
@@ -138,6 +83,7 @@
 
     <script th:src="@{/js/pages/importCSV/table-dropzone.js}"></script>
     <script th:src="@{/js/pages/importCSV/multi-select.js}"></script>
+
 </th:block>
 </body>
 
