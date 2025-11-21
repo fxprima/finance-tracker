@@ -1,5 +1,11 @@
 <th:block th:fragment="transactionsFilter(formAction)">
-    <form th:action="${formAction}" method="get" th:object="${filterTransactionsForm}" class="w-full mb-8">
+    <form
+            th:action="${formAction}"
+            method="get"
+            th:object="${filterTransactionsForm}"
+            class="w-full mb-8"
+            id="transactions-filter-form"
+    >
 
         <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-2">
             <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
@@ -7,38 +13,167 @@
             </p>
         </div>
 
+        <!-- QUICK DATE SMART CHIPS -->
+        <div class="mb-4 flex flex-wrap gap-2 text-xs">
+    <span class="self-center mr-2 text-[11px] text-gray-500 dark:text-gray-400">
+        Quick range:
+    </span>
+
+            <button
+                    type="button"
+                    class="date-chip inline-flex items-center
+               px-3 py-1 rounded-full border
+               border-gray-300 dark:border-gray-600
+               bg-gray-100 dark:bg-slate-800
+               text-[11px] font-medium
+               text-gray-700 dark:text-gray-200
+               hover:bg-gray-200 dark:hover:bg-slate-700
+               hover:border-blue-400
+               transition"
+                    data-date-range="this-week">
+                This week
+            </button>
+
+            <button
+                    type="button"
+                    class="date-chip inline-flex items-center
+               px-3 py-1 rounded-full border
+               border-gray-300 dark:border-gray-600
+               bg-gray-100 dark:bg-slate-800
+               text-[11px] font-medium
+               text-gray-700 dark:text-gray-200
+               hover:bg-gray-200 dark:hover:bg-slate-700
+               hover:border-blue-400
+               transition"
+                    data-date-range="last-7-days">
+                Last 7 days
+            </button>
+
+            <button
+                    type="button"
+                    class="date-chip inline-flex items-center
+               px-3 py-1 rounded-full border
+               border-gray-300 dark:border-gray-600
+               bg-gray-100 dark:bg-slate-800
+               text-[11px] font-medium
+               text-gray-700 dark:text-gray-200
+               hover:bg-gray-200 dark:hover:bg-slate-700
+               hover:border-blue-400
+               transition"
+                    data-date-range="this-month">
+                This month
+            </button>
+
+            <button
+                    type="button"
+                    class="date-chip inline-flex items-center
+               px-3 py-1 rounded-full border
+               border-gray-300 dark:border-gray-600
+               bg-gray-100 dark:bg-slate-800
+               text-[11px] font-medium
+               text-gray-700 dark:text-gray-200
+               hover:bg-gray-200 dark:hover:bg-slate-700
+               hover:border-blue-400
+               transition"
+                    data-date-range="last-month">
+                Last month
+            </button>
+
+            <button
+                    type="button"
+                    class="date-chip inline-flex items-center
+               px-3 py-1 rounded-full border
+               border-gray-300 dark:border-gray-600
+               bg-gray-100 dark:bg-slate-800
+               text-[11px] font-medium
+               text-gray-700 dark:text-gray-200
+               hover:bg-gray-200 dark:hover:bg-slate-700
+               hover:border-blue-400
+               transition"
+                    data-date-range="last-3-months">
+                Last 3 months
+            </button>
+
+            <button
+                    type="button"
+                    class="date-chip inline-flex items-center
+               px-3 py-1 rounded-full border
+               border-gray-300 dark:border-gray-600
+               bg-gray-100 dark:bg-slate-800
+               text-[11px] font-medium
+               text-gray-700 dark:text-gray-200
+               hover:bg-gray-200 dark:hover:bg-slate-700
+               hover:border-blue-400
+               transition"
+                    data-date-range="ytd">
+                Year to date
+            </button>
+
+            <button
+                    type="button"
+                    class="date-chip inline-flex items-center
+               px-3 py-1 rounded-full border
+               border-gray-300 dark:border-gray-600
+               bg-gray-100 dark:bg-slate-800
+               text-[11px] font-medium
+               text-gray-700 dark:text-gray-200
+               hover:bg-gray-200 dark:hover:bg-slate-700
+               hover:border-blue-400
+               transition"
+                    data-date-range="last-12-months">
+                Last 12 months
+            </button>
+
+            <button
+                    type="button"
+                    class="date-chip inline-flex items-center
+               px-3 py-1 rounded-full border
+               border-gray-300 dark:border-gray-600
+               bg-white dark:bg-slate-900
+               text-[11px] font-medium
+               text-gray-700 dark:text-gray-200
+               hover:bg-red-50 dark:hover:bg-red-900/30
+               hover:border-red-400
+               transition"
+                    data-date-range="all-time">
+                All time
+            </button>
+        </div>
+
+        <!-- 🔹 existing filter-section kamu tetap sama -->
         <div class="filter-section grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
 
             <!-- Start Date -->
             <div>
-                <label for="start-date" class="block text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1">
+                <label for="startDate" class="block text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1">
                     Start Date
                 </label>
                 <input
+                        id="startDate"
                         type="date"
                         th:field="*{startDate}"
                         class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-900
-                           px-3 py-2 text-sm text-gray-900 dark:text-gray-100 shadow-sm
-                           focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400
-                           focus:border-blue-500 dark:focus:border-blue-400"
+               px-3 py-2 text-sm text-gray-900 dark:text-gray-100 shadow-sm
+               focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400
+               focus:border-blue-500 dark:focus:border-blue-400"
                 />
             </div>
 
             <!-- End Date -->
             <div>
-                <label for="end-date" class="block text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1">
+                <label for="endDate" class="block text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1">
                     End Date
                 </label>
                 <input
-                        th:field="*{endDate}"
+                        id="endDate"
                         type="date"
+                        th:field="*{endDate}"
                         class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-900
-                           px-3 py-2 text-sm text-gray-900 dark:text-gray-100 shadow-sm
-                           focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400
-                           focus:border-blue-500 dark:focus:border-blue-400"
+               px-3 py-2 text-sm text-gray-900 dark:text-gray-100 shadow-sm
+               focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400
+               focus:border-blue-500 dark:focus:border-blue-400"
                 />
             </div>
-
 
             <!-- Category (Multi-select + chips full-width + placeholder "All") -->
             <div class="md:col-span-1">
@@ -112,7 +247,8 @@
 
             <!-- Sub Category -->
             <div>
-                <label for="sub-category-input" class="block text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1">
+                <label for="sub-category-input"
+                       class="block text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1">
                     Sub Category
                 </label>
                 <select
@@ -478,4 +614,5 @@
     </div>
 
     <script th:src="@{/js/pages/importCSV/multi-select.js}"></script>
+    <script th:src="@{/js/pages/importCSV/date-smart-chips.js}"></script>
 </th:block>
