@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,   // 🔥 penting: biar ngikutin h-72 / h-80
+            maintainAspectRatio: false,
             layout: {
                 padding: 0
             },
@@ -89,10 +89,31 @@ document.addEventListener('DOMContentLoaded', function () {
                             return `${label}: ${formattedValue} (${percentage.toFixed(1)}%)`;
                         }
                     }
+                },
+
+                // 🔥🔥 tambahin ini buat nunjukin % di dalam pie
+                datalabels: {
+                    color: '#fff',
+                    font: {
+                        weight: 'bold',
+                        size: 12
+                    },
+                    formatter: (value, ctx) => {
+                        const total = ctx.chart._metasets[0].total ||
+                                      ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+
+                        const percentage = total ? (value / total * 100) : 0;
+
+                        if (percentage < 5) return '';
+
+                        return percentage.toFixed(1) + '%';
+                        // tampilkan cuma kalau slice > 3% biar ga berantakan
+                        return percentage >= 3 ? percentage.toFixed(1) + '%' : '';
+                    }
                 }
             }
-        }
-
+        },
+        plugins: [ChartDataLabels]   // ⬅️ ini wajib juga
     });
+
 });
-    
