@@ -13,7 +13,7 @@
             </p>
         </div>
 
-        <!-- QUICK DATE SMART CHIPS -->
+
         <div class="mb-4 flex flex-wrap gap-2 text-xs">
     <span class="self-center mr-2 text-[11px] text-gray-500 dark:text-gray-400">
         Quick range:
@@ -140,7 +140,6 @@
             </button>
         </div>
 
-        <!-- 🔹 existing filter-section kamu tetap sama -->
         <div class="filter-section grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
 
             <!-- Start Date -->
@@ -211,7 +210,6 @@
 
                     <!-- chips (full width) + input -->
                     <div id="category-chips" class="flex flex-col gap-2 max-h-32 overflow-y-auto">
-                        <!-- placeholder "All" saat belum ada pilihan -->
                         <span
                                 id="category-placeholder"
                                 class="w-full inline-flex items-center justify-between
@@ -240,7 +238,7 @@
                                border border-gray-200 dark:border-gray-700
                                bg-white dark:bg-slate-900 shadow-lg hidden"
                     >
-                        <!-- opsi dirender via JS -->
+
                     </div>
                 </div>
             </div>
@@ -378,6 +376,40 @@
 
         </div>
 
+        <div class="mb-6">
+            <label class="block text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1">
+                Notes keywords
+            </label>
+            <p class="text-[11px] text-gray-400 dark:text-gray-500 mb-2">
+                Type keyword lalu tekan <span class="font-semibold">Enter</span>. Hanya transaksi yang
+                <span class="italic">notes</span>-nya mengandung minimal salah satu keyword ini yang akan di-include.
+            </p>
+
+            <input
+                    type="hidden"
+                    id="note-keywords-hidden"
+                    th:field="*{noteKeywords}"
+            />
+
+            <div
+                    class="rounded-lg border border-gray-300 dark:border-gray-600
+                       bg-white dark:bg-slate-900 px-3 py-2 text-sm shadow-sm"
+            >
+                <div id="note-keywords-wrapper" class="flex flex-wrap gap-2 items-center">
+                    <div id="note-keywords-chips" class="flex flex-wrap gap-2 items-center"></div>
+                    <input
+                            id="note-keywords-input"
+                            type="text"
+                            autocomplete="off"
+                            placeholder="e.g. gopay, ovo, shopee, cicilan..."
+                            class="flex-1 min-w-[140px] bg-transparent outline-none py-1
+                               text-sm text-gray-900 dark:text-gray-100
+                               placeholder:text-gray-400 dark:placeholder:text-gray-500"
+                    />
+                </div>
+            </div>
+        </div>
+
         <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-2">
             <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
                 Exclude (optional)
@@ -484,6 +516,8 @@
                             Clear
                         </button>
 
+
+
                         <div id="exclude-sub-category-chips" class="flex flex-col gap-2 max-h-32 overflow-y-auto">
                             <span
                                     id="exclude-sub-category-placeholder"
@@ -588,8 +622,41 @@
                         Exclude tipe tertentu.
                     </p>
                 </div>
-
             </div>
+            <div class="mt-4">
+                <label class="block text-xs font-semibold text-gray-600 dark:text-gray-300 mb-1">
+                    Exclude notes keywords
+                </label>
+                <p class="text-[11px] text-gray-400 dark:text-gray-500 mb-2">
+                    Type keyword lalu tekan <span class="font-semibold">Enter</span>.
+                    Transaksi yang <span class="italic">notes</span>-nya mengandung
+                    salah satu keyword ini akan di-<span class="font-semibold">exclude</span>
+                    dari hasil.
+                </p>
+
+                <input
+                        type="hidden"
+                        id="exclude-note-keywords-hidden"
+                        th:field="*{excludeNoteKeywords}"
+                />
+
+                <div
+                        class="rounded-lg border border-gray-300 dark:border-gray-600
+                           bg-white dark:bg-slate-900 px-3 py-2 text-sm shadow-sm"
+                >
+                    <div id="exclude-note-keywords-wrapper" class="flex flex-wrap gap-2 items-center">
+                        <div id="exclude-note-keywords-chips" class="flex flex-wrap gap-2 items-center"></div>
+                        <input
+                                id="exclude-note-keywords-input"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="e.g. utang, cicilan, top up..."
+                                class="flex-1 min-w-[140px] bg-transparent outline-none py-1
+                                   text-sm text-gray-900 dark:text-gray-100
+                                   placeholder:text-gray-400 dark:placeholder:text-gray-500"
+                        />
+                    </div>
+                </div>
         </div>
 
         <!-- Tombol Filter -->
@@ -615,4 +682,5 @@
 
     <script th:src="@{/js/pages/importCSV/multi-select.js}"></script>
     <script th:src="@{/js/pages/importCSV/date-smart-chips.js}"></script>
+    <script th:src="@{/js/pages/importCSV/note-keywords-chips.js}"></script>
 </th:block>

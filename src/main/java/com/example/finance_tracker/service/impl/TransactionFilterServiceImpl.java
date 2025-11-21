@@ -3,8 +3,13 @@ package com.example.finance_tracker.service.impl;
 import com.example.finance_tracker.dto.TransactionRowDto;
 import com.example.finance_tracker.form.FilterTransactionsForm;
 import com.example.finance_tracker.service.TransactionFilterService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Type;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -12,6 +17,11 @@ public class TransactionFilterServiceImpl implements TransactionFilterService {
 
     @Override
     public List<TransactionRowDto> applyFilter(List<TransactionRowDto> transactions, FilterTransactionsForm filter) {
+
+        ObjectMapper mapper = new ObjectMapper();
+        List<String> includedNoteKeywords = parseJsonArray(filter.getNoteKeywords(), mapper);
+        List<String> excludeNoteKeywords  = parseJsonArray(filter.getExcludeNoteKeywords(), mapper);
+
         return transactions.stream()
 
                 // Start Date
@@ -51,6 +61,30 @@ public class TransactionFilterServiceImpl implements TransactionFilterService {
                             .anyMatch(t -> t.equalsIgnoreCase(tx.getTransactionType().name()));
                 })
 
+                // INCLUDE NOTES KEYWORDS
+                .filter(tx -> {
+                    if (includedNoteKeywords == null || includedNoteKeywords.isEmpty()) return true;
+
+                    String notes = tx.getNote();
+                    if (notes == null) notes = "";
+                    String lower = notes.toLowerCase();
+
+                    return includedNoteKeywords.stream()
+                            .anyMatch(kw -> lower.contains(kw.toLowerCase()));
+                })
+
+                // EXCLUDE NOTES KEYWORDS
+                .filter(tx -> {
+                    if (excludeNoteKeywords == null || excludeNoteKeywords.isEmpty()) return true;
+
+                    String notes = tx.getNote();
+                    if (notes == null) notes = "";
+                    String lower = notes.toLowerCase();
+
+                    return excludeNoteKeywords.stream()
+                            .noneMatch(kw -> lower.contains(kw.toLowerCase()));
+                })
+
                 // Exclude Categories
                 .filter(tx -> {
                     List<String> exCats = filter.getExcludeCategories();
@@ -77,4 +111,15 @@ public class TransactionFilterServiceImpl implements TransactionFilterService {
 
                 .toList();
     }
+
+    private List<String> parseJsonArray(String json, ObjectMapper mapper) {
+        if (json == null || json.isBlank()) return Collections.emptyList();
+
+        try {
+            return mapper.readValue(json, new TypeReference<List<String>>() {});
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
+    }
+
 }

@@ -18,8 +18,10 @@ public class FilterTransactionsForm {
     private List <String> categories;
     private List <String> subCategories;
     private List <String> types;
+    private String noteKeywords;
 
     private List<String> excludeCategories;
     private List<String> excludeSubCategories;
     private List<String> excludeTypes;
+    private String excludeNoteKeywords;
 }

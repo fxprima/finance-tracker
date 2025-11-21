@@ -3,12 +3,10 @@
       th:replace="~{layout/base :: base(~{::pageTitle}, ~{::content})}">
 
 <head>
-    <!-- ini dikirim ke layout sebagai pageTitle -->
     <title th:fragment="pageTitle">Dashboard - Finance Tracker</title>
 </head>
 
 <body>
-<!-- ini dikirim ke layout sebagai content -->
 <th:block th:fragment="content">
     <h1 class="text-3xl font-bold text-gray-800 mb-4">
         Welcome, <span th:text="${name}">Fel</span> 👋
