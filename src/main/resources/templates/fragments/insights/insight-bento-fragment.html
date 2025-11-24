@@ -124,6 +124,9 @@
     <script th:src="@{/js/insight/trend-chart.js}"></script>
     <script th:src="@{/js/insight/heatmap.js}"></script>
     <script th:src="@{/js/insight/spending-summary-card.js}"></script>
+    <!-- html2canvas LOADS FIRST -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script th:src="@{/js/insight/export-report.js}"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

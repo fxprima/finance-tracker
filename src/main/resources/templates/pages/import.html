@@ -76,9 +76,44 @@
                     </th:block>
                 </th:block>
                 <br>
-            </div>
-            
 
+                <div class="flex justify-end mb-4">
+                    <form id="exportReportForm"
+                          th:action="@{/import/export-pdf}"
+                          th:object="${insightExportPDFForm}"
+                          method="post">
+
+                        <input type="hidden" th:field="*{filterForm.startDate}" />
+                        <input type="hidden" th:field="*{filterForm.endDate}" />
+
+                        <!-- Include filters -->
+                        <input type="hidden" th:field="*{filterForm.categories}" />
+                        <input type="hidden" th:field="*{filterForm.subCategories}" />
+                        <input type="hidden" th:field="*{filterForm.types}" />
+                        <input type="hidden" th:field="*{filterForm.noteKeywords}" />
+
+                        <!-- Exclude filters -->
+                        <input type="hidden" th:field="*{filterForm.excludeCategories}" />
+                        <input type="hidden" th:field="*{filterForm.excludeSubCategories}" />
+                        <input type="hidden" th:field="*{filterForm.excludeTypes}" />
+                        <input type="hidden" th:field="*{filterForm.excludeNoteKeywords}" />
+
+                        <!-- base64 images -->
+                        <input type="hidden" id="heatmapImageBase64" name="heatmapImageBase64" th:field="*{heatmapImageBase64}" />
+                        <input type="hidden" id="categoryChartImageBase64" name="categoryChartImageBase64" th:field="*{categoryChartImageBase64}"  />
+                        <input type="hidden" id="trendChartImageBase64" name="trendChartImageBase64" th:field="*{trendChartImageBase64}"/>
+
+                        <button
+                                id="exportPdfBtn"
+                                type="button"
+                                class="rounded-lg bg-green-600 dark:bg-green-600 px-5 py-2 text-white text-sm font-medium shadow-md
+                   hover:bg-blue-700 dark:hover:bg-blue-600 transition">
+                            Export as PDF
+                        </button>
+                    </form>
+                </div>
+
+            </div>
             
             <h2 class="text-2xl font-semibold text-gray-800 mt-4 mb-4 dark:text-slate-50">
                 All Transactions
@@ -89,6 +124,9 @@
         </div>
 
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+                integrity="sha512-BNa5lHfZfQOQ4rA6Ymc5T4rZt4WeD0c2UyrKvW3WNg3unEjn8r4n4t04nTaC9QJQz3lga8Qv0I9MbugwZsmQ3g=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 

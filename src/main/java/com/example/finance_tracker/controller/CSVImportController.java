@@ -6,23 +6,36 @@ import com.example.finance_tracker.dto.TransactionRowDto;
 import com.example.finance_tracker.exception.InvalidCSVFormatException;
 import com.example.finance_tracker.form.FilterTransactionsForm;
 import com.example.finance_tracker.form.ImportCSVForm;
+import com.example.finance_tracker.form.InsightExportPDFForm;
 import com.example.finance_tracker.service.CSVImportService;
 import com.example.finance_tracker.service.InsightSummaryService;
 import com.example.finance_tracker.service.TransactionFilterService;
+import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
+import java.io.ByteArrayOutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
 @Slf4j
 @RequestMapping("/import")
 public class CSVImportController {
+
+    @Autowired
+    private TemplateEngine templateEngine;
 
     @Autowired
     private CSVImportService csvImportService;
@@ -74,6 +87,10 @@ public class CSVImportController {
                 List<String> subCategories = csvImportService.extractUniqueSubCategories(transactions);
                 model.addAttribute("subCategories", subCategories);
             }
+
+            if (!model.containsAttribute("insightExportPDFForm"))
+                model.addAttribute("insightExportPDFForm", new InsightExportPDFForm());
+
         }
 
         return "pages/import";
@@ -123,10 +140,55 @@ public class CSVImportController {
 
         List<TransactionRowDto> filtered = transactionFilterService.applyFilter(all, form);
 
+        InsightExportPDFForm exportForm = new InsightExportPDFForm();
+        exportForm.setFilterForm(form);
+
+        ra.addFlashAttribute("insightExportPDFForm", exportForm);
         ra.addFlashAttribute("transactions", filtered);
         ra.addFlashAttribute("filterTransactionsForm", form);
         ra.addFlashAttribute("summary", insightSummaryService.get(filtered));
 
         return "redirect:/import/";
     }
+
+    @PostMapping("/export-pdf")
+    public ResponseEntity<byte[]> exportPDF(
+            HttpSession session,
+            @ModelAttribute("insightExportPDFForm") InsightExportPDFForm form
+    ) {
+
+        List<TransactionRowDto> all =
+                (List<TransactionRowDto>) session.getAttribute("IMPORTED_TRANSACTIONS");
+
+
+        List<TransactionRowDto> filtered = transactionFilterService.applyFilter(all, form.getFilterForm());
+
+        Context ctx = new Context();
+        ctx.setVariable("transactions", filtered);
+        ctx.setVariable("summary", insightSummaryService.get(filtered));
+        ctx.setVariable("form", form);
+        ctx.setVariable("generatedAt", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+
+        String html = templateEngine.process("pdf/insight-report", ctx);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PdfRendererBuilder builder = new PdfRendererBuilder();
+
+        builder.useFastMode();
+        builder.withHtmlContent(html, null);
+        builder.toStream(out);
+
+        try {
+            builder.run();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        byte[] pdfBytes = out.toByteArray();
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"test-report.pdf\"")
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(pdfBytes);
+    }
+
 }
