@@ -20,8 +20,24 @@
 
 <nav class="bg-white shadow-sm px-6 py-4 flex items-center justify-between
             dark:bg-slate-900 dark:text-slate-50">
-    <a href="/" class="text-xl font-semibold text-gray-800 dark:text-slate-50">
-        FinanceTracker
+
+    <!-- LOGO -->
+    <a href="/" class="flex items-center gap-2">
+        <!-- Light Mode Icon -->
+        <img
+                src="/assets/logo-light.png"
+                alt="Finance Tracker Logo"
+                class=" h-16 w-16 dark:hidden"
+        />
+
+        <!-- Dark Mode Icon -->
+        <img
+                src="/assets/logo-dark.png"
+                alt="Finance Tracker Logo"
+                class=" h-16 w-16 hidden dark:block"
+        />
+
+        <h3 class="bold">Finance Tracker</h3>
     </a>
 
     <div class="flex items-center gap-6">
