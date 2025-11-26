@@ -38,33 +38,6 @@
             margin-top: 4px;
         }
 
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .grid-2-bottom {
-            display: grid;
-            grid-template-columns: 1.1fr 1fr;
-            gap: 8px;
-            margin-top: 8px;
-        }
-
-        .stack-v {
-            display: grid;
-            grid-template-rows: auto auto;
-            gap: 8px;
-        }
-
         .card {
             border-radius: 8px;
             border: 1px solid #e5e7eb;
@@ -113,16 +86,66 @@
             border-radius: 4px;
         }
 
+        .muted {
+            font-size: 9px;
+            color: #6b7280;
+        }
+
+        /* ==== LAYOUT TANPA GRID (BIAR PDF ENGINE NGERTI) ==== */
+
+        .row {
+            font-size: 0;              /* hack biar gap antar inline-block hilang */
+            margin-bottom: 8px;
+        }
+
+        .col-4 {
+            display: inline-block;
+            vertical-align: top;
+            width: 25%;
+            box-sizing: border-box;
+            padding-right: 6px;
+            font-size: 11px;
+        }
+
+        .col-4:last-child {
+            padding-right: 0;
+        }
+
+        .col-2-left {
+            display: inline-block;
+            vertical-align: top;
+            width: 60%;
+            box-sizing: border-box;
+            padding-right: 6px;
+            font-size: 11px;
+        }
+
+        .col-2-right {
+            display: inline-block;
+            vertical-align: top;
+            width: 40%;
+            box-sizing: border-box;
+            font-size: 11px;
+        }
+
+        .col-half {
+            display: inline-block;
+            vertical-align: top;
+            width: 50%;
+            box-sizing: border-box;
+            padding-right: 6px;
+            font-size: 11px;
+        }
+
+        .col-half:last-child {
+            padding-right: 0;
+        }
+
         .section-title {
             margin-top: 10px;
             margin-bottom: 4px;
             font-size: 12px;
             font-weight: 600;
-        }
-
-        .muted {
-            font-size: 9px;
-            color: #6b7280;
         }
 
         .transactions-table {
@@ -158,7 +181,7 @@
             <span th:if="${form != null and form.filterForm != null and form.filterForm.startDate != null}">
                 Period:
                 <span th:text="${form.filterForm.startDate}">2025-01-01</span>
-                &nbsp;–&nbsp;
+                -
                 <span th:text="${form.filterForm.endDate}">2025-01-31</span>
                 <br/>
             </span>
@@ -167,140 +190,150 @@
         </div>
     </div>
 
-    <!-- ROW 1: SUMMARY CARDS (4) -->
-    <div class="grid-4" th:if="${summary != null}">
-        <div class="card">
-            <div class="card-title">Total Transactions</div>
-            <div class="card-value-lg"
-                 th:text="${summary.totalTransactions}">
-                0
-            </div>
-            <div class="card-sub">Rows in this report</div>
-        </div>
-
-        <div class="card">
-            <div class="card-title">Total Income</div>
-            <div class="card-value-lg"
-                 th:text="${'Rp ' + #numbers.formatDecimal(summary.totalIncome, 0, 'COMMA', 2, 'POINT')}">
-                Rp 0
-            </div>
-            <div class="card-sub">All income entries</div>
-        </div>
-
-        <div class="card">
-            <div class="card-title">Total Expenses</div>
-            <div class="card-value-lg"
-                 th:text="${'Rp ' + #numbers.formatDecimal(summary.totalExpenses, 0, 'COMMA', 2, 'POINT')}">
-                Rp 0
-            </div>
-            <div class="card-sub">All expense entries</div>
-        </div>
-
-        <div class="card">
-            <div class="card-title">Cash Flow</div>
-            <div>
-                <span class="card-value-lg"
-                      th:text="${'Rp ' + #numbers.formatDecimal(summary.cashFlow, 0, 'COMMA', 2, 'POINT')}">
-                    Rp 0
-                </span>
-                <span class="pill-positive"
-                      th:text="${#numbers.formatDecimal(summary.cashFlowPercentage, 0, 'COMMA', 2, 'POINT') + '%'}">
-                    0%
-                </span>
-            </div>
-            <div class="card-sub">Positive = surplus, negative = deficit.</div>
-        </div>
-    </div>
-
-    <!-- ROW 2: CATEGORY CHART + SIMPLE OVERVIEW -->
-    <div class="grid-2">
-
-        <!-- Left: Pie/Bar Chart -->
-        <div class="card">
-            <div class="card-title">Expenses by Category</div>
-            <div class="img-box" th:if="${form != null and form.categoryChartImageBase64 != null}">
-                <img th:src="${form.categoryChartImageBase64}"
-                     alt="Expenses by Category"/>
-            </div>
-            <p class="muted" style="margin-top: 4px;">
-                Distribution of expenses across categories.
-            </p>
-        </div>
-
-        <!-- Right: Simple overview -->
-        <div class="card">
-            <div class="card-title">Overview</div>
-            <p class="muted">
-                Based on filtered transactions within the selected period.
-            </p>
-
-            <table style="width:100%; font-size:10px; margin-top:4px;" th:if="${summary != null}">
-                <tr>
-                    <td>Total Income</td>
-                    <td style="text-align:right; font-weight:600;"
-                        th:text="${'Rp ' + #numbers.formatDecimal(summary.totalIncome, 0, 'COMMA', 2, 'POINT')}">
-                        Rp 0
-                    </td>
-                </tr>
-                <tr>
-                    <td>Total Expenses</td>
-                    <td style="text-align:right; font-weight:600;"
-                        th:text="${'Rp ' + #numbers.formatDecimal(summary.totalExpenses, 0, 'COMMA', 2, 'POINT')}">
-                        Rp 0
-                    </td>
-                </tr>
-                <tr>
-                    <td>Net Cash Flow</td>
-                    <td style="text-align:right; font-weight:600;"
-                        th:text="${'Rp ' + #numbers.formatDecimal(summary.cashFlow, 0, 'COMMA', 2, 'POINT')}">
-                        Rp 0
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <!-- ROW 3: TREND -->
-    <div class="card">
-        <div class="card-title">
-            Trend
-            <span class="muted"
-                  th:if="${form != null and form.filterForm != null and form.filterForm.startDate != null}">
-                (Range:
-                <span th:text="${form.filterForm.startDate}">2025-01-01</span>
-                –
-                <span th:text="${form.filterForm.endDate}">2025-01-31</span>)
-            </span>
-        </div>
-        <div class="img-box" th:if="${form != null and form.trendChartImageBase64 != null}">
-            <img th:src="${form.trendChartImageBase64}"
-                 alt="Trend Chart"/>
-        </div>
-        <p class="muted" style="margin-top: 4px;">
-            Monthly income, expenses, and cashflow for the selected range.
-        </p>
-    </div>
-
-    <!-- ROW 4: HEATMAP + SPENDING SUMMARY -->
-    <div class="grid-2-bottom">
-
-        <!-- Left: Heatmap -->
-        <div class="card">
-            <div class="card-title">Heat Map</div>
-            <div class="img-box" th:if="${form != null and form.heatmapImageBase64 != null}">
-                <img th:src="${form.heatmapImageBase64}"
-                     alt="Expenses Heatmap"/>
-            </div>
-            <p class="muted" style="margin-top: 4px;">
-                Each cell represents a period (e.g. month). Darker cells indicate higher spending.
-            </p>
-        </div>
-
-        <!-- Right: Spending Summary -->
-        <div class="stack-v">
-
+    <!-- ROW 1: SUMMARY 4 CARD (BENTO ATAS) -->
+    <div class="row" th:if="${summary != null}">
+        <div class="col-4">
             <div class="card">
-                <div class="card-title">Spending Summary</div>
+                <div class="card-title">Total Transactions</div>
+                <div class="card-value-lg"
+                     th:text="${summary.totalTransactions}">
+                    0
+                </div>
+                <div class="card-sub">Rows in this report</div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card">
+                <div class="card-title">Total Income</div>
+                <div class="card-value-lg"
+                     th:text="${'Rp ' + #numbers.formatDecimal(summary.totalIncome, 0, 'COMMA', 2, 'POINT')}">
+                    Rp 0
+                </div>
+                <div class="card-sub">All income entries</div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card">
+                <div class="card-title">Total Expenses</div>
+                <div class="card-value-lg"
+                     th:text="${'Rp ' + #numbers.formatDecimal(summary.totalExpenses, 0, 'COMMA', 2, 'POINT')}">
+                    Rp 0
+                </div>
+                <div class="card-sub">All expense entries</div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card">
+                <div class="card-title">Cash Flow</div>
+                <div>
+                    <span class="card-value-lg"
+                          th:text="${'Rp ' + #numbers.formatDecimal(summary.cashFlow, 0, 'COMMA', 2, 'POINT')}">
+                        Rp 0
+                    </span>
+                    <span class="pill-positive"
+                          th:text="${#numbers.formatDecimal(summary.cashFlowPercentage, 0, 'COMMA', 2, 'POINT') + '%'}">
+                        0%
+                    </span>
+                </div>
+                <div class="card-sub">Cashflow Percentage</div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card">
+                <div class="card-title">Cash Flow</div>
+                <div>
+                    <span class="card-value-lg"
+                          th:text="${'Rp ' + #numbers.formatDecimal(summary.cashFlow, 0, 'COMMA', 2, 'POINT')}">
+                        Rp 0
+                    </span>
+                    <span class="pill-positive"
+                          th:text="${#numbers.formatDecimal(summary.cashFlowPercentage, 0, 'COMMA', 2, 'POINT') + '%'}">
+                        0%
+                    </span>
+                </div>
+                <div class="card-sub">Cashflow Percentage</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROW 2: CATEGORY CHART (KIRI) + TOP CATEGORIES (KANAN) -->
+    <div class="row">
+        <div class="col-2-left">
+            <div class="card">
+                <div class="card-title">Expenses by Category</div>
+                <div class="img-box" th:if="${form != null and form.categoryChartImageBase64 != null}">
+                    <img th:src="${form.categoryChartImageBase64}"
+                         alt="Expenses by Category" />
+                </div>
+                <p class="muted" style="margin-top: 4px;">
+                    Distribution of expenses across categories.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-2-right">
+            <div class="card">
+                <div class="card-title">Top Spending Categories</div>
+                <div class="img-box" th:if="${form != null and form.topCategoriesImageBase64 != null}">
+                    <img th:src="${form.topCategoriesImageBase64}"
+                         alt="Top Spending Categories" />
+                </div>
+                <p class="muted" style="margin-top: 4px;">
+                    Top categories by total expenses and percentage share.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ROW 3: TREND FULL WIDTH -->
+    <div class="row">
+        <div style="display:inline-block; width:100%; font-size:11px;">
+            <div class="card">
+                <div class="card-title">
+                    Trend
+                    <span class="muted"
+                          th:if="${form != null and form.filterForm != null and form.filterForm.startDate != null}">
+                        (Range:
+                        <span th:text="${form.filterForm.startDate}">2025-01-01</span>
+                        -
+                        <span th:text="${form.filterForm.endDate}">2025-01-31</span>)
+                    </span>
+                </div>
+                <div class="img-box" th:if="${form != null and form.trendChartImageBase64 != null}">
+                    <img th:src="${form.trendChartImageBase64}"
+                         alt="Trend Chart"/>
+                </div>
+                <p class="muted" style="margin-top: 4px;">
+                    Daily or monthly income, expenses, and cashflow for the selected range.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROW 4: HEATMAP (KIRI) + RINGKASAN (KANAN) -->
+    <div class="row">
+        <div class="col-half">
+            <div class="card">
+                <div class="card-title">Heat Map</div>
+                <div class="img-box" th:if="${form != null and form.heatmapImageBase64 != null}">
+                    <img th:src="${form.heatmapImageBase64}"
+                         alt="Expenses Heatmap"/>
+                </div>
+                <p class="muted" style="margin-top: 4px;">
+                    Each cell represents a period (for example, per month).
+                    Darker cells indicate higher spending.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-half">
+            <div class="card">
+                <div class="card-title">Spending Overview</div>
                 <p class="muted">
                     <span th:if="${form != null && form.filterForm != null && form.filterForm.startDate != null}">
                         Based on transactions from
@@ -340,6 +373,25 @@
                         </td>
                     </tr>
                 </table>
+                <br> </br>
+                <div class="card-title">Spending Pace</div>
+
+                <table style="width:100%; font-size:10px; margin-top:4px;" th:if="${summary != null}">
+                    <tr>
+                        <td>Average Expenses per Day</td>
+                        <td style="text-align:right; font-weight:600;"
+                            th:text="${'Rp ' + #numbers.formatDecimal(summary.avgExpensesPerDay, 0, 'COMMA', 2, 'POINT')}">
+                            Rp 0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>End-month Expenses Forecast</td>
+                        <td style="text-align:right; font-weight:600;"
+                            th:text="${#numbers.formatDecimal(summary.forecast30day, 0, 'COMMA', 2, 'POINT')}">
+                            Rp 0
+                        </td>
+                    </tr>
+                </table>
             </div>
 
         </div>
@@ -360,7 +412,7 @@
         </thead>
         <tbody>
         <tr th:each="tx, iter : ${transactions}"
-            th:if="${iter.index < 20}">
+           >
             <td th:text="${tx.date}">2025-10-01</td>
             <td th:text="${tx.transactionType}">Expense</td>
             <td th:text="${tx.category}">Food</td>
@@ -374,9 +426,6 @@
         </tbody>
     </table>
 
-    <p class="muted" th:if="${transactions != null}">
-        * Showing up to 20 transactions for brevity.
-    </p>
 
 </div>
 </body>

@@ -99,6 +99,7 @@
                         <input type="hidden" th:field="*{filterForm.excludeNoteKeywords}" />
 
                         <!-- base64 images -->
+                        <input type="hidden" id="topCategoriesImageBase64" th:field="*{topCategoriesImageBase64}">
                         <input type="hidden" id="heatmapImageBase64" name="heatmapImageBase64" th:field="*{heatmapImageBase64}" />
                         <input type="hidden" id="categoryChartImageBase64" name="categoryChartImageBase64" th:field="*{categoryChartImageBase64}"  />
                         <input type="hidden" id="trendChartImageBase64" name="trendChartImageBase64" th:field="*{trendChartImageBase64}"/>
@@ -114,7 +115,7 @@
                 </div>
 
             </div>
-            
+
             <h2 class="text-2xl font-semibold text-gray-800 mt-4 mb-4 dark:text-slate-50">
                 All Transactions
             </h2>

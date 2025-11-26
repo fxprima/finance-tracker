@@ -40,6 +40,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('trendChartImageBase64').value = trendDataUrl;
             }
 
+            const img = await generateTopCategoriesImage();
+            document.getElementById("topCategoriesImageBase64").value = img;
+            document.getElementById("exportReportForm").submit();
+
             // 4. Submit form ke backend
             form.submit();
         } catch (err) {
@@ -47,7 +51,17 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Gagal generate report image. Coba lagi.');
             exportBtn.disabled = false;
             exportBtn.textContent = 'Export as PDF';
+        } finally {
+            exportBtn.disabled = false;
+            exportBtn.textContent = 'Export to PDF';
         }
     });
 });
 
+async function generateTopCategoriesImage() {
+    const el = document.getElementById('topCategoriesBox');
+    if (!el) return null;
+
+    const canvas = await html2canvas(el, { scale: 2 });
+    return canvas.toDataURL('image/png');
+}

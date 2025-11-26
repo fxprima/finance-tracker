@@ -9,4 +9,5 @@ public class InsightExportPDFForm {
     private String heatmapImageBase64;
     private String categoryChartImageBase64;
     private String trendChartImageBase64;
+    private String topCategoriesImageBase64;
 }

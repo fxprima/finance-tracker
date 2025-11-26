@@ -10,4 +10,7 @@ public class InsightSummaryDTO {
     private double maxExpenses;
     private double cashFlow;
     private double cashFlowPercentage;
+
+    private double avgExpensesPerDay;
+    private double forecast30day;
 }
