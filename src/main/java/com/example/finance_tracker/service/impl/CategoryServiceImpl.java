@@ -38,13 +38,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     /**
-     * @param userId
      * @param categoryId
      * @param description
      * @return
      */
     @Override
-    public SubCategory createSubCategory(Long userId, Long categoryId, String description) {
+    public SubCategory createSubCategory(Long categoryId, String description) {
         SubCategory subCategory = new SubCategory();
         subCategory.setCategoryId(categoryId);
         subCategory.setDescription(description);

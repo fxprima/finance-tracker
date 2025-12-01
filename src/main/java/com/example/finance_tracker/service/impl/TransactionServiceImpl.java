@@ -9,10 +9,12 @@ import com.example.finance_tracker.model.SubCategory;
 import com.example.finance_tracker.model.TransactionRecord;
 import com.example.finance_tracker.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
+@Service
 public class TransactionServiceImpl implements TransactionService {
 
     @Autowired
@@ -33,18 +35,20 @@ public class TransactionServiceImpl implements TransactionService {
         category.setUpdatedAt(LocalDateTime.now());
         category.setUserId(userId);
 
+        categoryMapper.insert(category);
+
         if (transactionRowDto.getSubCategory() != null || !transactionRowDto.getSubCategory().isEmpty()){
             SubCategory subCategory = new SubCategory();
+            subCategory.setCategoryId(category.getId());
             subCategory.setCreatedAt(LocalDateTime.now());
             subCategory.setUpdatedAt(LocalDateTime.now());
             subCategory.setDescription(transactionRowDto.getSubCategory());
-            subCategoryMapper.insert(subCategory);
 
+            subCategoryMapper.insert(subCategory);
         }
 
-        categoryMapper.insert(category);
-
         TransactionRecord transactionRecord = new TransactionRecord();
+        transactionRecord.setUserId(userId);
         transactionRecord.setTransactionType(transactionRowDto.getTransactionType());
         transactionRecord.setAmount(transactionRowDto.getAmount());
         transactionRecord.setNote(transactionRowDto.getNote());

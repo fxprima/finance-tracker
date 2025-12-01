@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
 public interface CategoryService {
 
     Category createCategory (Long userId, String description);
-    SubCategory createSubCategory (Long userId, Long categoryId, String description);
+    SubCategory createSubCategory (Long categoryId, String description);
 
 }

@@ -56,7 +56,6 @@ public class CSVParser {
                                         line[4] : line[2]
                         );
 
-                        // SubCategory
                         String rawSubCategory = (transactionType == TransactionType.EXPENSE) ? line[5] : line[3];
                         row.setSubCategory(emptyToNull(rawSubCategory));
 
