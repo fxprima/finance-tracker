@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.finance_tracker.mapper.TransactionMapper">
+
+    <resultMap id="TransactionResultMap" type="com.example.finance_tracker.model.TransactionRecord">
+        <id     property="id"               column="id"/>
+        <result property="transactionDate"  column="transaction_date"/>
+        <result property="amount"           column="amount"/>
+        <result property="type"             column="type"/>
+        <result property="description"      column="description"/>
+        <result property="note"             column="note"/>
+        <result property="createdAt"        column="created_at"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="TransactionResultMap">
+        SELECT
+        id,
+        transaction_date,
+        amount,
+        type,
+        description,
+        note,
+        created_at
+        FROM transactions
+        ORDER BY transaction_date DESC, id DESC
+    </select>
+
+    <select id="findByDateRange" resultMap="TransactionResultMap">
+        SELECT
+        id,
+        transaction_date,
+        amount,
+        type,
+        description,
+        note,
+        created_at
+        FROM transactions
+        WHERE transaction_date BETWEEN #{start} AND #{end}
+        ORDER BY transaction_date ASC, id ASC
+    </select>
+
+    <insert id="insert"
+            parameterType="com.example.finance_tracker.model.TransactionRecord"
+            useGeneratedKeys="true"
+            keyProperty="id">
+
+        INSERT INTO transactions (
+        user_id,
+        category_id,
+        type,
+        date,
+        amount,
+        note
+        )
+        VALUES (
+        #{userId},
+        #{categoryId},
+        #{transactionType},
+        #{date},
+        #{amount},
+        #{note}
+        )
+    </insert>
+
+
+</mapper>

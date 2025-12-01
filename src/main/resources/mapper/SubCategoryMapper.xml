@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.finance_tracker.mapper.SubCategoryMapper">
+
+    <!-- ================== RESULT MAP ================== -->
+    <resultMap id="SubCategoryResultMap" type="com.example.finance_tracker.model.SubCategory">
+        <id     property="id"           column="id"/>
+        <result property="categoryId"   column="category_id"/>
+        <result property="description"  column="description"/>
+        <result property="createdAt"    column="created_at"/>
+        <result property="updatedAt"    column="updated_at"/>
+    </resultMap>
+
+
+    <!-- ================== SELECT ALL ================== -->
+    <select id="findAll" resultMap="SubCategoryResultMap">
+        SELECT
+        id,
+        category_id,
+        description,
+        created_at,
+        updated_at
+        FROM sub_categories
+        ORDER BY created_at DESC
+    </select>
+
+
+    <!-- ================== INSERT ================== -->
+    <insert id="insert"
+            parameterType="com.example.finance_tracker.model.SubCategory"
+            useGeneratedKeys="true"
+            keyProperty="id">
+
+        INSERT INTO sub_categories (
+        category_id,
+        description
+        ) VALUES (
+        #{categoryId},
+        #{description}
+        )
+
+    </insert>
+
+</mapper>

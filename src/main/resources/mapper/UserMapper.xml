@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.finance_tracker.mapper.UserMapper">
+
+    <!-- Result Mapping -->
+    <resultMap id="UserResultMap" type="com.example.finance_tracker.model.User">
+        <id property="id" column="id"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+    </resultMap>
+
+    <!-- SELECT ALL -->
+    <select id="findAll" resultMap="UserResultMap">
+        SELECT
+        id,
+        first_name,
+        last_name,
+        username,
+        password,
+        email,
+        phone
+        FROM users
+        ORDER BY id DESC
+    </select>
+
+    <!-- FIND BY ID -->
+    <select id="findById" parameterType="long" resultMap="UserResultMap">
+        SELECT
+        id,
+        first_name,
+        last_name,
+        username,
+        email,
+        phone
+        FROM users
+        WHERE id = #{id}
+    </select>
+
+    <!-- INSERT -->
+    <insert id="insert" parameterType="com.example.finance_tracker.model.User"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO users (
+        first_name,
+        last_name,
+        username,
+        password,
+        email,
+        phone
+        ) VALUES (
+        #{firstName},
+        #{lastName},
+        #{username},
+        #{password},
+        #{email},
+        #{phone}
+        )
+    </insert>
+
+    <!-- UPDATE -->
+    <update id="update" parameterType="com.example.finance_tracker.model.User">
+        UPDATE users
+        SET
+        first_name = #{firstName},
+        last_name = #{lastName},
+        password = #{password},
+        username = #{username},
+        password = #{password},
+        email = #{email},
+        phone = #{phone}
+        WHERE id = #{id}
+    </update>
+
+    <!-- DELETE -->
+    <delete id="delete" parameterType="long">
+        DELETE FROM users
+        WHERE id = #{id}
+    </delete>
+
+</mapper>

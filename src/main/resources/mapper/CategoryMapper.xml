@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.finance_tracker.mapper.CategoryMapper">
+
+    <!-- ================= RESULT MAP ================= -->
+    <resultMap id="CategoryResultMap" type="com.example.finance_tracker.model.Category">
+        <id     property="id"          column="id"/>
+        <result property="userId"      column="user_id"/>
+        <result property="description" column="description"/>
+        <result property="createdAt"   column="created_at"/>
+        <result property="updatedAt"   column="updated_at"/>
+    </resultMap>
+
+
+    <!-- ================= SELECT ALL ================= -->
+    <select id="findAll" resultMap="CategoryResultMap">
+        SELECT
+        id,
+        user_id,
+        description,
+        created_at,
+        updated_at
+        FROM categories
+        ORDER BY created_at DESC
+    </select>
+
+
+    <!-- ================= SELECT BY USER ================= -->
+    <select id="findByUserId" resultMap="CategoryResultMap">
+        SELECT
+        id,
+        user_id,
+        description,
+        created_at,
+        updated_at
+        FROM categories
+        WHERE user_id = #{userId}
+        ORDER BY created_at DESC
+    </select>
+
+
+    <!-- ================= FIND OR CREATE ================= -->
+    <!-- Gunanya untuk TransactionService -->
+    <select id="findByUserIdAndDescription" resultMap="CategoryResultMap">
+        SELECT *
+        FROM categories
+        WHERE user_id = #{userId}
+        AND description = #{description}
+        LIMIT 1
+    </select>
+
+
+    <!-- ================= INSERT ================= -->
+    <insert id="insert"
+            parameterType="com.example.finance_tracker.model.Category"
+            useGeneratedKeys="true"
+            keyProperty="id">
+
+        INSERT INTO categories (
+        user_id,
+        description
+        ) VALUES (
+        #{userId},
+        #{description}
+        )
+    </insert>
+
+
+    <!-- ================= UPDATE ================= -->
+    <update id="update" parameterType="com.example.finance_tracker.model.Category">
+        UPDATE categories
+        SET
+        description = #{description},
+        updated_at = CURRENT_TIMESTAMP
+        WHERE id = #{id}
+    </update>
+
+
+    <!-- ================= DELETE ================= -->
+    <delete id="delete">
+        DELETE FROM categories WHERE id = #{id}
+    </delete>
+
+</mapper>
