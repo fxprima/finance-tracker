@@ -19,15 +19,13 @@
             </h1>
 
             <!-- Global error (optional, masih plain) -->
-            <!--
             <div
                 class="mb-4 rounded-lg border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-700
-                       dark:bg-red-950/50 dark:border-red-800">
+                       dark:bg-red-950/50 dark:border-red-800" th:if="${error}" th:text="${error}">
                 Something went wrong.
             </div>
-            -->
 
-            <form action="/auth/register" method="post" class="space-y-4" th:object="${accountRegisterForm}">
+            <form th:action="@{/auth/register}" method="post" class="space-y-4" th:object="${accountRegisterForm}">
 
                 <div class="grid grid-cols-2 gap-4">
 
@@ -68,7 +66,6 @@
                     </div>
 
                 </div>
-
 
                 <!-- Email -->
                 <div>

@@ -1,0 +1,54 @@
+<!-- GLOBAL MODAL (Success / Error) -->
+<th:block th:fragment="modalFragment">
+    <div th:if="${modalMsg != null}"
+         id="global-modal"
+         class="fixed inset-0 z-40 flex items-center justify-center bg-slate-900/40">
+
+        <div th:with="isError=${modalType} == 'error'"
+             class="relative w-[90%] max-w-sm rounded-3xl bg-white p-8 text-center shadow-2xl
+                    dark:bg-slate-900">
+
+            <!-- Close (X) kecil di pojok -->
+            <button type="button"
+                    class="absolute right-4 top-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                    onclick="document.getElementById('global-modal').classList.add('hidden')">
+                ✕
+            </button>
+
+            <!-- Icon bulat -->
+            <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full"
+                 th:classappend="${isError} ? ' bg-rose-100' : ' bg-emerald-100'">
+                <span class="text-3xl"
+                      th:text="${isError} ? '✕' : '✓'"
+                      th:classappend="${isError} ? ' text-rose-500' : ' text-emerald-500'">
+                    ✓
+                </span>
+            </div>
+
+            <!-- Title -->
+            <h2 class="mb-2 text-xl font-semibold"
+                th:text="${isError} ? 'Sorry :(' : 'Success!'"
+                th:classappend="${isError} ? ' text-rose-600' : ' text-emerald-600'">
+                Success!
+            </h2>
+
+            <!-- Message dari backend -->
+            <p class="mb-6 text-sm text-slate-600 dark:text-slate-300"
+               th:text="${modalMsg}">
+                Your account has been created successfully
+            </p>
+
+            <!-- Button -->
+            <button type="button"
+                    onclick="document.getElementById('global-modal').classList.add('hidden')"
+                    class="w-full rounded-full px-4 py-2 text-sm font-semibold text-white shadow-sm
+                           focus:outline-none focus:ring-2 focus:ring-offset-2
+                           dark:focus:ring-offset-slate-900"
+                    th:classappend="${isError} ? ' bg-rose-500 hover:bg-rose-600 focus:ring-rose-400'
+                                             : ' bg-emerald-500 hover:bg-emerald-600 focus:ring-emerald-400'"
+                    th:text="${isError} ? 'Try again' : 'Okay'">
+                Okay
+            </button>
+        </div>
+    </div>
+</th:block>

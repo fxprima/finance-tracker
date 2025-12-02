@@ -10,7 +10,6 @@
         <id property="id" column="id"/>
         <result property="firstName" column="first_name"/>
         <result property="lastName" column="last_name"/>
-        <result property="username" column="username"/>
         <result property="password" column="password"/>
         <result property="email" column="email"/>
         <result property="phone" column="phone"/>
@@ -22,7 +21,6 @@
         id,
         first_name,
         last_name,
-        username,
         password,
         email,
         phone
@@ -36,12 +34,37 @@
         id,
         first_name,
         last_name,
-        username,
         email,
         phone
         FROM users
         WHERE id = #{id}
     </select>
+
+    <!-- FIND BY ID -->
+    <select id="findByEmail" parameterType="string" resultMap="UserResultMap">
+        SELECT
+        id,
+        first_name,
+        last_name,
+        email,
+        phone
+        FROM users
+        WHERE email = #{email}
+        LIMIT 1
+    </select>
+
+    <select id="validateCredentials" parameterType="map" resultType="boolean">
+        SELECT
+        CASE
+        WHEN COUNT(*) > 0 THEN 1
+        ELSE 0
+        END
+        FROM users
+        WHERE email = #{email}
+        AND password = #{password}
+        LIMIT 1
+    </select>
+
 
     <!-- INSERT -->
     <insert id="insert" parameterType="com.example.finance_tracker.model.User"
@@ -49,14 +72,12 @@
         INSERT INTO users (
         first_name,
         last_name,
-        username,
         password,
         email,
         phone
         ) VALUES (
         #{firstName},
         #{lastName},
-        #{username},
         #{password},
         #{email},
         #{phone}
@@ -70,7 +91,6 @@
         first_name = #{firstName},
         last_name = #{lastName},
         password = #{password},
-        username = #{username},
         password = #{password},
         email = #{email},
         phone = #{phone}

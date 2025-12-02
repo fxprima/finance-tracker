@@ -38,7 +38,6 @@ class TransactionServiceImplTest {
     @Test
     void createTransaction_ShouldInsertToDatabase() {
         User user = new User();
-        user.setUsername("test_user_tx");
         user.setPassword("password");
         userService.createUser(user);
         assertNotNull(user.getId());

@@ -30,7 +30,6 @@ class UserServiceImplTest {
             User user = new User();
             user.setFirstName("FirstName" + i);
             user.setLastName("LastName" + i);
-            user.setUsername("testuser" + i);
             user.setEmail("testuser" + i + "@mail.com");
             user.setPhone("08123456" + i);
 
@@ -44,15 +43,14 @@ class UserServiceImplTest {
 
     @ParameterizedTest
     @CsvSource({
-            "user_a, user_a@mail.com, password123",
-            "user_b, user_b@mail.com, password123",
-            "user_c, user_c@mail.com, password123"
+            "user_a@mail.com, password123",
+            "user_b@mail.com, password123",
+            "user_c@mail.com, password123"
     })
-    void createUser_ShouldInsert_ForVariousValidInputs(String username, String email, String password) {
+    void createUser_ShouldInsert_ForVariousValidInputs(String email, String password) {
         User user = new User();
         user.setFirstName("First");
         user.setLastName("Last");
-        user.setUsername(username);
         user.setPassword(password);
         user.setEmail(email);
         user.setPhone("08123456");
@@ -60,14 +58,12 @@ class UserServiceImplTest {
         User saved = userService.createUser(user);
 
         assertNotNull(saved.getId());
-        assertEquals(username, saved.getUsername());
         assertEquals(email, saved.getEmail());
 
         Integer count = jdbcTemplate.queryForObject(
-                "SELECT COUNT(*) FROM users WHERE id = ? AND username = ? AND email = ?",
+                "SELECT COUNT(*) FROM users WHERE id = ? AND email = ?",
                 Integer.class,
                 saved.getId(),
-                saved.getUsername(),
                 saved.getEmail()
         );
         assertEquals(1, count);
@@ -80,7 +76,6 @@ class UserServiceImplTest {
             user.setFirstName("First" + i);
             user.setPassword("Passsword" + i);
             user.setLastName("Last" + i);
-            user.setUsername("user" + i);
             user.setEmail("user" + i + "@mail.com");
             user.setPhone("08123" + i);
 
@@ -93,12 +88,12 @@ class UserServiceImplTest {
         assertTrue(users.size() >= 5, "Minimal harus ada 5 user setelah insert");
 
         for (int i = 1; i <= 5; i++) {
-            String expectedUsername = "user" + i;
+            String expectedEmail = "user" + i + "@mail.com";
 
             boolean exists = users.stream()
-                    .anyMatch(u -> expectedUsername.equals(u.getUsername()));
+                    .anyMatch(u -> expectedEmail.equals(u.getEmail()));
 
-            assertTrue(exists, "User dengan username '" + expectedUsername + "' harus ada di DB");
+            assertTrue(exists, "User dengan Email '" + expectedEmail + "' harus ada di DB");
         }
     }
 }

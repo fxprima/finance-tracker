@@ -55,7 +55,7 @@ class CategoryServiceImplTest {
     @Test
     void createCategory_ShouldThrow_WhenDescriptionIsEmpty() {
         User user = new User();
-        user.setUsername("Test");
+        user.setEmail("Test");
         user.setPassword("Test");
         userService.createUser(user);
 
@@ -67,7 +67,7 @@ class CategoryServiceImplTest {
     @Test
     void createCategory_ShouldThrow_WhenDescriptionIsNull() {
         User user = new User();
-        user.setUsername("Test");
+        user.setEmail("Test");
         user.setPassword("Test");
         userService.createUser(user);
 
@@ -80,7 +80,6 @@ class CategoryServiceImplTest {
     @Test
     void createSubCategory_ShouldInsertToDatabase() {
         User user = new User();
-        user.setUsername("Test");
         user.setPassword("Test");
         userService.createUser(user);
 

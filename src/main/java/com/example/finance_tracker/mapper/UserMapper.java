@@ -9,4 +9,7 @@ import java.util.List;
 public interface UserMapper {
     int insert (User user);
     List<User> findAll();
+
+    User findByEmail (String email);
+    User findById (Long id);
 }

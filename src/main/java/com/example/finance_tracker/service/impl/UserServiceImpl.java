@@ -17,7 +17,12 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public User createUser(User user) {
+    public User createUser(User user){
+
+        boolean isEmailExists = this.findByEmail(user.getEmail()) != null;
+        if (isEmailExists)
+            throw new IllegalArgumentException("Email already exists");
+
         userMapper.insert(user);
         return user;
     }
@@ -28,5 +33,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return userMapper.findAll();
+    }
+
+    /**
+     * @param email
+     * @return
+     */
+    @Override
+    public User findByEmail(String email) {
+        return userMapper.findByEmail(email);
+    }
+
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public User findById(Long id) {
+        return userMapper.findById(id);
     }
 }

@@ -3,7 +3,7 @@
       th:fragment="base(pageTitle, content)">
 <head>
     <meta charset="UTF-8" />
-    <title th:replace="${pageTitle}">Finance Tracker</title>
+    <title th:replace="${pageTitle}">FinSight</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
@@ -18,56 +18,90 @@
 
 <body class="bg-gray-100 min-h-screen dark:bg-slate-950 dark:text-slate-50">
 
-<nav class="bg-white shadow-sm px-6 py-4 flex items-center justify-between
-            dark:bg-slate-900 dark:text-slate-50">
+<nav
+        class="sticky top-0 z-30 border-b border-slate-200 bg-white/80 backdrop-blur-md
+           dark:bg-slate-900/80 dark:border-slate-800">
 
-    <!-- LOGO -->
-    <a href="/" class="flex items-center gap-2">
-        <!-- Light Mode Icon -->
-        <img
-                src="/assets/logo-light.png"
-                alt="Finance Tracker Logo"
-                class=" h-16 w-16 dark:hidden"
-        />
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex h-16 items-center justify-between gap-4">
 
-        <!-- Dark Mode Icon -->
-        <img
-                src="/assets/logo-dark.png"
-                alt="Finance Tracker Logo"
-                class=" h-16 w-16 hidden dark:block"
-        />
+            <!-- LOGO + TITLE -->
+            <a href="/" class="flex items-center gap-3">
+                <!-- Light Mode Icon -->
+                <img
+                        src="/assets/logo-light.png"
+                        alt="Finance Tracker Logo"
+                        class="h-10 w-10 rounded-xl shadow-sm dark:hidden"
+                />
 
-        <h3 class="bold">Finance Tracker</h3>
-    </a>
+                <!-- Dark Mode Icon -->
+                <img
+                        src="/assets/logo-dark.png"
+                        alt="Finance Tracker Logo"
+                        class="h-10 w-10 rounded-xl shadow-sm hidden dark:block"
+                />
 
-    <div class="flex items-center gap-6">
-        <a href="/" class="text-gray-600 hover:text-gray-900 dark:text-slate-300 dark:hover:text-white">
-            Home
-        </a>
-        <a href="/import/" class="text-gray-600 hover:text-gray-900 dark:text-slate-300 dark:hover:text-white">
-            Import
-        </a>
-        <a href="/auth/register" class="text-gray-600 hover:text-gray-900 dark:text-slate-300 dark:hover:text-white">
-            Register
-        </a>
-        <a href="/auth/login" class="text-gray-600 hover:text-gray-900 dark:text-slate-300 dark:hover:text-white">
-            Login
-        </a>
+                <div class="flex flex-col">
+                    <span class="text-sm font-semibold tracking-tight text-slate-900 dark:text-slate-50">
+                        FinSight
+                    </span>
+                    <span class="text-[11px] text-slate-500 dark:text-slate-400">
+                        Stay on top of your money
+                    </span>
+                </div>
+            </a>
+
+            <!-- NAV LINKS (desktop) -->
+            <div
+                    class="hidden md:flex items-center gap-1 rounded-full bg-slate-100 px-1 py-1
+                       text-xs font-medium text-slate-600
+                       dark:bg-slate-800 dark:text-slate-300">
+                <a href="/"
+                   class="rounded-full px-3 py-1.5 hover:bg-white hover:text-slate-900
+                          dark:hover:bg-slate-700 dark:hover:text-slate-50">
+                    Home
+                </a>
+                <a href="/import/"
+                   class="rounded-full px-3 py-1.5 hover:bg-white hover:text-slate-900
+                          dark:hover:bg-slate-700 dark:hover:text-slate-50">
+                    Import
+                </a>
+                <a href="/auth/register"
+                   class="rounded-full px-3 py-1.5 hover:bg-white hover:text-slate-900
+                          dark:hover:bg-slate-700 dark:hover:text-slate-50">
+                    Register
+                </a>
+                <a href="/auth/login"
+                   class="rounded-full px-3 py-1.5 hover:bg-white hover:text-slate-900
+                          dark:hover:bg-slate-700 dark:hover:text-slate-50">
+                    Login
+                </a>
+            </div>
+
+            <!-- RIGHT SIDE: THEME TOGGLE -->
+            <div class="flex items-center gap-2">
+                <button
+                        id="theme-toggle"
+                        type="button"
+                        class="flex items-center gap-2 rounded-full border border-slate-300 px-3 py-1.5
+                           text-xs font-medium
+                           bg-white text-slate-700 hover:bg-slate-50
+                           shadow-sm
+                           dark:bg-slate-800 dark:text-slate-100 dark:border-slate-600 dark:hover:bg-slate-700">
+                    <span id="theme-toggle-icon" class="text-sm">🌙</span>
+                    <span id="theme-toggle-label">Dark</span>
+                </button>
+            </div>
+
+        </div>
     </div>
-
-    <button
-            id="theme-toggle"
-            type="button"
-            class="flex items-center gap-2 rounded-full border border-slate-300 px-3 py-1 text-xs font-medium
-               bg-white text-slate-700 hover:bg-slate-100
-               dark:bg-slate-800 dark:text-slate-100 dark:border-slate-600 dark:hover:bg-slate-700">
-        <span id="theme-toggle-icon">🌙</span>
-        <span id="theme-toggle-label">Dark</span>
-    </button>
 </nav>
+
 
 <main class="px-6 py-8">
     <div class="max-w-5xl mx-auto">
+        <th:block th:insert="~{fragments/modal-fragment :: modalFragment}" />
+
         <th:block th:replace="${content}">
             <p class="text-gray-500">No content provided</p>
         </th:block>
