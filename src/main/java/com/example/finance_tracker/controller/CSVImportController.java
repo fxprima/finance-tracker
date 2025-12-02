@@ -1,7 +1,6 @@
 package com.example.finance_tracker.controller;
 
 import com.example.finance_tracker.common.contants.CSVFormatOption;
-import com.example.finance_tracker.common.contants.TransactionType;
 import com.example.finance_tracker.dto.ImportFormatOptionsDto;
 import com.example.finance_tracker.dto.TransactionRowDto;
 import com.example.finance_tracker.exception.InvalidCSVFormatException;
@@ -9,7 +8,6 @@ import com.example.finance_tracker.form.FilterTransactionsForm;
 import com.example.finance_tracker.form.ImportCSVForm;
 import com.example.finance_tracker.form.InsightExportPDFForm;
 import com.example.finance_tracker.mapper.TransactionMapper;
-import com.example.finance_tracker.model.TransactionRecord;
 import com.example.finance_tracker.service.CSVImportService;
 import com.example.finance_tracker.service.InsightSummaryService;
 import com.example.finance_tracker.service.TransactionFilterService;
@@ -17,7 +15,6 @@ import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +26,6 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import java.io.ByteArrayOutputStream;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -44,9 +40,6 @@ public class CSVImportController {
 
     @Autowired
     private CSVImportService csvImportService;
-
-    @Autowired
-    private TransactionMapper transactionMapper;
     
     @Autowired
     private TransactionFilterService transactionFilterService;
@@ -197,6 +190,14 @@ public class CSVImportController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"test-report.pdf\"")
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(pdfBytes);
+    }
+
+    @PostMapping("/save")
+    public String save(HttpSession session) {
+        List<TransactionRowDto> all =
+                (List<TransactionRowDto>) session.getAttribute("IMPORTED_TRANSACTIONS");
+
+        return "pages/auth/register";
     }
 
 }
