@@ -1,5 +1,6 @@
 package com.example.finance_tracker.controller;
 
+import com.example.finance_tracker.common.utils.alert.AlertUtil;
 import com.example.finance_tracker.common.utils.alert.ModalUtil;
 import com.example.finance_tracker.form.AccountRegisterForm;
 import com.example.finance_tracker.model.User;
@@ -52,12 +53,12 @@ public class AuthController {
             e.printStackTrace();
             log.error("Error Create User: %s".formatted(e.getMessage()));
 
-            ModalUtil.addError(ra, "Email are already exists");
+            AlertUtil.addError(ra, "Email are already exists.");
             return "redirect:/auth/register";
         } catch (Exception e) {
             e.printStackTrace();
             log.error("Error Create User: %s".formatted(e.getMessage()));
-            ModalUtil.addError(ra, "Register Failed: %s".formatted(e.getMessage()));
+            AlertUtil.addError(ra, "Register Failed: %s".formatted(e.getMessage()));
             return "redirect:/auth/register";
         }
 

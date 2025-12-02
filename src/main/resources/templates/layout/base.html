@@ -98,9 +98,14 @@
 </nav>
 
 
+<div class="max-w-5xl mx-auto px-6">
+    <th:block th:replace="~{fragments/alert-fragment :: inlineAlert(${alertMsg}, ${alertType})}"></th:block>
+</div>
+
 <main class="px-6 py-8">
     <div class="max-w-5xl mx-auto">
         <th:block th:insert="~{fragments/modal-fragment :: modalFragment}" />
+
 
         <th:block th:replace="${content}">
             <p class="text-gray-500">No content provided</p>
