@@ -105,6 +105,8 @@
 <main class="px-6 py-8">
     <div class="max-w-5xl mx-auto">
         <th:block th:insert="~{fragments/modal-fragment :: modalFragment}" />
+        <th:block th:insert="~{fragments/confirm-dialog-fragment :: confirmDialog}"></th:block>
+
 
 
         <th:block th:replace="${content}">

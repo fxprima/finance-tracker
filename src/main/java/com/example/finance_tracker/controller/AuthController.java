@@ -1,13 +1,15 @@
 package com.example.finance_tracker.controller;
 
-import com.example.finance_tracker.common.utils.alert.AlertUtil;
-import com.example.finance_tracker.common.utils.alert.ModalUtil;
+import com.example.finance_tracker.common.utils.alert.Alert;
+import com.example.finance_tracker.common.utils.alert.ConfirmDialog;
+import com.example.finance_tracker.common.utils.alert.Modal;
 import com.example.finance_tracker.form.AccountRegisterForm;
 import com.example.finance_tracker.model.User;
 import com.example.finance_tracker.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +26,9 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @GetMapping("/register")
     public String viewRegister(Model model) {
         return "pages/auth/register";
@@ -35,30 +40,37 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String registerAccount(@ModelAttribute("accountRegisterForm") AccountRegisterForm form, Model model, RedirectAttributes ra) {
+    public String registerAccount(
+            @ModelAttribute("accountRegisterForm") AccountRegisterForm form,
+            Model model,
+            RedirectAttributes ra,
+            HttpSession session
+    ) {
 
         try {
             User userBuffer = new User();
+            String hashedPassword = passwordEncoder.encode(form.getPassword());
+
             userBuffer.setEmail(form.getEmail());
-            userBuffer.setPassword(form.getPassword());
+            userBuffer.setPassword(hashedPassword);
             userBuffer.setFirstName(form.getFirstName());
             userBuffer.setLastName(form.getLastName());
 
             User user = userService.createUser(userBuffer);
-
             log.info("User %s has been registered".formatted(user.getEmail()));
-            ModalUtil.addSuccess(model, "Your account has been successfully registered");
+
+            Modal.addSuccess(model, "Your account has been successfully registered");
 
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             log.error("Error Create User: %s".formatted(e.getMessage()));
 
-            AlertUtil.addError(ra, "Email are already exists.");
+            Alert.addError(ra, "Email are already exists.");
             return "redirect:/auth/register";
         } catch (Exception e) {
             e.printStackTrace();
             log.error("Error Create User: %s".formatted(e.getMessage()));
-            AlertUtil.addError(ra, "Register Failed: %s".formatted(e.getMessage()));
+            Alert.addError(ra, "Register Failed: %s".formatted(e.getMessage()));
             return "redirect:/auth/register";
         }
 

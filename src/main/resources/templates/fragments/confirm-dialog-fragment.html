@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Confirm Dialog Fragment</title>
+</head>
+<body>
+<th:block th:fragment="confirmDialog">
+    <!-- CONFIRMATION DIALOG (YES / NO) -->
+    <div th:if="${confirmMsg != null}"
+         id="confirm-dialog"
+         class="fixed inset-0 z-40 flex items-center justify-center
+                bg-slate-950/70 backdrop-blur-sm">
+
+        <!-- Outer shadow box (biar kayak ada layer gede di belakang) -->
+        <div class="relative w-[95%] max-w-lg rounded-3xl
+                    bg-slate-900/90 shadow-[0_30px_120px_rgba(0,0,0,0.7)]
+                    border border-slate-800
+                    px-8 pt-10 pb-8
+                    text-center
+                    dark:bg-slate-900/90">
+
+            <!-- Close (X) -->
+            <button type="button"
+                    class="absolute right-5 top-5 text-slate-500 hover:text-slate-300"
+                    onclick="document.getElementById('confirm-dialog').classList.add('hidden')">
+                ✕
+            </button>
+
+            <!-- Icon bulat -->
+            <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full
+                        bg-sky-900/70 ring-4 ring-sky-500/10">
+                <span class="text-3xl font-semibold text-sky-300">?</span>
+            </div>
+
+            <!-- Title -->
+            <h2 class="mb-3 text-xl font-semibold text-slate-50">
+                Confirm action
+            </h2>
+
+            <!-- Message -->
+            <p class="mb-8 text-sm leading-relaxed text-slate-300"
+               th:text="${confirmMsg}">
+                Imported Transactions detected, would you like to save?
+            </p>
+
+            <!-- Buttons -->
+            <div class="flex items-center justify-center gap-4">
+                <!-- NO -->
+                <button type="button"
+                        class="min-w-[120px] rounded-full border border-slate-600
+                               bg-slate-800/70 px-6 py-2.5 text-sm font-semibold
+                               text-slate-100 shadow-sm
+                               hover:bg-slate-700 hover:border-slate-500
+                               transition-colors"
+                        onclick="document.getElementById('confirm-dialog').classList.add('hidden')"
+                        th:text="${confirmNoLabel}">
+                    Cancel
+                </button>
+
+                <!-- YES (FORM) -->
+                <form th:action="${confirmActionUrl}" method="post" class="w-1/2"
+                      th:if="${confirmMethod == null or confirmMethod == 'POST'}">
+
+                    <button type="submit"
+                            class="w-full rounded-full bg-sky-500 py-2 text-sm font-semibold text-white
+                   hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700
+                   shadow-[0_10px_40px_rgba(37,99,235,0.6)] transition-colors"
+                            th:text="${confirmYesLabel}">
+                        Yes
+                    </button>
+                </form>
+
+                <!-- YES with GET -->
+                <form th:action="${confirmActionUrl}" method="get" class="w-1/2"
+                      th:if="${confirmMethod == 'GET'}">
+
+                    <button type="submit"
+                            class="w-full rounded-full bg-sky-500 py-2 text-sm font-semibold text-white
+                   hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700
+                   shadow-[0_10px_40px_rgba(37,99,235,0.6)] transition-colors"
+                            th:text="${confirmYesLabel}">
+                        Yes
+                    </button>
+                </form>
+
+                <!-- YES with DELETE / PUT -->
+                <form th:action="${confirmActionUrl}" method="post" class="w-1/2"
+                      th:if="${confirmMethod == 'DELETE' or confirmMethod == 'PUT'}">
+
+                    <input type="hidden" name="_method" th:value="${confirmMethod}" />
+
+                    <button type="submit"
+                            class="w-full rounded-full bg-red-500 py-2 text-sm font-semibold text-white
+                   hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700
+                   shadow-[0_10px_40px_rgba(239,68,68,0.6)] transition-colors"
+                            th:text="${confirmYesLabel}">
+                        Yes
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</th:block>
+</body>
+</html>
