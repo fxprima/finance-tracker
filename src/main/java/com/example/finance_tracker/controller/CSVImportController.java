@@ -186,10 +186,14 @@ public class CSVImportController {
 
         byte[] pdfBytes = out.toByteArray();
 
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss"));
+        String filename = "finance-report-" + timestamp + ".pdf";
+
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"test-report.pdf\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filename + "\"")
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(pdfBytes);
+
     }
 
     @PostMapping("/save")
