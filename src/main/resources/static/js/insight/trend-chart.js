@@ -18,6 +18,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const msPerDay = 24 * 60 * 60 * 1000;
 
+    // helper: paksa date-only (00:00)
+    function toDateOnly(d) {
+        return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    }
+
     // --- cari min & max date dari transaksi valid ---
     let minDate = null;
     let maxDate = null;
@@ -37,8 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // normalize ke 00:00
-    minDate = new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate());
-    maxDate = new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate());
+    minDate = toDateOnly(minDate);
+    maxDate = toDateOnly(maxDate);
 
     const spanDays = Math.floor((maxDate - minDate) / msPerDay) + 1;
 
@@ -64,8 +69,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const d = new Date(tx.date);
         if (isNaN(d.getTime())) return;
 
-        // cuma yang di dalam range
-        if (d < minDate || d > maxDate) return;
+        const dDate = toDateOnly(d);
+
+        // cuma yang di dalam range (pakai date-only)
+        if (dDate < minDate || dDate > maxDate) return;
 
         const typeRaw = (tx.type || tx.transactionType || '').toString().toUpperCase();
         const amount = Number(tx.amount) || 0;
@@ -75,24 +82,24 @@ document.addEventListener('DOMContentLoaded', function () {
         let label;
 
         if (mode === 'daily') {
-            const y = d.getFullYear();
-            const m = d.getMonth(); // 0–11
-            const day = d.getDate();
+            const y = dDate.getFullYear();
+            const m = dDate.getMonth(); // 0–11
+            const day = dDate.getDate();
             key = `${y}-${String(m + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            order = d.getTime();
-            label = d.toLocaleDateString('id-ID', {
+            order = dDate.getTime();
+            label = dDate.toLocaleDateString('id-ID', {
                 day: '2-digit',
                 month: 'short'
             });
         } else if (mode === 'weeklyExpense') {
-            const diffDays = Math.floor((d - minDate) / msPerDay);
+            const diffDays = Math.floor((dDate - minDate) / msPerDay);
             const weekIndex = Math.floor(diffDays / 7); // 0,1,2,...
             key = `W${weekIndex}`;
             order = weekIndex;
             label = `Minggu ${weekIndex + 1}`;
         } else {
-            const y = d.getFullYear();
-            const m = d.getMonth();
+            const y = dDate.getFullYear();
+            const m = dDate.getMonth();
             key = `${y}-${String(m + 1).padStart(2, '0')}`;
             order = y * 12 + m;
 
@@ -156,14 +163,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const d = new Date(tx.date);
             if (isNaN(d.getTime())) return;
-            if (d < minDate || d > maxDate) return;
+
+            const dDate = toDateOnly(d);
+            if (dDate < minDate || dDate > maxDate) return;
 
             const typeRaw = (tx.type || tx.transactionType || '').toString().toUpperCase();
             if (typeRaw !== 'EXPENSE') return;
 
-            const y = d.getFullYear();
-            const m = d.getMonth();
-            const day = d.getDate();
+            const y = dDate.getFullYear();
+            const m = dDate.getMonth();
+            const day = dDate.getDate();
             const dateKey = `${y}-${String(m + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
             const cat =
@@ -235,12 +244,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const d = new Date(tx.date);
             if (isNaN(d.getTime())) return;
 
-            if (d < minDate || d > maxDate) return;
+            const dDate = toDateOnly(d);
+            if (dDate < minDate || dDate > maxDate) return;
 
             const typeRaw = (tx.type || tx.transactionType || '').toString().toUpperCase();
             if (typeRaw !== 'EXPENSE') return;
 
-            const diffDays = Math.floor((d - minDate) / msPerDay);
+            const diffDays = Math.floor((dDate - minDate) / msPerDay);
             const weekIndex = Math.floor(diffDays / 7);
             const weekKey = `W${weekIndex}`;
 
