@@ -18,9 +18,12 @@ FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
-# Copy jar hasil build
 COPY --from=builder /app/target/finance-tracker-0.0.1-SNAPSHOT.jar app.jar
 
+# App port
 EXPOSE 8080
+# Debug port
+EXPOSE 5005
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# ENABLE DEBUG
+ENTRYPOINT ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005", "-jar", "app.jar"]
