@@ -1,6 +1,7 @@
 package com.example.finance_tracker.controller;
 
 import com.example.finance_tracker.common.contants.CSVFormatOption;
+import com.example.finance_tracker.common.utils.alert.ConfirmDialog;
 import com.example.finance_tracker.common.utils.alert.Modal;
 import com.example.finance_tracker.common.utils.security.SecurityUtils;
 import com.example.finance_tracker.dto.ImportFormatOptionsDto;
@@ -166,6 +167,14 @@ public class CSVImportController {
             model.addAttribute("accountRegisterForm", new AccountRegisterForm());
             return "pages/auth/register";
         }
+
+        ConfirmDialog.show(
+                ra,
+                "Imported transactions detected, choose what to do:",
+                "Cancel",
+                new ConfirmDialog.ConfirmAction("Append", "/transactions/import/append", "POST"),
+                new ConfirmDialog.ConfirmAction("Replace Existing", "/transactions/import/replace", "POST")
+        );
 
         try {
             csvImportService.saveTransactions(user.getId(), all);

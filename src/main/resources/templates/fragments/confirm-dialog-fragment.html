@@ -44,61 +44,72 @@
             </p>
 
             <!-- Buttons -->
-            <div class="flex items-center justify-center gap-4">
-                <!-- NO -->
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <!-- CANCEL -->
                 <button type="button"
-                        class="min-w-[120px] rounded-full border border-slate-600
-                               bg-slate-800/70 px-6 py-2.5 text-sm font-semibold
-                               text-slate-100 shadow-sm
-                               hover:bg-slate-700 hover:border-slate-500
-                               transition-colors"
+                        class="rounded-full border border-slate-600
+                   bg-slate-800/70 px-6 py-2.5 text-sm font-semibold
+                   text-slate-100 shadow-sm
+                   hover:bg-slate-700 hover:border-slate-500
+                   transition-colors"
                         onclick="document.getElementById('confirm-dialog').classList.add('hidden')"
                         th:text="${confirmNoLabel}">
                     Cancel
                 </button>
 
-                <!-- YES (FORM) -->
-                <form th:action="${confirmActionUrl}" method="post" class="w-1/2"
-                      th:if="${confirmMethod == null or confirmMethod == 'POST'}">
+                <!-- ==== NEW: multiple YES buttons (confirmActions) ==== -->
+                <th:block th:if="${confirmActions != null}">
+                    <th:block th:each="btn : ${confirmActions}">
+                        <!-- POST / default -->
+                        <form th:if="${btn.method == null or btn.method == 'POST'}"
+                              th:action="${btn.url}"
+                              method="post"
+                              class="inline-block">
 
-                    <button type="submit"
-                            class="w-full rounded-full bg-sky-500 py-2 text-sm font-semibold text-white
-                   hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700
-                   shadow-[0_10px_40px_rgba(37,99,235,0.6)] transition-colors"
-                            th:text="${confirmYesLabel}">
-                        Yes
-                    </button>
-                </form>
+                            <button type="submit"
+                                    class="rounded-full bg-sky-500 px-6 py-2 text-sm font-semibold text-white
+                               hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700
+                               shadow-[0_10px_40px_rgba(37,99,235,0.6)] transition-colors"
+                                    th:text="${btn.label}">
+                                Yes
+                            </button>
+                        </form>
 
-                <!-- YES with GET -->
-                <form th:action="${confirmActionUrl}" method="get" class="w-1/2"
-                      th:if="${confirmMethod == 'GET'}">
+                        <!-- GET -->
+                        <form th:if="${btn.method == 'GET'}"
+                              th:action="${btn.url}"
+                              method="get"
+                              class="inline-block">
 
-                    <button type="submit"
-                            class="w-full rounded-full bg-sky-500 py-2 text-sm font-semibold text-white
-                   hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700
-                   shadow-[0_10px_40px_rgba(37,99,235,0.6)] transition-colors"
-                            th:text="${confirmYesLabel}">
-                        Yes
-                    </button>
-                </form>
+                            <button type="submit"
+                                    class="rounded-full bg-sky-500 px-6 py-2 text-sm font-semibold text-white
+                               hover:bg-sky-600 dark:bg-sky-600 dark:hover:bg-sky-700
+                               shadow-[0_10px_40px_rgba(37,99,235,0.6)] transition-colors"
+                                    th:text="${btn.label}">
+                                Yes
+                            </button>
+                        </form>
 
-                <!-- YES with DELETE / PUT -->
-                <form th:action="${confirmActionUrl}" method="post" class="w-1/2"
-                      th:if="${confirmMethod == 'DELETE' or confirmMethod == 'PUT'}">
+                        <!-- DELETE / PUT → merah -->
+                        <form th:if="${btn.method == 'DELETE' or btn.method == 'PUT'}"
+                              th:action="${btn.url}"
+                              method="post"
+                              class="inline-block">
 
-                    <input type="hidden" name="_method" th:value="${confirmMethod}" />
+                            <input type="hidden" name="_method" th:value="${btn.method}" />
 
-                    <button type="submit"
-                            class="w-full rounded-full bg-red-500 py-2 text-sm font-semibold text-white
-                   hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700
-                   shadow-[0_10px_40px_rgba(239,68,68,0.6)] transition-colors"
-                            th:text="${confirmYesLabel}">
-                        Yes
-                    </button>
-                </form>
-
+                            <button type="submit"
+                                    class="rounded-full bg-red-500 px-6 py-2 text-sm font-semibold text-white
+                               hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700
+                               shadow-[0_10px_40px_rgba(239,68,68,0.6)] transition-colors"
+                                    th:text="${btn.label}">
+                                Yes
+                            </button>
+                        </form>
+                    </th:block>
+                </th:block>
             </div>
+
         </div>
     </div>
 </th:block>
