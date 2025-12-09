@@ -36,11 +36,17 @@ public class CustomUserDetails implements UserDetails {
 
     /**
      * @return
+     *
      */
     @Override
     public String getUsername() {
         return user.getEmail();
     }
+
+    public Long getId() {
+        return user.getId();
+    }
+
 
     @Override public boolean isAccountNonExpired() { return true; }
     @Override public boolean isAccountNonLocked() { return true; }

@@ -10,4 +10,5 @@ import java.util.List;
 public interface SubCategoryMapper {
     List<SubCategory> findAll();
     void insert(SubCategory subCategory);
+    SubCategory findByCategoryIdAndDescription(Long categoryId, String description);
 }

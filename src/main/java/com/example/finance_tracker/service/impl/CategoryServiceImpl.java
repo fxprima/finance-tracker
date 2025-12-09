@@ -53,4 +53,14 @@ public class CategoryServiceImpl implements CategoryService {
         subCategoryMapper.insert(subCategory);
         return subCategory;
     }
+
+    /**
+     * @param userId
+     * @param description
+     * @return
+     */
+    @Override
+    public Category getCategoryByUserIdAndDescription(Long userId, String description) {
+        return categoryMapper.findByUserIdAndDescription(userId, description);
+    }
 }

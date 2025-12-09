@@ -1,6 +1,8 @@
 package com.example.finance_tracker.controller;
 
 import com.example.finance_tracker.common.contants.CSVFormatOption;
+import com.example.finance_tracker.common.utils.alert.Modal;
+import com.example.finance_tracker.common.utils.security.SecurityUtils;
 import com.example.finance_tracker.dto.ImportFormatOptionsDto;
 import com.example.finance_tracker.dto.TransactionRowDto;
 import com.example.finance_tracker.exception.InvalidCSVFormatException;
@@ -8,7 +10,7 @@ import com.example.finance_tracker.form.AccountRegisterForm;
 import com.example.finance_tracker.form.FilterTransactionsForm;
 import com.example.finance_tracker.form.ImportCSVForm;
 import com.example.finance_tracker.form.InsightExportPDFForm;
-import com.example.finance_tracker.mapper.TransactionMapper;
+import com.example.finance_tracker.security.CustomUserDetails;
 import com.example.finance_tracker.service.CSVImportService;
 import com.example.finance_tracker.service.InsightSummaryService;
 import com.example.finance_tracker.service.TransactionFilterService;
@@ -19,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -153,6 +157,29 @@ public class CSVImportController {
         return "redirect:/import/";
     }
 
+    @PostMapping("/save")
+    public String save(@AuthenticationPrincipal CustomUserDetails user, Model model, HttpSession session, RedirectAttributes ra) {
+        List<TransactionRowDto> all =
+                (List<TransactionRowDto>) session.getAttribute("IMPORTED_TRANSACTIONS");
+
+        if (!SecurityUtils.isLoggedIn()) {
+            model.addAttribute("accountRegisterForm", new AccountRegisterForm());
+            return "pages/auth/register";
+        }
+
+        try {
+            csvImportService.saveTransactions(user.getId(), all);
+            Modal.addSuccess(ra, "You have successfully imported transactions into your database");
+        } catch (Exception e) {
+            Modal.addError(ra, "An error occurred: %s".formatted(e.getMessage()));
+            return "redirect:/import/";
+        }
+
+        session.removeAttribute("IMPORTED_TRANSACTIONS");
+        return "redirect:/import/";
+    }
+
+
     @PostMapping("/export-pdf")
     public ResponseEntity<byte[]> exportPDF(
             HttpSession session,
@@ -197,14 +224,5 @@ public class CSVImportController {
 
     }
 
-    @PostMapping("/save")
-    public String save(Model model, HttpSession session) {
-        List<TransactionRowDto> all =
-                (List<TransactionRowDto>) session.getAttribute("IMPORTED_TRANSACTIONS");
-
-        model.addAttribute("accountRegisterForm", new AccountRegisterForm());
-
-        return "pages/auth/register";
-    }
 
 }

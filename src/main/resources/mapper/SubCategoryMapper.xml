@@ -15,6 +15,15 @@
     </resultMap>
 
 
+    <select id="findByCategoryIdAndDescription" resultMap="SubCategoryResultMap">
+        SELECT *
+        FROM sub_categories
+        WHERE category_id = #{categoryId}
+        AND description = #{description}
+        LIMIT 1
+    </select>
+
+
     <!-- ================== SELECT ALL ================== -->
     <select id="findAll" resultMap="SubCategoryResultMap">
         SELECT

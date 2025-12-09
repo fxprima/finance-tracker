@@ -29,22 +29,34 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     @Transactional
     public void createTransaction(Long userId,TransactionRowDto transactionRowDto) {
-        Category category = new Category();
-        category.setDescription(transactionRowDto.getCategory());
-        category.setCreatedAt(LocalDateTime.now());
-        category.setUpdatedAt(LocalDateTime.now());
-        category.setUserId(userId);
 
-        categoryMapper.insert(category);
+        Category category = categoryMapper.findByUserIdAndDescription(userId, transactionRowDto.getCategory());
 
-        if (transactionRowDto.getSubCategory() != null || !transactionRowDto.getSubCategory().isEmpty()){
-            SubCategory subCategory = new SubCategory();
-            subCategory.setCategoryId(category.getId());
-            subCategory.setCreatedAt(LocalDateTime.now());
-            subCategory.setUpdatedAt(LocalDateTime.now());
-            subCategory.setDescription(transactionRowDto.getSubCategory());
+        if (category == null) {
+            category = new Category();
+            category.setDescription(transactionRowDto.getCategory());
+            category.setCreatedAt(LocalDateTime.now());
+            category.setUpdatedAt(LocalDateTime.now());
+            category.setUserId(userId);
 
-            subCategoryMapper.insert(subCategory);
+            categoryMapper.insert(category);
+        }
+
+        SubCategory subCategory = null;
+        if (transactionRowDto.getSubCategory() != null
+                && !transactionRowDto.getSubCategory().isEmpty()){
+
+            subCategory = subCategoryMapper.findByCategoryIdAndDescription(category.getId(), transactionRowDto.getSubCategory());
+
+            if (subCategory == null) {
+                subCategory = new SubCategory();
+                subCategory.setCategoryId(category.getId());
+                subCategory.setCreatedAt(LocalDateTime.now());
+                subCategory.setUpdatedAt(LocalDateTime.now());
+                subCategory.setDescription(transactionRowDto.getSubCategory());
+                subCategoryMapper.insert(subCategory);
+            }
+
         }
 
         TransactionRecord transactionRecord = new TransactionRecord();
@@ -55,6 +67,10 @@ public class TransactionServiceImpl implements TransactionService {
         transactionRecord.setDate(transactionRowDto.getDate());
         transactionRecord.setCurrency(transactionRowDto.getCurrency());
         transactionRecord.setCategoryId(category.getId());
+
+        if (subCategory != null)
+            transactionRecord.setSubCategoryId(subCategory.getId());
+
         transactionRecord.setCreatedAt(LocalDateTime.now());
         transactionRecord.setUpdatedAt(LocalDateTime.now());
 

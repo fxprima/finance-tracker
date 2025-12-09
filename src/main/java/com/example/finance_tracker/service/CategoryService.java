@@ -10,4 +10,5 @@ public interface CategoryService {
     Category createCategory (Long userId, String description);
     SubCategory createSubCategory (Long categoryId, String description);
 
+    Category getCategoryByUserIdAndDescription(Long userId, String description);
 }

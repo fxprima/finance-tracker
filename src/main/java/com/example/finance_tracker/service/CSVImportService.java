@@ -9,10 +9,11 @@ import java.util.List;
 
 @Service
 public interface CSVImportService {
-    public List<TransactionRowDto> parseAllTransactions (MultipartFile file, CSVFormatOption formatOption);
+    List<TransactionRowDto> parseAllTransactions(MultipartFile file, CSVFormatOption formatOption);
 
-    public List <String> extractUniqueCategories(List <TransactionRowDto> transactions);
+    List <String> extractUniqueCategories(List<TransactionRowDto> transactions);
 
-    public List <String> extractUniqueSubCategories(List <TransactionRowDto> transactions);
+    List <String> extractUniqueSubCategories(List<TransactionRowDto> transactions);
 
+    boolean saveTransactions(Long userId, List<TransactionRowDto> transactions);
 }
