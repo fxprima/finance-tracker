@@ -34,6 +34,7 @@
         id,
         first_name,
         last_name,
+        password,
         email,
         phone
         FROM users
@@ -47,6 +48,7 @@
         first_name,
         last_name,
         email,
+        password,
         phone
         FROM users
         WHERE email = #{email}

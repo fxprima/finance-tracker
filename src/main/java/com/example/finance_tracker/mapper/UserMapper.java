@@ -12,4 +12,6 @@ public interface UserMapper {
 
     User findByEmail (String email);
     User findById (Long id);
+
+    Boolean validateCredentials(String email, String password);
 }

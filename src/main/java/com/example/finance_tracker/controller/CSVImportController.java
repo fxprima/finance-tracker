@@ -4,6 +4,7 @@ import com.example.finance_tracker.common.contants.CSVFormatOption;
 import com.example.finance_tracker.dto.ImportFormatOptionsDto;
 import com.example.finance_tracker.dto.TransactionRowDto;
 import com.example.finance_tracker.exception.InvalidCSVFormatException;
+import com.example.finance_tracker.form.AccountRegisterForm;
 import com.example.finance_tracker.form.FilterTransactionsForm;
 import com.example.finance_tracker.form.ImportCSVForm;
 import com.example.finance_tracker.form.InsightExportPDFForm;
@@ -197,9 +198,11 @@ public class CSVImportController {
     }
 
     @PostMapping("/save")
-    public String save(HttpSession session) {
+    public String save(Model model, HttpSession session) {
         List<TransactionRowDto> all =
                 (List<TransactionRowDto>) session.getAttribute("IMPORTED_TRANSACTIONS");
+
+        model.addAttribute("accountRegisterForm", new AccountRegisterForm());
 
         return "pages/auth/register";
     }

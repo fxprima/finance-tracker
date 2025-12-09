@@ -14,4 +14,8 @@ public class HomeController {
         return "redirect:/import/";
     }
 
+    @GetMapping("/dashboard")
+    public String dashboard (Model model) {
+        return "redirect:/";
+    }
 }

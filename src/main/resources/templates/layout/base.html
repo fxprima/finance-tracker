@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security"
       th:fragment="base(pageTitle, content)">
 <head>
     <meta charset="UTF-8" />
@@ -52,30 +53,36 @@
             </a>
 
             <!-- NAV LINKS (desktop) -->
-            <div
-                    class="hidden md:flex items-center gap-1 rounded-full bg-slate-100 px-1 py-1
-                       text-xs font-medium text-slate-600
-                       dark:bg-slate-800 dark:text-slate-300">
+            <div class="hidden md:flex items-center gap-1 rounded-full bg-slate-100 px-1 py-1
+            text-xs font-medium text-slate-600
+            dark:bg-slate-800 dark:text-slate-300">
+
                 <a href="/"
                    class="rounded-full px-3 py-1.5 hover:bg-white hover:text-slate-900
-                          dark:hover:bg-slate-700 dark:hover:text-slate-50">
+              dark:hover:bg-slate-700 dark:hover:text-slate-50">
                     Home
                 </a>
+
                 <a href="/import/"
                    class="rounded-full px-3 py-1.5 hover:bg-white hover:text-slate-900
-                          dark:hover:bg-slate-700 dark:hover:text-slate-50">
+              dark:hover:bg-slate-700 dark:hover:text-slate-50">
                     Import
                 </a>
-                <a href="/auth/register"
-                   class="rounded-full px-3 py-1.5 hover:bg-white hover:text-slate-900
-                          dark:hover:bg-slate-700 dark:hover:text-slate-50">
-                    Register
-                </a>
+
                 <a href="/auth/login"
+                   sec:authorize="isAnonymous()"
                    class="rounded-full px-3 py-1.5 hover:bg-white hover:text-slate-900
-                          dark:hover:bg-slate-700 dark:hover:text-slate-50">
+              dark:hover:bg-slate-700 dark:hover:text-slate-50">
                     Login
                 </a>
+
+                <a href="/auth/logout"
+                   sec:authorize="isAuthenticated()"
+                   class="rounded-full px-3 py-1.5 hover:bg-white hover:text-slate-900
+              dark:hover:bg-slate-700 dark:hover:text-slate-50">
+                    Logout
+                </a>
+
             </div>
 
             <!-- RIGHT SIDE: THEME TOGGLE -->

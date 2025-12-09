@@ -3,7 +3,7 @@ package com.example.finance_tracker.form;
 import lombok.Data;
 
 @Data
-public class AccountLoginForm {
+public class CredentialsForm {
     private String email;
     private String password;
 }
