@@ -159,9 +159,7 @@ public class CSVImportController {
     }
 
     @PostMapping("/save")
-    public String save(@AuthenticationPrincipal CustomUserDetails user, Model model, HttpSession session, RedirectAttributes ra) {
-        List<TransactionRowDto> all =
-                (List<TransactionRowDto>) session.getAttribute("IMPORTED_TRANSACTIONS");
+    public String saveDialog(@AuthenticationPrincipal CustomUserDetails user, Model model, HttpSession session, RedirectAttributes ra) {
 
         if (!SecurityUtils.isLoggedIn()) {
             model.addAttribute("accountRegisterForm", new AccountRegisterForm());
@@ -172,9 +170,34 @@ public class CSVImportController {
                 ra,
                 "Imported transactions detected, choose what to do:",
                 "Cancel",
-                new ConfirmDialog.ConfirmAction("Append", "/transactions/import/append", "POST"),
-                new ConfirmDialog.ConfirmAction("Replace Existing", "/transactions/import/replace", "POST")
+                new ConfirmDialog.ConfirmAction("Append", "/import/save/append", "POST"),
+                new ConfirmDialog.ConfirmAction("Replace Existing", "/import/save/replace", "POST")
         );
+
+        return "redirect:/import/";
+    }
+
+    @PostMapping("/save/append")
+    public String saveAppend(@AuthenticationPrincipal CustomUserDetails user, Model model, HttpSession session, RedirectAttributes ra) {
+        List<TransactionRowDto> all =
+                (List<TransactionRowDto>) session.getAttribute("IMPORTED_TRANSACTIONS");
+
+        try {
+            csvImportService.saveTransactions(user.getId(), all);
+            Modal.addSuccess(ra, "You have successfully imported transactions into your database");
+        } catch (Exception e) {
+            Modal.addError(ra, "An error occurred: %s".formatted(e.getMessage()));
+            return "redirect:/import/";
+        }
+
+        session.removeAttribute("IMPORTED_TRANSACTIONS");
+        return "redirect:/import/";
+    }
+
+    @PostMapping("/save/replace")
+    public String saveReplace(@AuthenticationPrincipal CustomUserDetails user, Model model, HttpSession session, RedirectAttributes ra) {
+        List<TransactionRowDto> all =
+                (List<TransactionRowDto>) session.getAttribute("IMPORTED_TRANSACTIONS");
 
         try {
             csvImportService.saveTransactions(user.getId(), all);
