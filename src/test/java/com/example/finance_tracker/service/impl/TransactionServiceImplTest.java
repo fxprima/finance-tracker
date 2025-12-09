@@ -45,7 +45,7 @@ class TransactionServiceImplTest {
         TransactionRowDto transactionRowDto = new TransactionRowDto();
         transactionRowDto.setTransactionType(TransactionType.EXPENSE);
         transactionRowDto.setNote("Note");
-        transactionRowDto.setCurrency(Currency.getInstance("IDR"));
+        transactionRowDto.setCurrency("IDR");
         transactionRowDto.setAmount(3000.0);
         transactionRowDto.setDate(LocalDateTime.now());
 

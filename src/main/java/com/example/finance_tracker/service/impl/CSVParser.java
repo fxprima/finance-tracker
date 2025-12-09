@@ -60,7 +60,7 @@ public class CSVParser {
                         row.setSubCategory(emptyToNull(rawSubCategory));
 
                         row.setAmount(Double.parseDouble(line[6]));
-                        row.setCurrency(Currency.getInstance(line[7]));
+                        row.setCurrency(line[7]);
                         row.setNote(line[14]);
                     }
 

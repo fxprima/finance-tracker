@@ -1,5 +1,6 @@
 package com.example.finance_tracker.mapper;
 
+import com.example.finance_tracker.dto.TransactionRowDto;
 import com.example.finance_tracker.model.TransactionRecord;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -18,4 +19,6 @@ public interface TransactionMapper {
     );
 
     void insert(TransactionRecord tx);
+
+    List<TransactionRowDto> findByUserId(Long userId);
 }

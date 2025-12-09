@@ -6,10 +6,10 @@ import lombok.Data;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
+import java.util.Currency;
 
 @Data
 public class TransactionRecord extends TransactionBase {
-    private Long id;
     private Long userId;
     private Long categoryId;
     private Long subCategoryId;

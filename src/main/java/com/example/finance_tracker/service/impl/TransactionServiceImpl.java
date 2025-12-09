@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -73,7 +74,12 @@ public class TransactionServiceImpl implements TransactionService {
 
         transactionRecord.setCreatedAt(LocalDateTime.now());
         transactionRecord.setUpdatedAt(LocalDateTime.now());
+        transactionRecord.setCurrency(transactionRowDto.getCurrency());
 
         transactionMapper.insert(transactionRecord);
+    }
+
+    public List<TransactionRowDto> findByUserId(Long userId) {
+        return transactionMapper.findByUserId(userId);
     }
 }

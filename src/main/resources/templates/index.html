@@ -3,33 +3,109 @@
       th:replace="~{layout/base :: base(~{::pageTitle}, ~{::content})}">
 
 <head>
-    <title th:fragment="pageTitle">Dashboard - Finance Tracker</title>
+    <title th:fragment="pageTitle">Dashboard - FinSight</title>
 </head>
 
 <body>
 <th:block th:fragment="content">
-    <h1 class="text-3xl font-bold text-gray-800 mb-4">
-        Welcome, <span th:text="${name}">Fel</span> 👋
+    <h1 class="text-3xl font-bold text-gray-800 mb-4 dark:text-slate-50">
+        Dashboard
     </h1>
 
-    <p class="text-gray-600 mb-6">
-        Ini halaman dashboard pertama finance tracker lu.
-    </p>
+    <div class="mt-8" th:if="${transactions != null}">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4 dark:text-slate-50">
+            Filters
+        </h2>
 
-    <div class="grid grid-cols-3 gap-4">
-        <div class="bg-white p-6 rounded-lg shadow">
-            <h2 class="text-lg font-semibold">Total Spending</h2>
-            <p class="text-xl font-bold mt-2 text-red-600" th:text="${totalSpending}">0s</p>
+        <th:block th:insert="~{fragments/filter-fragment :: transactionsFilter(@{/import/filter})}" />
+
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4 dark:text-slate-50">
+            Insights
+        </h2>
+
+        <div class="border-t border-gray-200 dark:border-gray-700">
+            <th:block th:insert="~{fragments/insight-summary-fragment :: summaryFragment}" />
         </div>
-        <div class="bg-white p-6 rounded-lg shadow">
-            <h2 class="text-lg font-semibold">This Month Income</h2>
-            <p class="text-xl font-bold mt-2 text-green-600" th:text="${income}">0</p>
+
+        <!-- BENTO INSIGHT -->
+
+        <div class="border-b border-gray-200 dark:border-gray-700">
+            <th:block th:if="${transactions != null}">
+                <th:block th:insert="~{fragments/insights/insight-bento-fragment :: insight(${transactions})}">
+                </th:block>
+            </th:block>
+            <br>
+
+            <div class="flex justify-end mb-4">
+                <form id="exportReportForm"
+                      th:action="@{/import/export-pdf}"
+                      th:object="${insightExportPDFForm}"
+                      method="post">
+
+                    <input type="hidden" th:field="*{filterForm.startDate}" />
+                    <input type="hidden" th:field="*{filterForm.endDate}" />
+
+                    <!-- Include filters -->
+                    <input type="hidden" th:field="*{filterForm.categories}" />
+                    <input type="hidden" th:field="*{filterForm.subCategories}" />
+                    <input type="hidden" th:field="*{filterForm.types}" />
+                    <input type="hidden" th:field="*{filterForm.noteKeywords}" />
+
+                    <!-- Exclude filters -->
+                    <input type="hidden" th:field="*{filterForm.excludeCategories}" />
+                    <input type="hidden" th:field="*{filterForm.excludeSubCategories}" />
+                    <input type="hidden" th:field="*{filterForm.excludeTypes}" />
+                    <input type="hidden" th:field="*{filterForm.excludeNoteKeywords}" />
+
+                    <!-- base64 images -->
+                    <input type="hidden" id="topCategoriesImageBase64" th:field="*{topCategoriesImageBase64}">
+                    <input type="hidden" id="heatmapImageBase64" name="heatmapImageBase64" th:field="*{heatmapImageBase64}" />
+                    <input type="hidden" id="categoryChartImageBase64" name="categoryChartImageBase64" th:field="*{categoryChartImageBase64}"  />
+                    <input type="hidden" id="trendChartImageBase64" name="trendChartImageBase64" th:field="*{trendChartImageBase64}"/>
+
+                    <button
+                            id="exportPdfBtn"
+                            type="button"
+                            class="rounded-lg bg-green-600 dark:bg-green-600 px-5 py-2 text-white text-sm font-medium shadow-md
+                   hover:bg-blue-700 dark:hover:bg-blue-600 transition">
+                        Export as PDF
+                    </button>
+                </form>
+            </div>
+
         </div>
-        <div class="bg-white p-6 rounded-lg shadow">
-            <h2 class="text-lg font-semibold">Remaining Budget</h2>
-            <p class="text-xl font-bold mt-2 text-blue-600" th:text="${budget}">0</p>
+
+        <div class="flexborder-gray-200 dark:border-gray-700">
+            <h2 class="text-2xl font-semibold text-gray-800 mt-4 mb-4 dark:text-slate-50">
+                All Transactions
+            </h2>
         </div>
+
+
+        <th:block th:insert="~{fragments/table-fragment :: rowsOnly(${transactions})}" />
+
+
     </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+            integrity="sha512-BNa5lHfZfQOQ4rA6Ymc5T4rZt4WeD0c2UyrKvW3WNg3unEjn8r4n4t04nTaC9QJQz3lga8Qv0I9MbugwZsmQ3g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css" />
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+    <script th:src="@{/js/pages/importCSV/table-dropzone.js}"></script>
+    <script th:src="@{/js/pages/importCSV/multi-select.js}"></script>
+
 </th:block>
 </body>
 </html>

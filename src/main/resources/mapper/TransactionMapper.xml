@@ -8,8 +8,20 @@
     <resultMap id="TransactionResultMap" type="com.example.finance_tracker.model.TransactionRecord">
         <id     property="id"               column="id"/>
         <id     property="userId"           column="user_id"/>
-        <result property="transactionDate"  column="transaction_date"/>
+        <result property="transactionDate"  column="date"/>
         <result property="amount"           column="amount"/>
+        <result property="type"             column="type"/>
+        <result property="currency"         column="currency"/>
+        <result property="description"      column="description"/>
+        <result property="note"             column="note"/>
+        <result property="createdAt"        column="created_at"/>
+    </resultMap>
+
+    <resultMap id="TransactionRowDtoResultMap" type="com.example.finance_tracker.dto.TransactionRowDto">
+        <id     property="id"               column="id"/>
+        <result property="date"             column="date"/>
+        <result property="amount"           column="amount"/>
+        <result property="currency"         column="currency"/>
         <result property="type"             column="type"/>
         <result property="description"      column="description"/>
         <result property="note"             column="note"/>
@@ -19,14 +31,32 @@
     <select id="findAll" resultMap="TransactionResultMap">
         SELECT
         id,
-        transaction_date,
+        date,
         amount,
         type,
+        currency,
         description,
         note,
         created_at
         FROM transactions
-        ORDER BY transaction_date DESC, id DESC
+        ORDER BY date DESC, id DESC
+    </select>
+
+    <select id="findByUserId" resultMap="TransactionRowDtoResultMap">
+        select
+        tr.id as id,
+        tr.date as date,
+        tr.type as transactionType,
+        tr.category_id,
+        cat.description as category,
+        scat.description as subCategory,
+        tr.currency as currency,
+        tr.note as note,
+        tr.amount as amount
+        from transactions as tr
+        JOIN categories as cat on cat.id = tr.category_id
+        LEFT JOIN sub_categories as scat ON scat.id = tr.sub_category_id
+        WHERE tr.user_id = #{userId}
     </select>
 
     <select id="findByDateRange" resultMap="TransactionResultMap">
@@ -51,7 +81,9 @@
         INSERT INTO transactions (
         user_id,
         category_id,
+        sub_category_id,
         type,
+        currency,
         date,
         amount,
         note
@@ -59,7 +91,9 @@
         VALUES (
         #{userId},
         #{categoryId},
+        #{subCategoryId},
         #{transactionType},
+        #{currency},
         #{date},
         #{amount},
         #{note}
