@@ -2,15 +2,20 @@
 <th:block th:fragment="modalFragment">
     <div th:if="${modalMsg != null}"
          id="global-modal"
-         class="fixed inset-0 z-40 flex items-center justify-center bg-slate-900/40">
+         class="fixed inset-0 z-40 flex items-center justify-center
+                bg-slate-950/70 backdrop-blur-sm">
 
         <div th:with="isError=${modalType} == 'error'"
-             class="relative w-[90%] max-w-sm rounded-3xl bg-white p-8 text-center shadow-2xl
-                    dark:bg-slate-900">
+             class="relative w-[95%] max-w-lg rounded-3xl
+                    bg-slate-900/90 shadow-[0_30px_120px_rgba(0,0,0,0.7)]
+                    border border-slate-800
+                    px-8 pt-10 pb-8
+                    text-center
+                    dark:bg-slate-900/90">
 
             <!-- Close (X) kecil di pojok -->
             <button type="button"
-                    class="absolute right-4 top-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                    class="absolute right-5 top-5 text-slate-500 hover:text-slate-300"
                     onclick="document.getElementById('global-modal').classList.add('hidden')">
                 ✕
             </button>
@@ -28,12 +33,12 @@
             <!-- Title -->
             <h2 class="mb-2 text-xl font-semibold"
                 th:text="${isError} ? 'Sorry :(' : 'Success!'"
-                th:classappend="${isError} ? ' text-rose-600' : ' text-emerald-600'">
+                th:classappend="${isError} ? ' text-rose-400' : ' text-emerald-400'">
                 Success!
             </h2>
 
             <!-- Message dari backend -->
-            <p class="mb-6 text-sm text-slate-600 dark:text-slate-300"
+            <p class="mb-6 text-sm text-slate-300"
                th:text="${modalMsg}">
                 Your account has been created successfully
             </p>
