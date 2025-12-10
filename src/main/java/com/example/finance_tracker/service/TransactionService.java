@@ -11,4 +11,7 @@ public interface TransactionService {
    void createTransaction (Long userId, TransactionRowDto transactionRowDto);
 
    List<TransactionRowDto> findByUserId(Long userId);
+   int deleteByUserId(Long userId);
+
+   boolean hasTransactions(Long userId);
 }

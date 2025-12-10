@@ -82,4 +82,22 @@ public class TransactionServiceImpl implements TransactionService {
     public List<TransactionRowDto> findByUserId(Long userId) {
         return transactionMapper.findByUserId(userId);
     }
+
+    /**
+     * @param userId
+     * @return
+     */
+    @Override
+    public int deleteByUserId(Long userId) {
+        return transactionMapper.deleteByUserId(userId);
+    }
+
+    /**
+     * @param userId
+     * @return
+     */
+    @Override
+    public boolean hasTransactions(Long userId) {
+        return transactionMapper.hasTransactions(userId);
+    }
 }

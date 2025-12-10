@@ -15,5 +15,5 @@ public interface CSVImportService {
 
     List <String> extractUniqueSubCategories(List<TransactionRowDto> transactions);
 
-    boolean saveTransactions(Long userId, List<TransactionRowDto> transactions);
+    Integer saveTransactions(Long userId, List<TransactionRowDto> transactions, Boolean append);
 }

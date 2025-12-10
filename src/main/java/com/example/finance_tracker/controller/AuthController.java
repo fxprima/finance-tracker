@@ -102,7 +102,7 @@ public class AuthController {
             Modal.addError(model, "Username or password is not correct");
 
         if (logout != null)
-            Modal.addSuccess(model, "Logout success");
+            Modal.addSuccess(model, "You have successfully logged out your account.");
 
         return "pages/auth/login";
     }

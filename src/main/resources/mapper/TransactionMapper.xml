@@ -59,6 +59,13 @@
         WHERE tr.user_id = #{userId}
     </select>
 
+    <select id="hasTransactions" resultType="boolean">
+        SELECT COUNT(*) > 0
+        FROM transactions tr
+        WHERE tr.user_id = #{userId}
+    </select>
+
+
     <select id="findByDateRange" resultMap="TransactionResultMap">
         SELECT
         id,
@@ -100,5 +107,9 @@
         )
     </insert>
 
+    <delete id="deleteByUserId" parameterType="long">
+        DELETE FROM transactions
+        WHERE user_id = #{userId}
+    </delete>
 
 </mapper>

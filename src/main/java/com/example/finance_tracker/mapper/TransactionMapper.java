@@ -21,4 +21,8 @@ public interface TransactionMapper {
     void insert(TransactionRecord tx);
 
     List<TransactionRowDto> findByUserId(Long userId);
+
+    int deleteByUserId(Long userId);
+
+    boolean hasTransactions(Long userId);
 }

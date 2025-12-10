@@ -15,6 +15,7 @@ import com.example.finance_tracker.security.CustomUserDetails;
 import com.example.finance_tracker.service.CSVImportService;
 import com.example.finance_tracker.service.InsightSummaryService;
 import com.example.finance_tracker.service.TransactionFilterService;
+import com.example.finance_tracker.service.TransactionService;
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -52,6 +53,9 @@ public class CSVImportController {
 
     @Autowired
     private InsightSummaryService insightSummaryService;
+
+    @Autowired
+    private TransactionService transactionService;
 
     @ModelAttribute("formatOptions")
     public List<ImportFormatOptionsDto> populateFormatOptions() {
@@ -166,6 +170,9 @@ public class CSVImportController {
             return "pages/auth/register";
         }
 
+        if (!transactionService.hasTransactions(user.getId()))
+            return this.saveReplace(user, model, session, ra);
+
         ConfirmDialog.show(
                 ra,
                 "Imported transactions detected, choose what to do:",
@@ -183,8 +190,8 @@ public class CSVImportController {
                 (List<TransactionRowDto>) session.getAttribute("IMPORTED_TRANSACTIONS");
 
         try {
-            csvImportService.saveTransactions(user.getId(), all);
-            Modal.addSuccess(ra, "You have successfully imported transactions into your database");
+            int rowsAffected = csvImportService.saveTransactions(user.getId(), all, true);
+            Modal.addSuccess(ra, "You have successfully imported %d transactions into your database".formatted(rowsAffected));
         } catch (Exception e) {
             Modal.addError(ra, "An error occurred: %s".formatted(e.getMessage()));
             return "redirect:/import/";
@@ -200,8 +207,8 @@ public class CSVImportController {
                 (List<TransactionRowDto>) session.getAttribute("IMPORTED_TRANSACTIONS");
 
         try {
-            csvImportService.saveTransactions(user.getId(), all);
-            Modal.addSuccess(ra, "You have successfully imported transactions into your database");
+            int rowsAffected = csvImportService.saveTransactions(user.getId(), all, false);
+            Modal.addSuccess(ra, "You have successfully imported %d transactions into your database".formatted(rowsAffected));
         } catch (Exception e) {
             Modal.addError(ra, "An error occurred: %s".formatted(e.getMessage()));
             return "redirect:/import/";

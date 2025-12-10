@@ -1,7 +1,6 @@
 package com.example.finance_tracker.service.impl;
 
 import com.example.finance_tracker.common.contants.CSVFormatOption;
-import com.example.finance_tracker.dto.InsightSummaryDTO;
 import com.example.finance_tracker.dto.TransactionRowDto;
 import com.example.finance_tracker.service.CSVImportService;
 import com.example.finance_tracker.service.TransactionService;
@@ -14,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -54,17 +55,44 @@ public class CSVImportServiceImpl implements CSVImportService {
 
     @Override
     @Transactional
-    public boolean saveTransactions(Long userId, List<TransactionRowDto> transactions) {
+    public Integer saveTransactions(Long userId, List<TransactionRowDto> transactions, Boolean append) {
 
         try {
-            for (TransactionRowDto transaction : transactions)
-                transactionService.createTransaction(userId, transaction);
 
+            if (append) {
+                Set<String> existingKeys = transactionService.findByUserId(userId)
+                        .stream()
+                        .map(t -> t.getDate() + "|" +
+                                t.getAmount() + "|" +
+                                t.getCategory() + "|" +
+                                t.getNote() + "|" +
+                                t.getTransactionType())
+                        .collect(Collectors.toSet());
+
+                List<TransactionRowDto> filtered = transactions.stream()
+                        .filter(t -> existingKeys.add(
+                                t.getDate() + "|" +
+                                        t.getAmount() + "|" +
+                                        t.getCategory() + "|" +
+                                        t.getNote() + "|" +
+                                        t.getTransactionType()
+                        ))
+                        .toList();
+
+                for (TransactionRowDto transaction : filtered)
+                    transactionService.createTransaction(userId, transaction);
+
+                return filtered.size();
+            } else {
+                transactionService.deleteByUserId(userId);
+                for(TransactionRowDto transaction : transactions)
+                    transactionService.createTransaction(userId, transaction);
+
+                return transactions.size();
+            }
         } catch (Exception e) {
             log.error(e.getMessage());
             throw new RuntimeException(e);
         }
-
-        return true;
     }
 }
