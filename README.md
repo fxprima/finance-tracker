@@ -255,7 +255,7 @@ List<TransactionRowDto> filtered = imported.stream()
 
 ```
 ````
-
+````
 # 🧭 Roadmap (Optional Enhancements)
 - Budgeting per category
 - Multi-account support (Cash, BCA, Dana, etc.)
@@ -263,10 +263,18 @@ List<TransactionRowDto> filtered = imported.stream()
 - Manual transaction input
 - PostgreSQL + Docker deployment
 - Advanced analytics module
-
+````
 ---
+
+## Preview
+<img width="860" height="944" alt="2" src="https://github.com/user-attachments/assets/16edae54-ae19-4c7a-b7a1-f7f606958fd4" />
+<img width="741" height="855" alt="3" src="https://github.com/user-attachments/assets/ce51adc7-d7c7-4c34-93a4-4c6bc2056eef" />
+<img width="1439" height="908" alt="4" src="https://github.com/user-attachments/assets/6aee5046-bbfc-4194-9f76-8f83ca7fddeb" />
+<img width="1485" height="848" alt="5" src="https://github.com/user-attachments/assets/2227e036-55a3-438e-9745-83afb53a0448" />
+<img width="596" height="440" alt="6" src="https://github.com/user-attachments/assets/69307cd5-76ab-4db4-93dc-2f70de17d4b0" />
+
+
 
 # 🙌 Author
 Created by **Felix**
 
-```
