@@ -244,8 +244,6 @@ Set<String> existingKeys = existingTransactions.stream()
 List<TransactionRowDto> filtered = imported.stream()
     .filter(t -> existingKeys.add(businessKey(t)))
     .toList();
-``` (Append Mode)
-````
 
 Set<String> existingKeys = existingTransactions.stream()
 .map(this::businessKey)
@@ -256,15 +254,7 @@ List<TransactionRowDto> filtered = imported.stream()
 .toList();
 
 ```
-
-## Guest Mode via Session
-```
-
-session.setAttribute("IMPORTED_TRANSACTIONS", list);
-
-```
-
----
+````
 
 # 🧭 Roadmap (Optional Enhancements)
 - Budgeting per category
