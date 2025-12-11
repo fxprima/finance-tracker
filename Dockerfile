@@ -21,7 +21,7 @@ WORKDIR /app
 COPY --from=builder /app/target/finance-tracker-0.0.1-SNAPSHOT.jar app.jar
 
 # App port
-EXPOSE 8080
+EXPOSE 8081
 # Debug port
 EXPOSE 5005
 

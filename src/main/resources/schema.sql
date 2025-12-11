@@ -1,48 +1,53 @@
 CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    password TEXT NOT NULL,
-    first_name TEXT,
-    last_name TEXT,
-    email TEXT,
-    phone TEXT
-);
-
-CREATE TABLE IF NOT EXISTS sub_categories (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    category_id INTEGER,
-    description TEXT NOT NULL,
-    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    FOREIGN KEY (category_id) REFERENCES categories(id)
+                                     id BIGSERIAL PRIMARY KEY,
+                                     password TEXT NOT NULL,
+                                     first_name TEXT,
+                                     last_name TEXT,
+                                     email TEXT,
+                                     phone TEXT
 );
 
 CREATE TABLE IF NOT EXISTS categories (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER,
-    description TEXT NOT NULL,
-    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                          id BIGSERIAL PRIMARY KEY,
+                                          user_id BIGINT,
+                                          description TEXT NOT NULL,
+                                          created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                          updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
+                                          CONSTRAINT fk_categories_user
+                                          FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+
+CREATE TABLE IF NOT EXISTS sub_categories (
+                                              id BIGSERIAL PRIMARY KEY,
+                                              category_id BIGINT,
+                                              description TEXT NOT NULL,
+                                              created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                              updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+                                              CONSTRAINT fk_sub_categories_category
+                                              FOREIGN KEY (category_id) REFERENCES categories(id)
+    );
 
 CREATE TABLE IF NOT EXISTS transactions (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER,
-    category_id INTEGER,
-    sub_category_id INTEGER,
+                                            id BIGSERIAL PRIMARY KEY,
+                                            user_id BIGINT,
+                                            category_id BIGINT,
+                                            sub_category_id BIGINT,
 
-    type TEXT NOT NULL,
-    description TEXT,
-    date TEXT NOT NULL,
-    amount INTEGER NOT NULL,
-    currency TEXT NOT NULL,
-    note TEXT,
-    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                            type TEXT NOT NULL,
+                                            description TEXT,
+                                            date TIMESTAMP NOT NULL,
+                                            amount INTEGER NOT NULL,
+                                            currency TEXT NOT NULL,
+                                            note TEXT,
+                                            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                            updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (user_id) REFERENCES users(id),
+                                            CONSTRAINT fk_transactions_user
+                                            FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT fk_transactions_category
     FOREIGN KEY (category_id) REFERENCES categories(id),
+    CONSTRAINT fk_transactions_subcategory
     FOREIGN KEY (sub_category_id) REFERENCES sub_categories(id)
-);
+    );
