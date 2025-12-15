@@ -1,0 +1,588 @@
+Date (UTC),Type,From account / from category,From subcategory,To account / to category,To subcategory,Amount 1,Currency 1,Amount 2,Currency 2,Commission,Commission currency,Tax,Tax currency,Comment
+2024-10-01T17:00:00.000Z,Income,Company Payroll,,Primary Account,,7000000,IDR,7000000,IDR,,,,,Monthly Salary
+2024-11-01T17:00:00.000Z,Income,Company Payroll,,Primary Account,,7000000,IDR,7000000,IDR,,,,,Monthly Salary
+2024-11-01T17:00:00.000Z,Expense,Primary Account,,Food,,179959,IDR,179959,IDR,,,,,Snack
+2024-11-01T17:00:00.000Z,Expense,Primary Account,,Health,,64579,IDR,64579,IDR,,,,,Vitamins
+2024-11-01T17:00:00.000Z,Expense,Primary Account,,Personal Care,,123219,IDR,123219,IDR,,,,,Soap
+2024-11-01T17:00:00.000Z,Expense,Primary Account,,Bills,,44931,IDR,44931,IDR,,,,,Internet
+2024-11-01T17:00:00.000Z,Expense,Primary Account,,Others,,112278,IDR,112278,IDR,,,,,Random purchase
+2024-11-01T17:00:00.000Z,Expense,Primary Account,,Personal Care,,154049,IDR,154049,IDR,,,,,Shampoo
+2024-11-04T17:00:00.000Z,Expense,Primary Account,,Others,,129547,IDR,129547,IDR,,,,,Random purchase
+2024-11-05T17:00:00.000Z,Expense,Primary Account,,Groceries,,159719,IDR,159719,IDR,,,,,Indomaret
+2024-11-06T17:00:00.000Z,Expense,Primary Account,,Transport,,17068,IDR,17068,IDR,,,,,Gojek
+2024-11-08T17:00:00.000Z,Expense,Primary Account,,Bills,,13402,IDR,13402,IDR,,,,,Water
+2024-11-08T17:00:00.000Z,Expense,Primary Account,,Transport,,46876,IDR,46876,IDR,,,,,Gojek
+2024-11-08T17:00:00.000Z,Expense,Primary Account,,Groceries,,117719,IDR,117719,IDR,,,,,Alfamart
+2024-11-09T17:00:00.000Z,Expense,Primary Account,,Others,,164232,IDR,164232,IDR,,,,,Misc
+2024-11-09T17:00:00.000Z,Expense,Primary Account,,Food,,113827,IDR,113827,IDR,,,,,Snack
+2024-11-09T17:00:00.000Z,Expense,Primary Account,,Health,,15183,IDR,15183,IDR,,,,,Medicine
+2024-11-10T17:00:00.000Z,Expense,Primary Account,,Transport,,117750,IDR,117750,IDR,,,,,Busway
+2024-11-12T17:00:00.000Z,Expense,Primary Account,,Entertainment,,190065,IDR,190065,IDR,,,,,Netflix
+2024-11-12T17:00:00.000Z,Expense,Primary Account,,Food,,150223,IDR,150223,IDR,,,,,Snack
+2024-11-13T17:00:00.000Z,Expense,Primary Account,,Others,,6060,IDR,6060,IDR,,,,,Misc
+2024-11-13T17:00:00.000Z,Expense,Primary Account,,Food,,17373,IDR,17373,IDR,,,,,Dinner
+2024-11-14T17:00:00.000Z,Expense,Primary Account,,Personal Care,,40803,IDR,40803,IDR,,,,,Skincare
+2024-11-16T17:00:00.000Z,Expense,Primary Account,,Transport,,46795,IDR,46795,IDR,,,,,Busway
+2024-11-16T17:00:00.000Z,Expense,Primary Account,,Transport,,103939,IDR,103939,IDR,,,,,Fuel
+2024-11-18T17:00:00.000Z,Expense,Primary Account,,Personal Care,,132078,IDR,132078,IDR,,,,,Soap
+2024-11-18T17:00:00.000Z,Expense,Primary Account,,Personal Care,,113893,IDR,113893,IDR,,,,,Soap
+2024-11-19T17:00:00.000Z,Expense,Primary Account,,Transport,,198813,IDR,198813,IDR,,,,,Busway
+2024-11-21T17:00:00.000Z,Expense,Primary Account,,Transport,,168710,IDR,168710,IDR,,,,,Fuel
+2024-11-21T17:00:00.000Z,Expense,Primary Account,,Groceries,,95445,IDR,95445,IDR,,,,,Indomaret
+2024-11-21T17:00:00.000Z,Expense,Primary Account,,Personal Care,,8124,IDR,8124,IDR,,,,,Shampoo
+2024-11-25T17:00:00.000Z,Expense,Primary Account,,Groceries,,186977,IDR,186977,IDR,,,,,Alfamart
+2024-11-26T17:00:00.000Z,Expense,Primary Account,,Health,,97352,IDR,97352,IDR,,,,,Medicine
+2024-11-26T17:00:00.000Z,Expense,Primary Account,,Entertainment,,23247,IDR,23247,IDR,,,,,Netflix
+2024-11-28T17:00:00.000Z,Expense,Primary Account,,Personal Care,,129428,IDR,129428,IDR,,,,,Skincare
+2024-11-28T17:00:00.000Z,Expense,Primary Account,,Others,,143079,IDR,143079,IDR,,,,,Random purchase
+2024-11-28T17:00:00.000Z,Expense,Primary Account,,Health,,181305,IDR,181305,IDR,,,,,Vitamins
+2024-11-29T17:00:00.000Z,Expense,Primary Account,,Bills,,151698,IDR,151698,IDR,,,,,Internet
+2024-11-30T17:00:00.000Z,Expense,Primary Account,,Food,,7358,IDR,7358,IDR,,,,,Coffee
+2024-12-01T17:00:00.000Z,Income,Company Payroll,,Primary Account,,7000000,IDR,7000000,IDR,,,,,Monthly Salary
+2024-12-03T17:00:00.000Z,Expense,Primary Account,,Groceries,,139070,IDR,139070,IDR,,,,,Indomaret
+2024-12-03T17:00:00.000Z,Expense,Primary Account,,Transport,,186674,IDR,186674,IDR,,,,,Fuel
+2024-12-05T17:00:00.000Z,Expense,Primary Account,,Personal Care,,95446,IDR,95446,IDR,,,,,Shampoo
+2024-12-05T17:00:00.000Z,Expense,Primary Account,,Personal Care,,87029,IDR,87029,IDR,,,,,Skincare
+2024-12-07T17:00:00.000Z,Expense,Primary Account,,Food,,121442,IDR,121442,IDR,,,,,Lunch
+2024-12-07T17:00:00.000Z,Expense,Primary Account,,Groceries,,43946,IDR,43946,IDR,,,,,Supermarket
+2024-12-08T17:00:00.000Z,Expense,Primary Account,,Groceries,,113643,IDR,113643,IDR,,,,,Alfamart
+2024-12-09T17:00:00.000Z,Expense,Primary Account,,Groceries,,34820,IDR,34820,IDR,,,,,Indomaret
+2024-12-09T17:00:00.000Z,Expense,Primary Account,,Bills,,61715,IDR,61715,IDR,,,,,Internet
+2024-12-10T17:00:00.000Z,Expense,Primary Account,,Health,,77458,IDR,77458,IDR,,,,,Medicine
+2024-12-11T17:00:00.000Z,Expense,Primary Account,,Health,,58888,IDR,58888,IDR,,,,,Checkup
+2024-12-12T17:00:00.000Z,Expense,Primary Account,,Entertainment,,175588,IDR,175588,IDR,,,,,Movie
+2024-12-13T17:00:00.000Z,Expense,Primary Account,,Health,,186996,IDR,186996,IDR,,,,,Medicine
+2024-12-13T17:00:00.000Z,Expense,Primary Account,,Bills,,162492,IDR,162492,IDR,,,,,Electricity
+2024-12-14T17:00:00.000Z,Expense,Primary Account,,Others,,39650,IDR,39650,IDR,,,,,Misc
+2024-12-14T17:00:00.000Z,Expense,Primary Account,,Bills,,48149,IDR,48149,IDR,,,,,Internet
+2024-12-17T17:00:00.000Z,Expense,Primary Account,,Food,,28594,IDR,28594,IDR,,,,,Jajanan
+2024-12-18T17:00:00.000Z,Expense,Primary Account,,Health,,110670,IDR,110670,IDR,,,,,Vitamins
+2024-12-19T17:00:00.000Z,Expense,Primary Account,,Others,,166634,IDR,166634,IDR,,,,,Random purchase
+2024-12-20T17:00:00.000Z,Expense,Primary Account,,Personal Care,,74237,IDR,74237,IDR,,,,,Soap
+2024-12-21T17:00:00.000Z,Expense,Primary Account,,Entertainment,,73571,IDR,73571,IDR,,,,,Spotify
+2024-12-23T17:00:00.000Z,Expense,Primary Account,,Groceries,,116246,IDR,116246,IDR,,,,,Supermarket
+2024-12-23T17:00:00.000Z,Expense,Primary Account,,Groceries,,65804,IDR,65804,IDR,,,,,Alfamart
+2024-12-25T17:00:00.000Z,Expense,Primary Account,,Health,,49772,IDR,49772,IDR,,,,,Checkup
+2024-12-26T17:00:00.000Z,Expense,Primary Account,,Transport,,149151,IDR,149151,IDR,,,,,Gojek
+2024-12-26T17:00:00.000Z,Expense,Primary Account,,Bills,,29525,IDR,29525,IDR,,,,,Water
+2024-12-27T17:00:00.000Z,Expense,Primary Account,,Transport,,155967,IDR,155967,IDR,,,,,Grab
+2024-12-28T17:00:00.000Z,Expense,Primary Account,,Personal Care,,124789,IDR,124789,IDR,,,,,Shampoo
+2024-12-29T17:00:00.000Z,Expense,Primary Account,,Health,,146528,IDR,146528,IDR,,,,,Medicine
+2024-12-30T17:00:00.000Z,Expense,Primary Account,,Food,,131428,IDR,131428,IDR,,,,,Lunch
+2024-12-31T17:00:00.000Z,Expense,Primary Account,,Bills,,137365,IDR,137365,IDR,,,,,Electricity
+2024-12-31T17:00:00.000Z,Expense,Primary Account,,Health,,56127,IDR,56127,IDR,,,,,Checkup
+2024-12-31T17:00:00.000Z,Expense,Primary Account,,Groceries,,72745,IDR,72745,IDR,,,,,Alfamart
+2025-01-01T17:00:00.000Z,Expense,Primary Account,,Transport,,56713,IDR,56713,IDR,,,,,Grab
+2025-01-01T17:00:00.000Z,Income,Company Payroll,,Primary Account,,7000000,IDR,7000000,IDR,,,,,Monthly Salary
+2025-01-02T17:00:00.000Z,Expense,Primary Account,,Groceries,,125472,IDR,125472,IDR,,,,,Indomaret
+2025-01-03T17:00:00.000Z,Expense,Primary Account,,Food,,126206,IDR,126206,IDR,,,,,Dinner
+2025-01-04T17:00:00.000Z,Expense,Primary Account,,Entertainment,,33330,IDR,33330,IDR,,,,,Movie
+2025-01-06T17:00:00.000Z,Expense,Primary Account,,Transport,,196898,IDR,196898,IDR,,,,,Gojek
+2025-01-07T17:00:00.000Z,Expense,Primary Account,,Entertainment,,32689,IDR,32689,IDR,,,,,Spotify
+2025-01-08T17:00:00.000Z,Expense,Primary Account,,Health,,101167,IDR,101167,IDR,,,,,Checkup
+2025-01-10T17:00:00.000Z,Expense,Primary Account,,Others,,30326,IDR,30326,IDR,,,,,Random purchase
+2025-01-10T17:00:00.000Z,Expense,Primary Account,,Food,,62733,IDR,62733,IDR,,,,,Dinner
+2025-01-10T17:00:00.000Z,Expense,Primary Account,,Personal Care,,50753,IDR,50753,IDR,,,,,Soap
+2025-01-11T17:00:00.000Z,Expense,Primary Account,,Personal Care,,176135,IDR,176135,IDR,,,,,Skincare
+2025-01-11T17:00:00.000Z,Expense,Primary Account,,Bills,,146786,IDR,146786,IDR,,,,,Water
+2025-01-11T17:00:00.000Z,Expense,Primary Account,,Bills,,89562,IDR,89562,IDR,,,,,Electricity
+2025-01-12T17:00:00.000Z,Expense,Primary Account,,Personal Care,,75292,IDR,75292,IDR,,,,,Shampoo
+2025-01-13T17:00:00.000Z,Expense,Primary Account,,Groceries,,41871,IDR,41871,IDR,,,,,Alfamart
+2025-01-14T17:00:00.000Z,Expense,Primary Account,,Health,,119401,IDR,119401,IDR,,,,,Checkup
+2025-01-14T17:00:00.000Z,Expense,Primary Account,,Health,,150027,IDR,150027,IDR,,,,,Checkup
+2025-01-15T17:00:00.000Z,Expense,Primary Account,,Others,,42962,IDR,42962,IDR,,,,,Misc
+2025-01-15T17:00:00.000Z,Expense,Primary Account,,Transport,,138880,IDR,138880,IDR,,,,,Grab
+2025-01-16T17:00:00.000Z,Expense,Primary Account,,Entertainment,,17549,IDR,17549,IDR,,,,,Movie
+2025-01-16T17:00:00.000Z,Expense,Primary Account,,Groceries,,44364,IDR,44364,IDR,,,,,Indomaret
+2025-01-16T17:00:00.000Z,Expense,Primary Account,,Personal Care,,115193,IDR,115193,IDR,,,,,Shampoo
+2025-01-16T17:00:00.000Z,Expense,Primary Account,,Groceries,,120516,IDR,120516,IDR,,,,,Supermarket
+2025-01-17T17:00:00.000Z,Expense,Primary Account,,Food,,196480,IDR,196480,IDR,,,,,Coffee
+2025-01-19T17:00:00.000Z,Expense,Primary Account,,Health,,66153,IDR,66153,IDR,,,,,Vitamins
+2025-01-20T17:00:00.000Z,Expense,Primary Account,,Health,,94551,IDR,94551,IDR,,,,,Medicine
+2025-01-22T17:00:00.000Z,Expense,Primary Account,,Transport,,49890,IDR,49890,IDR,,,,,Grab
+2025-01-22T17:00:00.000Z,Expense,Primary Account,,Health,,79339,IDR,79339,IDR,,,,,Medicine
+2025-01-23T17:00:00.000Z,Expense,Primary Account,,Bills,,113042,IDR,113042,IDR,,,,,Electricity
+2025-01-23T17:00:00.000Z,Expense,Primary Account,,Entertainment,,79169,IDR,79169,IDR,,,,,Movie
+2025-01-23T17:00:00.000Z,Expense,Primary Account,,Entertainment,,66727,IDR,66727,IDR,,,,,Spotify
+2025-01-23T17:00:00.000Z,Expense,Primary Account,,Groceries,,179638,IDR,179638,IDR,,,,,Supermarket
+2025-01-24T17:00:00.000Z,Expense,Primary Account,,Transport,,110042,IDR,110042,IDR,,,,,Fuel
+2025-01-26T17:00:00.000Z,Expense,Primary Account,,Food,,33613,IDR,33613,IDR,,,,,Jajanan
+2025-01-26T17:00:00.000Z,Expense,Primary Account,,Entertainment,,181538,IDR,181538,IDR,,,,,Netflix
+2025-01-27T17:00:00.000Z,Expense,Primary Account,,Others,,108531,IDR,108531,IDR,,,,,Misc
+2025-01-28T17:00:00.000Z,Expense,Primary Account,,Others,,17244,IDR,17244,IDR,,,,,Misc
+2025-01-28T17:00:00.000Z,Expense,Primary Account,,Entertainment,,74102,IDR,74102,IDR,,,,,Netflix
+2025-01-30T17:00:00.000Z,Expense,Primary Account,,Transport,,108203,IDR,108203,IDR,,,,,Busway
+2025-01-30T17:00:00.000Z,Expense,Primary Account,,Groceries,,24076,IDR,24076,IDR,,,,,Supermarket
+2025-02-01T17:00:00.000Z,Expense,Primary Account,,Food,,8854,IDR,8854,IDR,,,,,Lunch
+2025-02-01T17:00:00.000Z,Income,Company Payroll,,Primary Account,,7000000,IDR,7000000,IDR,,,,,Monthly Salary
+2025-02-02T17:00:00.000Z,Expense,Primary Account,,Personal Care,,177196,IDR,177196,IDR,,,,,Skincare
+2025-02-02T17:00:00.000Z,Expense,Primary Account,,Bills,,64116,IDR,64116,IDR,,,,,Internet
+2025-02-03T17:00:00.000Z,Expense,Primary Account,,Others,,7264,IDR,7264,IDR,,,,,Misc
+2025-02-05T17:00:00.000Z,Expense,Primary Account,,Groceries,,93321,IDR,93321,IDR,,,,,Indomaret
+2025-02-06T17:00:00.000Z,Expense,Primary Account,,Personal Care,,170985,IDR,170985,IDR,,,,,Soap
+2025-02-08T17:00:00.000Z,Expense,Primary Account,,Entertainment,,85404,IDR,85404,IDR,,,,,Game top-up
+2025-02-08T17:00:00.000Z,Expense,Primary Account,,Entertainment,,80551,IDR,80551,IDR,,,,,Movie
+2025-02-08T17:00:00.000Z,Expense,Primary Account,,Food,,142359,IDR,142359,IDR,,,,,Coffee
+2025-02-09T17:00:00.000Z,Expense,Primary Account,,Bills,,46896,IDR,46896,IDR,,,,,Water
+2025-02-10T17:00:00.000Z,Expense,Primary Account,,Entertainment,,149875,IDR,149875,IDR,,,,,Game top-up
+2025-02-10T17:00:00.000Z,Expense,Primary Account,,Personal Care,,107475,IDR,107475,IDR,,,,,Soap
+2025-02-11T17:00:00.000Z,Expense,Primary Account,,Entertainment,,117817,IDR,117817,IDR,,,,,Game top-up
+2025-02-14T17:00:00.000Z,Expense,Primary Account,,Bills,,178194,IDR,178194,IDR,,,,,Water
+2025-02-15T17:00:00.000Z,Expense,Primary Account,,Transport,,25705,IDR,25705,IDR,,,,,Fuel
+2025-02-16T17:00:00.000Z,Expense,Primary Account,,Groceries,,193684,IDR,193684,IDR,,,,,Alfamart
+2025-02-16T17:00:00.000Z,Expense,Primary Account,,Groceries,,122834,IDR,122834,IDR,,,,,Supermarket
+2025-02-17T17:00:00.000Z,Expense,Primary Account,,Transport,,93868,IDR,93868,IDR,,,,,Busway
+2025-02-18T17:00:00.000Z,Expense,Primary Account,,Personal Care,,57868,IDR,57868,IDR,,,,,Soap
+2025-02-18T17:00:00.000Z,Expense,Primary Account,,Entertainment,,153964,IDR,153964,IDR,,,,,Game top-up
+2025-02-19T17:00:00.000Z,Expense,Primary Account,,Entertainment,,24197,IDR,24197,IDR,,,,,Movie
+2025-02-19T17:00:00.000Z,Expense,Primary Account,,Transport,,166931,IDR,166931,IDR,,,,,Gojek
+2025-02-20T17:00:00.000Z,Expense,Primary Account,,Others,,81706,IDR,81706,IDR,,,,,Misc
+2025-02-21T17:00:00.000Z,Expense,Primary Account,,Entertainment,,120402,IDR,120402,IDR,,,,,Netflix
+2025-02-24T17:00:00.000Z,Expense,Primary Account,,Entertainment,,31296,IDR,31296,IDR,,,,,Game top-up
+2025-02-24T17:00:00.000Z,Expense,Primary Account,,Others,,125014,IDR,125014,IDR,,,,,Misc
+2025-02-26T17:00:00.000Z,Expense,Primary Account,,Personal Care,,174408,IDR,174408,IDR,,,,,Skincare
+2025-02-26T17:00:00.000Z,Expense,Primary Account,,Entertainment,,186999,IDR,186999,IDR,,,,,Spotify
+2025-02-27T17:00:00.000Z,Expense,Primary Account,,Others,,11646,IDR,11646,IDR,,,,,Random purchase
+2025-02-27T17:00:00.000Z,Expense,Primary Account,,Food,,139053,IDR,139053,IDR,,,,,Lunch
+2025-02-28T17:00:00.000Z,Expense,Primary Account,,Groceries,,161029,IDR,161029,IDR,,,,,Alfamart
+2025-02-28T17:00:00.000Z,Expense,Primary Account,,Health,,51752,IDR,51752,IDR,,,,,Checkup
+2025-03-01T17:00:00.000Z,Income,Company Payroll,,Primary Account,,7000000,IDR,7000000,IDR,,,,,Monthly Salary
+2025-03-01T17:00:00.000Z,Expense,Primary Account,,Health,,126024,IDR,126024,IDR,,,,,Checkup
+2025-03-01T17:00:00.000Z,Expense,Primary Account,,Transport,,74517,IDR,74517,IDR,,,,,Busway
+2025-03-01T17:00:00.000Z,Expense,Primary Account,,Entertainment,,87081,IDR,87081,IDR,,,,,Netflix
+2025-03-01T17:00:00.000Z,Expense,Primary Account,,Others,,152804,IDR,152804,IDR,,,,,Random purchase
+2025-03-02T17:00:00.000Z,Expense,Primary Account,,Personal Care,,134437,IDR,134437,IDR,,,,,Skincare
+2025-03-03T17:00:00.000Z,Expense,Primary Account,,Entertainment,,166076,IDR,166076,IDR,,,,,Spotify
+2025-03-06T17:00:00.000Z,Expense,Primary Account,,Personal Care,,15863,IDR,15863,IDR,,,,,Shampoo
+2025-03-07T17:00:00.000Z,Expense,Primary Account,,Bills,,80903,IDR,80903,IDR,,,,,Water
+2025-03-08T17:00:00.000Z,Expense,Primary Account,,Personal Care,,58864,IDR,58864,IDR,,,,,Soap
+2025-03-10T17:00:00.000Z,Expense,Primary Account,,Transport,,154223,IDR,154223,IDR,,,,,Gojek
+2025-03-11T17:00:00.000Z,Expense,Primary Account,,Entertainment,,167777,IDR,167777,IDR,,,,,Game top-up
+2025-03-12T17:00:00.000Z,Expense,Primary Account,,Transport,,174261,IDR,174261,IDR,,,,,Gojek
+2025-03-12T17:00:00.000Z,Expense,Primary Account,,Groceries,,191101,IDR,191101,IDR,,,,,Alfamart
+2025-03-14T17:00:00.000Z,Expense,Primary Account,,Health,,150844,IDR,150844,IDR,,,,,Vitamins
+2025-03-14T17:00:00.000Z,Expense,Primary Account,,Bills,,112347,IDR,112347,IDR,,,,,Internet
+2025-03-15T17:00:00.000Z,Expense,Primary Account,,Health,,182715,IDR,182715,IDR,,,,,Medicine
+2025-03-15T17:00:00.000Z,Expense,Primary Account,,Groceries,,150963,IDR,150963,IDR,,,,,Alfamart
+2025-03-16T17:00:00.000Z,Expense,Primary Account,,Entertainment,,124683,IDR,124683,IDR,,,,,Movie
+2025-03-16T17:00:00.000Z,Expense,Primary Account,,Bills,,52113,IDR,52113,IDR,,,,,Electricity
+2025-03-17T17:00:00.000Z,Expense,Primary Account,,Health,,75070,IDR,75070,IDR,,,,,Checkup
+2025-03-17T17:00:00.000Z,Expense,Primary Account,,Food,,32394,IDR,32394,IDR,,,,,Coffee
+2025-03-17T17:00:00.000Z,Expense,Primary Account,,Groceries,,63995,IDR,63995,IDR,,,,,Supermarket
+2025-03-20T17:00:00.000Z,Expense,Primary Account,,Others,,165262,IDR,165262,IDR,,,,,Random purchase
+2025-03-20T17:00:00.000Z,Expense,Primary Account,,Food,,127724,IDR,127724,IDR,,,,,Lunch
+2025-03-20T17:00:00.000Z,Expense,Primary Account,,Personal Care,,47118,IDR,47118,IDR,,,,,Skincare
+2025-03-21T17:00:00.000Z,Expense,Primary Account,,Groceries,,26077,IDR,26077,IDR,,,,,Alfamart
+2025-03-21T17:00:00.000Z,Expense,Primary Account,,Personal Care,,30727,IDR,30727,IDR,,,,,Soap
+2025-03-21T17:00:00.000Z,Expense,Primary Account,,Entertainment,,35076,IDR,35076,IDR,,,,,Movie
+2025-03-22T17:00:00.000Z,Expense,Primary Account,,Entertainment,,75509,IDR,75509,IDR,,,,,Netflix
+2025-03-23T17:00:00.000Z,Expense,Primary Account,,Food,,96899,IDR,96899,IDR,,,,,Jajanan
+2025-03-23T17:00:00.000Z,Expense,Primary Account,,Food,,32927,IDR,32927,IDR,,,,,Lunch
+2025-03-24T17:00:00.000Z,Expense,Primary Account,,Transport,,46603,IDR,46603,IDR,,,,,Busway
+2025-03-24T17:00:00.000Z,Expense,Primary Account,,Food,,21812,IDR,21812,IDR,,,,,Lunch
+2025-03-24T17:00:00.000Z,Expense,Primary Account,,Personal Care,,118302,IDR,118302,IDR,,,,,Soap
+2025-03-25T17:00:00.000Z,Expense,Primary Account,,Health,,42398,IDR,42398,IDR,,,,,Vitamins
+2025-03-25T17:00:00.000Z,Expense,Primary Account,,Transport,,59692,IDR,59692,IDR,,,,,Grab
+2025-03-26T17:00:00.000Z,Expense,Primary Account,,Health,,107908,IDR,107908,IDR,,,,,Checkup
+2025-03-26T17:00:00.000Z,Expense,Primary Account,,Food,,96664,IDR,96664,IDR,,,,,Coffee
+2025-03-28T17:00:00.000Z,Expense,Primary Account,,Entertainment,,47050,IDR,47050,IDR,,,,,Spotify
+2025-03-29T17:00:00.000Z,Expense,Primary Account,,Personal Care,,128581,IDR,128581,IDR,,,,,Skincare
+2025-03-29T17:00:00.000Z,Expense,Primary Account,,Food,,167818,IDR,167818,IDR,,,,,Lunch
+2025-03-29T17:00:00.000Z,Expense,Primary Account,,Health,,150072,IDR,150072,IDR,,,,,Checkup
+2025-03-29T17:00:00.000Z,Expense,Primary Account,,Food,,71244,IDR,71244,IDR,,,,,Dinner
+2025-03-30T17:00:00.000Z,Expense,Primary Account,,Groceries,,93236,IDR,93236,IDR,,,,,Indomaret
+2025-03-31T17:00:00.000Z,Expense,Primary Account,,Food,,52478,IDR,52478,IDR,,,,,Dinner
+2025-04-01T17:00:00.000Z,Income,Company Payroll,,Primary Account,,7000000,IDR,7000000,IDR,,,,,Monthly Salary
+2025-04-03T17:00:00.000Z,Expense,Primary Account,,Bills,,162193,IDR,162193,IDR,,,,,Internet
+2025-04-03T17:00:00.000Z,Expense,Primary Account,,Food,,163447,IDR,163447,IDR,,,,,Coffee
+2025-04-06T17:00:00.000Z,Expense,Primary Account,,Bills,,188316,IDR,188316,IDR,,,,,Electricity
+2025-04-07T17:00:00.000Z,Expense,Primary Account,,Food,,56018,IDR,56018,IDR,,,,,Lunch
+2025-04-07T17:00:00.000Z,Expense,Primary Account,,Health,,14337,IDR,14337,IDR,,,,,Medicine
+2025-04-08T17:00:00.000Z,Expense,Primary Account,,Others,,120997,IDR,120997,IDR,,,,,Misc
+2025-04-08T17:00:00.000Z,Expense,Primary Account,,Entertainment,,103881,IDR,103881,IDR,,,,,Netflix
+2025-04-08T17:00:00.000Z,Expense,Primary Account,,Transport,,131106,IDR,131106,IDR,,,,,Gojek
+2025-04-09T17:00:00.000Z,Expense,Primary Account,,Others,,169706,IDR,169706,IDR,,,,,Misc
+2025-04-10T17:00:00.000Z,Expense,Primary Account,,Transport,,103070,IDR,103070,IDR,,,,,Busway
+2025-04-11T17:00:00.000Z,Expense,Primary Account,,Transport,,119145,IDR,119145,IDR,,,,,Fuel
+2025-04-12T17:00:00.000Z,Expense,Primary Account,,Food,,139911,IDR,139911,IDR,,,,,Snack
+2025-04-12T17:00:00.000Z,Expense,Primary Account,,Groceries,,153890,IDR,153890,IDR,,,,,Supermarket
+2025-04-13T17:00:00.000Z,Expense,Primary Account,,Entertainment,,5945,IDR,5945,IDR,,,,,Movie
+2025-04-13T17:00:00.000Z,Expense,Primary Account,,Personal Care,,48909,IDR,48909,IDR,,,,,Skincare
+2025-04-13T17:00:00.000Z,Expense,Primary Account,,Others,,124237,IDR,124237,IDR,,,,,Misc
+2025-04-13T17:00:00.000Z,Expense,Primary Account,,Transport,,86434,IDR,86434,IDR,,,,,Gojek
+2025-04-14T17:00:00.000Z,Expense,Primary Account,,Health,,149497,IDR,149497,IDR,,,,,Vitamins
+2025-04-14T17:00:00.000Z,Expense,Primary Account,,Health,,33931,IDR,33931,IDR,,,,,Vitamins
+2025-04-14T17:00:00.000Z,Expense,Primary Account,,Personal Care,,105654,IDR,105654,IDR,,,,,Soap
+2025-04-15T17:00:00.000Z,Expense,Primary Account,,Transport,,27576,IDR,27576,IDR,,,,,Gojek
+2025-04-15T17:00:00.000Z,Expense,Primary Account,,Bills,,30683,IDR,30683,IDR,,,,,Water
+2025-04-16T17:00:00.000Z,Expense,Primary Account,,Bills,,175383,IDR,175383,IDR,,,,,Electricity
+2025-04-16T17:00:00.000Z,Expense,Primary Account,,Bills,,132026,IDR,132026,IDR,,,,,Internet
+2025-04-17T17:00:00.000Z,Expense,Primary Account,,Entertainment,,49914,IDR,49914,IDR,,,,,Movie
+2025-04-17T17:00:00.000Z,Expense,Primary Account,,Health,,53073,IDR,53073,IDR,,,,,Medicine
+2025-04-17T17:00:00.000Z,Expense,Primary Account,,Transport,,37795,IDR,37795,IDR,,,,,Busway
+2025-04-18T17:00:00.000Z,Expense,Primary Account,,Transport,,20229,IDR,20229,IDR,,,,,Gojek
+2025-04-18T17:00:00.000Z,Expense,Primary Account,,Health,,151043,IDR,151043,IDR,,,,,Vitamins
+2025-04-18T17:00:00.000Z,Expense,Primary Account,,Others,,90230,IDR,90230,IDR,,,,,Misc
+2025-04-18T17:00:00.000Z,Expense,Primary Account,,Personal Care,,60106,IDR,60106,IDR,,,,,Skincare
+2025-04-18T17:00:00.000Z,Expense,Primary Account,,Personal Care,,74187,IDR,74187,IDR,,,,,Skincare
+2025-04-19T17:00:00.000Z,Expense,Primary Account,,Entertainment,,80035,IDR,80035,IDR,,,,,Game top-up
+2025-04-19T17:00:00.000Z,Expense,Primary Account,,Health,,134439,IDR,134439,IDR,,,,,Medicine
+2025-04-20T17:00:00.000Z,Expense,Primary Account,,Personal Care,,133844,IDR,133844,IDR,,,,,Soap
+2025-04-20T17:00:00.000Z,Expense,Primary Account,,Entertainment,,152291,IDR,152291,IDR,,,,,Netflix
+2025-04-20T17:00:00.000Z,Expense,Primary Account,,Entertainment,,16096,IDR,16096,IDR,,,,,Spotify
+2025-04-20T17:00:00.000Z,Expense,Primary Account,,Personal Care,,177316,IDR,177316,IDR,,,,,Skincare
+2025-04-21T17:00:00.000Z,Expense,Primary Account,,Entertainment,,33404,IDR,33404,IDR,,,,,Movie
+2025-04-21T17:00:00.000Z,Expense,Primary Account,,Personal Care,,156088,IDR,156088,IDR,,,,,Skincare
+2025-04-22T17:00:00.000Z,Expense,Primary Account,,Bills,,118992,IDR,118992,IDR,,,,,Internet
+2025-04-22T17:00:00.000Z,Expense,Primary Account,,Transport,,22499,IDR,22499,IDR,,,,,Gojek
+2025-04-23T17:00:00.000Z,Expense,Primary Account,,Health,,71017,IDR,71017,IDR,,,,,Checkup
+2025-04-24T17:00:00.000Z,Expense,Primary Account,,Groceries,,154444,IDR,154444,IDR,,,,,Supermarket
+2025-04-25T17:00:00.000Z,Expense,Primary Account,,Others,,136807,IDR,136807,IDR,,,,,Misc
+2025-04-26T17:00:00.000Z,Expense,Primary Account,,Transport,,55679,IDR,55679,IDR,,,,,Gojek
+2025-04-27T17:00:00.000Z,Expense,Primary Account,,Transport,,52143,IDR,52143,IDR,,,,,Busway
+2025-04-27T17:00:00.000Z,Expense,Primary Account,,Food,,111039,IDR,111039,IDR,,,,,Lunch
+2025-04-28T17:00:00.000Z,Expense,Primary Account,,Bills,,134330,IDR,134330,IDR,,,,,Electricity
+2025-04-29T17:00:00.000Z,Expense,Primary Account,,Bills,,96315,IDR,96315,IDR,,,,,Water
+2025-04-29T17:00:00.000Z,Expense,Primary Account,,Personal Care,,80314,IDR,80314,IDR,,,,,Skincare
+2025-04-29T17:00:00.000Z,Expense,Primary Account,,Groceries,,76992,IDR,76992,IDR,,,,,Alfamart
+2025-04-29T17:00:00.000Z,Expense,Primary Account,,Groceries,,87042,IDR,87042,IDR,,,,,Supermarket
+2025-04-29T17:00:00.000Z,Expense,Primary Account,,Entertainment,,163462,IDR,163462,IDR,,,,,Movie
+2025-04-29T17:00:00.000Z,Expense,Primary Account,,Health,,145825,IDR,145825,IDR,,,,,Vitamins
+2025-04-30T17:00:00.000Z,Expense,Primary Account,,Food,,71339,IDR,71339,IDR,,,,,Dinner
+2025-04-30T17:00:00.000Z,Expense,Primary Account,,Others,,199133,IDR,199133,IDR,,,,,Misc
+2025-04-30T17:00:00.000Z,Expense,Primary Account,,Health,,8594,IDR,8594,IDR,,,,,Medicine
+2025-05-01T17:00:00.000Z,Income,Company Payroll,,Primary Account,,7000000,IDR,7000000,IDR,,,,,Monthly Salary
+2025-05-02T17:00:00.000Z,Expense,Primary Account,,Health,,148018,IDR,148018,IDR,,,,,Medicine
+2025-05-02T17:00:00.000Z,Expense,Primary Account,,Others,,129017,IDR,129017,IDR,,,,,Misc
+2025-05-02T17:00:00.000Z,Expense,Primary Account,,Health,,142228,IDR,142228,IDR,,,,,Medicine
+2025-05-03T17:00:00.000Z,Expense,Primary Account,,Personal Care,,99699,IDR,99699,IDR,,,,,Shampoo
+2025-05-03T17:00:00.000Z,Expense,Primary Account,,Transport,,60007,IDR,60007,IDR,,,,,Gojek
+2025-05-04T17:00:00.000Z,Expense,Primary Account,,Groceries,,115934,IDR,115934,IDR,,,,,Alfamart
+2025-05-04T17:00:00.000Z,Expense,Primary Account,,Transport,,179888,IDR,179888,IDR,,,,,Grab
+2025-05-04T17:00:00.000Z,Expense,Primary Account,,Personal Care,,123745,IDR,123745,IDR,,,,,Shampoo
+2025-05-04T17:00:00.000Z,Expense,Primary Account,,Food,,139566,IDR,139566,IDR,,,,,Coffee
+2025-05-05T17:00:00.000Z,Expense,Primary Account,,Groceries,,164023,IDR,164023,IDR,,,,,Supermarket
+2025-05-05T17:00:00.000Z,Expense,Primary Account,,Food,,171166,IDR,171166,IDR,,,,,Dinner
+2025-05-06T17:00:00.000Z,Expense,Primary Account,,Bills,,143951,IDR,143951,IDR,,,,,Water
+2025-05-07T17:00:00.000Z,Expense,Primary Account,,Others,,136488,IDR,136488,IDR,,,,,Random purchase
+2025-05-08T17:00:00.000Z,Expense,Primary Account,,Groceries,,118841,IDR,118841,IDR,,,,,Indomaret
+2025-05-08T17:00:00.000Z,Expense,Primary Account,,Health,,6493,IDR,6493,IDR,,,,,Checkup
+2025-05-08T17:00:00.000Z,Expense,Primary Account,,Food,,79413,IDR,79413,IDR,,,,,Lunch
+2025-05-09T17:00:00.000Z,Expense,Primary Account,,Health,,128400,IDR,128400,IDR,,,,,Medicine
+2025-05-11T17:00:00.000Z,Expense,Primary Account,,Personal Care,,186923,IDR,186923,IDR,,,,,Soap
+2025-05-12T17:00:00.000Z,Expense,Primary Account,,Transport,,67227,IDR,67227,IDR,,,,,Fuel
+2025-05-12T17:00:00.000Z,Expense,Primary Account,,Entertainment,,35851,IDR,35851,IDR,,,,,Netflix
+2025-05-12T17:00:00.000Z,Expense,Primary Account,,Food,,26984,IDR,26984,IDR,,,,,Jajanan
+2025-05-12T17:00:00.000Z,Expense,Primary Account,,Health,,170124,IDR,170124,IDR,,,,,Medicine
+2025-05-12T17:00:00.000Z,Expense,Primary Account,,Personal Care,,15427,IDR,15427,IDR,,,,,Soap
+2025-05-13T17:00:00.000Z,Expense,Primary Account,,Personal Care,,14050,IDR,14050,IDR,,,,,Skincare
+2025-05-13T17:00:00.000Z,Expense,Primary Account,,Entertainment,,198599,IDR,198599,IDR,,,,,Spotify
+2025-05-13T17:00:00.000Z,Expense,Primary Account,,Transport,,113452,IDR,113452,IDR,,,,,Gojek
+2025-05-14T17:00:00.000Z,Expense,Primary Account,,Transport,,28390,IDR,28390,IDR,,,,,Grab
+2025-05-15T17:00:00.000Z,Expense,Primary Account,,Others,,104037,IDR,104037,IDR,,,,,Misc
+2025-05-15T17:00:00.000Z,Expense,Primary Account,,Transport,,81874,IDR,81874,IDR,,,,,Gojek
+2025-05-15T17:00:00.000Z,Expense,Primary Account,,Others,,76774,IDR,76774,IDR,,,,,Misc
+2025-05-15T17:00:00.000Z,Expense,Primary Account,,Bills,,38232,IDR,38232,IDR,,,,,Electricity
+2025-05-16T17:00:00.000Z,Expense,Primary Account,,Entertainment,,14688,IDR,14688,IDR,,,,,Game top-up
+2025-05-16T17:00:00.000Z,Expense,Primary Account,,Transport,,49644,IDR,49644,IDR,,,,,Grab
+2025-05-16T17:00:00.000Z,Expense,Primary Account,,Health,,104911,IDR,104911,IDR,,,,,Checkup
+2025-05-17T17:00:00.000Z,Expense,Primary Account,,Health,,9033,IDR,9033,IDR,,,,,Vitamins
+2025-05-17T17:00:00.000Z,Expense,Primary Account,,Transport,,14450,IDR,14450,IDR,,,,,Grab
+2025-05-18T17:00:00.000Z,Expense,Primary Account,,Entertainment,,41004,IDR,41004,IDR,,,,,Spotify
+2025-05-18T17:00:00.000Z,Expense,Primary Account,,Others,,63138,IDR,63138,IDR,,,,,Misc
+2025-05-19T17:00:00.000Z,Expense,Primary Account,,Entertainment,,115088,IDR,115088,IDR,,,,,Spotify
+2025-05-19T17:00:00.000Z,Expense,Primary Account,,Entertainment,,111211,IDR,111211,IDR,,,,,Movie
+2025-05-19T17:00:00.000Z,Expense,Primary Account,,Food,,20277,IDR,20277,IDR,,,,,Dinner
+2025-05-20T17:00:00.000Z,Expense,Primary Account,,Health,,59303,IDR,59303,IDR,,,,,Checkup
+2025-05-21T17:00:00.000Z,Expense,Primary Account,,Transport,,46604,IDR,46604,IDR,,,,,Fuel
+2025-05-21T17:00:00.000Z,Expense,Primary Account,,Bills,,168189,IDR,168189,IDR,,,,,Water
+2025-05-22T17:00:00.000Z,Expense,Primary Account,,Entertainment,,159822,IDR,159822,IDR,,,,,Movie
+2025-05-24T17:00:00.000Z,Expense,Primary Account,,Health,,160710,IDR,160710,IDR,,,,,Medicine
+2025-05-25T17:00:00.000Z,Expense,Primary Account,,Food,,120622,IDR,120622,IDR,,,,,Snack
+2025-05-26T17:00:00.000Z,Expense,Primary Account,,Entertainment,,155821,IDR,155821,IDR,,,,,Game top-up
+2025-05-27T17:00:00.000Z,Expense,Primary Account,,Food,,47487,IDR,47487,IDR,,,,,Snack
+2025-05-29T17:00:00.000Z,Expense,Primary Account,,Bills,,62443,IDR,62443,IDR,,,,,Internet
+2025-05-30T17:00:00.000Z,Expense,Primary Account,,Bills,,69203,IDR,69203,IDR,,,,,Internet
+2025-05-30T17:00:00.000Z,Expense,Primary Account,,Transport,,26433,IDR,26433,IDR,,,,,Gojek
+2025-05-31T17:00:00.000Z,Expense,Primary Account,,Transport,,95655,IDR,95655,IDR,,,,,Grab
+2025-06-01T17:00:00.000Z,Income,Company Payroll,,Primary Account,,7000000,IDR,7000000,IDR,,,,,Monthly Salary
+2025-06-01T17:00:00.000Z,Expense,Primary Account,,Bills,,122700,IDR,122700,IDR,,,,,Water
+2025-06-02T17:00:00.000Z,Expense,Primary Account,,Groceries,,148443,IDR,148443,IDR,,,,,Supermarket
+2025-06-02T17:00:00.000Z,Expense,Primary Account,,Personal Care,,21165,IDR,21165,IDR,,,,,Soap
+2025-06-02T17:00:00.000Z,Expense,Primary Account,,Food,,128765,IDR,128765,IDR,,,,,Snack
+2025-06-02T17:00:00.000Z,Expense,Primary Account,,Others,,24445,IDR,24445,IDR,,,,,Misc
+2025-06-04T17:00:00.000Z,Expense,Primary Account,,Groceries,,145737,IDR,145737,IDR,,,,,Supermarket
+2025-06-04T17:00:00.000Z,Expense,Primary Account,,Transport,,92825,IDR,92825,IDR,,,,,Busway
+2025-06-07T17:00:00.000Z,Expense,Primary Account,,Health,,158498,IDR,158498,IDR,,,,,Checkup
+2025-06-07T17:00:00.000Z,Expense,Primary Account,,Bills,,145956,IDR,145956,IDR,,,,,Internet
+2025-06-09T17:00:00.000Z,Expense,Primary Account,,Bills,,95201,IDR,95201,IDR,,,,,Electricity
+2025-06-09T17:00:00.000Z,Expense,Primary Account,,Groceries,,49599,IDR,49599,IDR,,,,,Alfamart
+2025-06-09T17:00:00.000Z,Expense,Primary Account,,Personal Care,,125439,IDR,125439,IDR,,,,,Soap
+2025-06-09T17:00:00.000Z,Expense,Primary Account,,Food,,85326,IDR,85326,IDR,,,,,Snack
+2025-06-10T17:00:00.000Z,Expense,Primary Account,,Entertainment,,154412,IDR,154412,IDR,,,,,Game top-up
+2025-06-11T17:00:00.000Z,Expense,Primary Account,,Others,,126921,IDR,126921,IDR,,,,,Misc
+2025-06-11T17:00:00.000Z,Expense,Primary Account,,Others,,161052,IDR,161052,IDR,,,,,Random purchase
+2025-06-12T17:00:00.000Z,Expense,Primary Account,,Personal Care,,136976,IDR,136976,IDR,,,,,Skincare
+2025-06-14T17:00:00.000Z,Expense,Primary Account,,Health,,165967,IDR,165967,IDR,,,,,Vitamins
+2025-06-14T17:00:00.000Z,Expense,Primary Account,,Transport,,135037,IDR,135037,IDR,,,,,Grab
+2025-06-15T17:00:00.000Z,Expense,Primary Account,,Health,,85141,IDR,85141,IDR,,,,,Vitamins
+2025-06-15T17:00:00.000Z,Expense,Primary Account,,Health,,150882,IDR,150882,IDR,,,,,Checkup
+2025-06-16T17:00:00.000Z,Expense,Primary Account,,Food,,46645,IDR,46645,IDR,,,,,Snack
+2025-06-17T17:00:00.000Z,Expense,Primary Account,,Health,,156586,IDR,156586,IDR,,,,,Medicine
+2025-06-18T17:00:00.000Z,Expense,Primary Account,,Groceries,,65036,IDR,65036,IDR,,,,,Alfamart
+2025-06-18T17:00:00.000Z,Expense,Primary Account,,Personal Care,,141732,IDR,141732,IDR,,,,,Soap
+2025-06-19T17:00:00.000Z,Expense,Primary Account,,Entertainment,,131504,IDR,131504,IDR,,,,,Spotify
+2025-06-19T17:00:00.000Z,Expense,Primary Account,,Personal Care,,98460,IDR,98460,IDR,,,,,Shampoo
+2025-06-20T17:00:00.000Z,Expense,Primary Account,,Transport,,19370,IDR,19370,IDR,,,,,Fuel
+2025-06-21T17:00:00.000Z,Expense,Primary Account,,Bills,,17766,IDR,17766,IDR,,,,,Electricity
+2025-06-21T17:00:00.000Z,Expense,Primary Account,,Transport,,176303,IDR,176303,IDR,,,,,Grab
+2025-06-21T17:00:00.000Z,Expense,Primary Account,,Entertainment,,6042,IDR,6042,IDR,,,,,Game top-up
+2025-06-22T17:00:00.000Z,Expense,Primary Account,,Others,,66012,IDR,66012,IDR,,,,,Random purchase
+2025-06-22T17:00:00.000Z,Expense,Primary Account,,Groceries,,196551,IDR,196551,IDR,,,,,Alfamart
+2025-06-22T17:00:00.000Z,Expense,Primary Account,,Health,,165339,IDR,165339,IDR,,,,,Vitamins
+2025-06-24T17:00:00.000Z,Expense,Primary Account,,Food,,185976,IDR,185976,IDR,,,,,Dinner
+2025-06-26T17:00:00.000Z,Expense,Primary Account,,Personal Care,,123025,IDR,123025,IDR,,,,,Skincare
+2025-06-27T17:00:00.000Z,Expense,Primary Account,,Personal Care,,116856,IDR,116856,IDR,,,,,Soap
+2025-06-27T17:00:00.000Z,Expense,Primary Account,,Entertainment,,66209,IDR,66209,IDR,,,,,Game top-up
+2025-06-28T17:00:00.000Z,Expense,Primary Account,,Bills,,29233,IDR,29233,IDR,,,,,Internet
+2025-06-28T17:00:00.000Z,Expense,Primary Account,,Transport,,199750,IDR,199750,IDR,,,,,Fuel
+2025-06-29T17:00:00.000Z,Expense,Primary Account,,Bills,,118347,IDR,118347,IDR,,,,,Internet
+2025-06-29T17:00:00.000Z,Expense,Primary Account,,Food,,57002,IDR,57002,IDR,,,,,Snack
+2025-06-30T17:00:00.000Z,Expense,Primary Account,,Groceries,,173270,IDR,173270,IDR,,,,,Indomaret
+2025-07-01T17:00:00.000Z,Income,Company Payroll,,Primary Account,,7000000,IDR,7000000,IDR,,,,,Monthly Salary
+2025-07-01T17:00:00.000Z,Expense,Primary Account,,Personal Care,,192660,IDR,192660,IDR,,,,,Shampoo
+2025-07-01T17:00:00.000Z,Expense,Primary Account,,Others,,22111,IDR,22111,IDR,,,,,Random purchase
+2025-07-01T17:00:00.000Z,Expense,Primary Account,,Food,,196161,IDR,196161,IDR,,,,,Lunch
+2025-07-02T17:00:00.000Z,Expense,Primary Account,,Personal Care,,100771,IDR,100771,IDR,,,,,Soap
+2025-07-03T17:00:00.000Z,Expense,Primary Account,,Groceries,,105313,IDR,105313,IDR,,,,,Supermarket
+2025-07-04T17:00:00.000Z,Expense,Primary Account,,Food,,166130,IDR,166130,IDR,,,,,Jajanan
+2025-07-05T17:00:00.000Z,Expense,Primary Account,,Others,,85540,IDR,85540,IDR,,,,,Random purchase
+2025-07-07T17:00:00.000Z,Expense,Primary Account,,Food,,136374,IDR,136374,IDR,,,,,Lunch
+2025-07-08T17:00:00.000Z,Expense,Primary Account,,Personal Care,,159192,IDR,159192,IDR,,,,,Skincare
+2025-07-09T17:00:00.000Z,Expense,Primary Account,,Health,,167558,IDR,167558,IDR,,,,,Vitamins
+2025-07-09T17:00:00.000Z,Expense,Primary Account,,Bills,,153897,IDR,153897,IDR,,,,,Water
+2025-07-10T17:00:00.000Z,Expense,Primary Account,,Health,,179664,IDR,179664,IDR,,,,,Checkup
+2025-07-10T17:00:00.000Z,Expense,Primary Account,,Transport,,170596,IDR,170596,IDR,,,,,Busway
+2025-07-10T17:00:00.000Z,Expense,Primary Account,,Personal Care,,181430,IDR,181430,IDR,,,,,Skincare
+2025-07-11T17:00:00.000Z,Expense,Primary Account,,Groceries,,45646,IDR,45646,IDR,,,,,Indomaret
+2025-07-12T17:00:00.000Z,Expense,Primary Account,,Health,,104387,IDR,104387,IDR,,,,,Medicine
+2025-07-12T17:00:00.000Z,Expense,Primary Account,,Health,,59433,IDR,59433,IDR,,,,,Checkup
+2025-07-12T17:00:00.000Z,Expense,Primary Account,,Bills,,118530,IDR,118530,IDR,,,,,Electricity
+2025-07-13T17:00:00.000Z,Expense,Primary Account,,Transport,,191379,IDR,191379,IDR,,,,,Busway
+2025-07-13T17:00:00.000Z,Expense,Primary Account,,Personal Care,,171211,IDR,171211,IDR,,,,,Soap
+2025-07-14T17:00:00.000Z,Expense,Primary Account,,Food,,166246,IDR,166246,IDR,,,,,Dinner
+2025-07-14T17:00:00.000Z,Expense,Primary Account,,Bills,,143521,IDR,143521,IDR,,,,,Electricity
+2025-07-15T17:00:00.000Z,Expense,Primary Account,,Personal Care,,17512,IDR,17512,IDR,,,,,Shampoo
+2025-07-16T17:00:00.000Z,Expense,Primary Account,,Food,,173251,IDR,173251,IDR,,,,,Snack
+2025-07-16T17:00:00.000Z,Expense,Primary Account,,Transport,,198718,IDR,198718,IDR,,,,,Gojek
+2025-07-16T17:00:00.000Z,Expense,Primary Account,,Personal Care,,105195,IDR,105195,IDR,,,,,Skincare
+2025-07-17T17:00:00.000Z,Expense,Primary Account,,Bills,,14762,IDR,14762,IDR,,,,,Electricity
+2025-07-17T17:00:00.000Z,Expense,Primary Account,,Entertainment,,194346,IDR,194346,IDR,,,,,Movie
+2025-07-17T17:00:00.000Z,Expense,Primary Account,,Personal Care,,81886,IDR,81886,IDR,,,,,Shampoo
+2025-07-19T17:00:00.000Z,Expense,Primary Account,,Food,,98654,IDR,98654,IDR,,,,,Dinner
+2025-07-19T17:00:00.000Z,Expense,Primary Account,,Food,,150539,IDR,150539,IDR,,,,,Coffee
+2025-07-20T17:00:00.000Z,Expense,Primary Account,,Food,,17905,IDR,17905,IDR,,,,,Lunch
+2025-07-21T17:00:00.000Z,Expense,Primary Account,,Bills,,187513,IDR,187513,IDR,,,,,Water
+2025-07-21T17:00:00.000Z,Expense,Primary Account,,Health,,79856,IDR,79856,IDR,,,,,Medicine
+2025-07-23T17:00:00.000Z,Expense,Primary Account,,Health,,146626,IDR,146626,IDR,,,,,Vitamins
+2025-07-24T17:00:00.000Z,Expense,Primary Account,,Bills,,24736,IDR,24736,IDR,,,,,Electricity
+2025-07-24T17:00:00.000Z,Expense,Primary Account,,Food,,16197,IDR,16197,IDR,,,,,Dinner
+2025-07-25T17:00:00.000Z,Expense,Primary Account,,Bills,,107320,IDR,107320,IDR,,,,,Electricity
+2025-07-26T17:00:00.000Z,Expense,Primary Account,,Food,,16340,IDR,16340,IDR,,,,,Coffee
+2025-07-28T17:00:00.000Z,Expense,Primary Account,,Others,,122311,IDR,122311,IDR,,,,,Misc
+2025-07-29T17:00:00.000Z,Expense,Primary Account,,Health,,42179,IDR,42179,IDR,,,,,Medicine
+2025-07-29T17:00:00.000Z,Expense,Primary Account,,Entertainment,,104087,IDR,104087,IDR,,,,,Spotify
+2025-07-29T17:00:00.000Z,Expense,Primary Account,,Groceries,,91365,IDR,91365,IDR,,,,,Indomaret
+2025-08-01T17:00:00.000Z,Income,Company Payroll,,Primary Account,,7000000,IDR,7000000,IDR,,,,,Monthly Salary
+2025-08-01T17:00:00.000Z,Expense,Primary Account,,Groceries,,111819,IDR,111819,IDR,,,,,Indomaret
+2025-08-02T17:00:00.000Z,Expense,Primary Account,,Groceries,,75141,IDR,75141,IDR,,,,,Alfamart
+2025-08-02T17:00:00.000Z,Expense,Primary Account,,Groceries,,45981,IDR,45981,IDR,,,,,Supermarket
+2025-08-03T17:00:00.000Z,Expense,Primary Account,,Health,,138930,IDR,138930,IDR,,,,,Checkup
+2025-08-04T17:00:00.000Z,Expense,Primary Account,,Personal Care,,84771,IDR,84771,IDR,,,,,Soap
+2025-08-04T17:00:00.000Z,Expense,Primary Account,,Food,,89538,IDR,89538,IDR,,,,,Lunch
+2025-08-05T17:00:00.000Z,Expense,Primary Account,,Health,,131194,IDR,131194,IDR,,,,,Vitamins
+2025-08-05T17:00:00.000Z,Expense,Primary Account,,Transport,,139129,IDR,139129,IDR,,,,,Fuel
+2025-08-06T17:00:00.000Z,Expense,Primary Account,,Transport,,103522,IDR,103522,IDR,,,,,Fuel
+2025-08-07T17:00:00.000Z,Expense,Primary Account,,Others,,115686,IDR,115686,IDR,,,,,Misc
+2025-08-07T17:00:00.000Z,Expense,Primary Account,,Groceries,,76729,IDR,76729,IDR,,,,,Alfamart
+2025-08-08T17:00:00.000Z,Expense,Primary Account,,Entertainment,,77271,IDR,77271,IDR,,,,,Spotify
+2025-08-09T17:00:00.000Z,Expense,Primary Account,,Groceries,,98778,IDR,98778,IDR,,,,,Alfamart
+2025-08-10T17:00:00.000Z,Expense,Primary Account,,Health,,90261,IDR,90261,IDR,,,,,Vitamins
+2025-08-11T17:00:00.000Z,Expense,Primary Account,,Personal Care,,56456,IDR,56456,IDR,,,,,Shampoo
+2025-08-11T17:00:00.000Z,Expense,Primary Account,,Personal Care,,136668,IDR,136668,IDR,,,,,Shampoo
+2025-08-11T17:00:00.000Z,Expense,Primary Account,,Groceries,,134969,IDR,134969,IDR,,,,,Alfamart
+2025-08-12T17:00:00.000Z,Expense,Primary Account,,Others,,63148,IDR,63148,IDR,,,,,Misc
+2025-08-12T17:00:00.000Z,Expense,Primary Account,,Bills,,119964,IDR,119964,IDR,,,,,Water
+2025-08-15T17:00:00.000Z,Expense,Primary Account,,Others,,26302,IDR,26302,IDR,,,,,Random purchase
+2025-08-16T17:00:00.000Z,Expense,Primary Account,,Bills,,171325,IDR,171325,IDR,,,,,Water
+2025-08-16T17:00:00.000Z,Expense,Primary Account,,Entertainment,,47312,IDR,47312,IDR,,,,,Netflix
+2025-08-16T17:00:00.000Z,Expense,Primary Account,,Groceries,,196702,IDR,196702,IDR,,,,,Supermarket
+2025-08-18T17:00:00.000Z,Expense,Primary Account,,Personal Care,,18304,IDR,18304,IDR,,,,,Shampoo
+2025-08-18T17:00:00.000Z,Expense,Primary Account,,Entertainment,,19636,IDR,19636,IDR,,,,,Game top-up
+2025-08-18T17:00:00.000Z,Expense,Primary Account,,Bills,,12797,IDR,12797,IDR,,,,,Water
+2025-08-20T17:00:00.000Z,Expense,Primary Account,,Bills,,114768,IDR,114768,IDR,,,,,Electricity
+2025-08-22T17:00:00.000Z,Expense,Primary Account,,Bills,,196830,IDR,196830,IDR,,,,,Electricity
+2025-08-25T17:00:00.000Z,Expense,Primary Account,,Health,,146955,IDR,146955,IDR,,,,,Vitamins
+2025-08-25T17:00:00.000Z,Expense,Primary Account,,Entertainment,,107849,IDR,107849,IDR,,,,,Spotify
+2025-08-26T17:00:00.000Z,Expense,Primary Account,,Personal Care,,110532,IDR,110532,IDR,,,,,Soap
+2025-08-26T17:00:00.000Z,Expense,Primary Account,,Bills,,176438,IDR,176438,IDR,,,,,Water
+2025-08-27T17:00:00.000Z,Expense,Primary Account,,Food,,71491,IDR,71491,IDR,,,,,Jajanan
+2025-08-27T17:00:00.000Z,Expense,Primary Account,,Transport,,123471,IDR,123471,IDR,,,,,Gojek
+2025-08-28T17:00:00.000Z,Expense,Primary Account,,Transport,,62492,IDR,62492,IDR,,,,,Fuel
+2025-08-28T17:00:00.000Z,Expense,Primary Account,,Food,,152280,IDR,152280,IDR,,,,,Coffee
+2025-08-28T17:00:00.000Z,Expense,Primary Account,,Health,,55674,IDR,55674,IDR,,,,,Vitamins
+2025-08-29T17:00:00.000Z,Expense,Primary Account,,Transport,,41725,IDR,41725,IDR,,,,,Busway
+2025-08-29T17:00:00.000Z,Expense,Primary Account,,Bills,,195760,IDR,195760,IDR,,,,,Internet
+2025-08-30T17:00:00.000Z,Expense,Primary Account,,Bills,,39930,IDR,39930,IDR,,,,,Electricity
+2025-08-30T17:00:00.000Z,Expense,Primary Account,,Others,,178906,IDR,178906,IDR,,,,,Misc
+2025-08-30T17:00:00.000Z,Expense,Primary Account,,Others,,128828,IDR,128828,IDR,,,,,Random purchase
+2025-08-30T17:00:00.000Z,Expense,Primary Account,,Personal Care,,116340,IDR,116340,IDR,,,,,Skincare
+2025-08-31T17:00:00.000Z,Expense,Primary Account,,Others,,91450,IDR,91450,IDR,,,,,Misc
+2025-08-31T17:00:00.000Z,Expense,Primary Account,,Entertainment,,27868,IDR,27868,IDR,,,,,Movie
+2025-08-31T17:00:00.000Z,Expense,Primary Account,,Personal Care,,160096,IDR,160096,IDR,,,,,Shampoo
+2025-09-01T17:00:00.000Z,Income,Company Payroll,,Primary Account,,7000000,IDR,7000000,IDR,,,,,Monthly Salary
+2025-09-06T17:00:00.000Z,Expense,Primary Account,,Health,,168610,IDR,168610,IDR,,,,,Medicine
+2025-09-06T17:00:00.000Z,Expense,Primary Account,,Others,,126657,IDR,126657,IDR,,,,,Random purchase
+2025-09-07T17:00:00.000Z,Expense,Primary Account,,Others,,19929,IDR,19929,IDR,,,,,Misc
+2025-09-08T17:00:00.000Z,Expense,Primary Account,,Bills,,78387,IDR,78387,IDR,,,,,Water
+2025-09-09T17:00:00.000Z,Expense,Primary Account,,Health,,118948,IDR,118948,IDR,,,,,Vitamins
+2025-09-09T17:00:00.000Z,Expense,Primary Account,,Entertainment,,130795,IDR,130795,IDR,,,,,Netflix
+2025-09-09T17:00:00.000Z,Expense,Primary Account,,Bills,,133981,IDR,133981,IDR,,,,,Internet
+2025-09-09T17:00:00.000Z,Expense,Primary Account,,Bills,,177223,IDR,177223,IDR,,,,,Electricity
+2025-09-10T17:00:00.000Z,Expense,Primary Account,,Entertainment,,54279,IDR,54279,IDR,,,,,Movie
+2025-09-11T17:00:00.000Z,Expense,Primary Account,,Personal Care,,161206,IDR,161206,IDR,,,,,Soap
+2025-09-11T17:00:00.000Z,Expense,Primary Account,,Health,,103384,IDR,103384,IDR,,,,,Vitamins
+2025-09-14T17:00:00.000Z,Expense,Primary Account,,Groceries,,53355,IDR,53355,IDR,,,,,Alfamart
+2025-09-14T17:00:00.000Z,Expense,Primary Account,,Entertainment,,26214,IDR,26214,IDR,,,,,Spotify
+2025-09-14T17:00:00.000Z,Expense,Primary Account,,Personal Care,,40876,IDR,40876,IDR,,,,,Skincare
+2025-09-16T17:00:00.000Z,Expense,Primary Account,,Health,,172442,IDR,172442,IDR,,,,,Vitamins
+2025-09-16T17:00:00.000Z,Expense,Primary Account,,Personal Care,,94656,IDR,94656,IDR,,,,,Skincare
+2025-09-17T17:00:00.000Z,Expense,Primary Account,,Bills,,149811,IDR,149811,IDR,,,,,Water
+2025-09-17T17:00:00.000Z,Expense,Primary Account,,Bills,,137028,IDR,137028,IDR,,,,,Water
+2025-09-19T17:00:00.000Z,Expense,Primary Account,,Transport,,92226,IDR,92226,IDR,,,,,Grab
+2025-09-20T17:00:00.000Z,Expense,Primary Account,,Health,,160690,IDR,160690,IDR,,,,,Vitamins
+2025-09-21T17:00:00.000Z,Expense,Primary Account,,Transport,,155509,IDR,155509,IDR,,,,,Grab
+2025-09-22T17:00:00.000Z,Expense,Primary Account,,Personal Care,,26077,IDR,26077,IDR,,,,,Soap
+2025-09-23T17:00:00.000Z,Expense,Primary Account,,Entertainment,,178913,IDR,178913,IDR,,,,,Game top-up
+2025-09-23T17:00:00.000Z,Expense,Primary Account,,Groceries,,76453,IDR,76453,IDR,,,,,Alfamart
+2025-09-23T17:00:00.000Z,Expense,Primary Account,,Groceries,,25097,IDR,25097,IDR,,,,,Indomaret
+2025-09-23T17:00:00.000Z,Expense,Primary Account,,Food,,8349,IDR,8349,IDR,,,,,Lunch
+2025-09-23T17:00:00.000Z,Expense,Primary Account,,Groceries,,12512,IDR,12512,IDR,,,,,Supermarket
+2025-09-24T17:00:00.000Z,Expense,Primary Account,,Food,,153260,IDR,153260,IDR,,,,,Lunch
+2025-09-25T17:00:00.000Z,Expense,Primary Account,,Transport,,132371,IDR,132371,IDR,,,,,Busway
+2025-09-25T17:00:00.000Z,Expense,Primary Account,,Others,,15432,IDR,15432,IDR,,,,,Random purchase
+2025-09-28T17:00:00.000Z,Expense,Primary Account,,Personal Care,,179484,IDR,179484,IDR,,,,,Shampoo
+2025-09-29T17:00:00.000Z,Expense,Primary Account,,Groceries,,108758,IDR,108758,IDR,,,,,Alfamart
+2025-09-29T17:00:00.000Z,Expense,Primary Account,,Health,,98843,IDR,98843,IDR,,,,,Medicine
+2025-10-01T17:00:00.000Z,Income,Company Payroll,,Primary Account,,7000000,IDR,7000000,IDR,,,,,Monthly Salary
+2025-10-01T17:00:00.000Z,Expense,Primary Account,,Health,,30846,IDR,30846,IDR,,,,,Medicine
+2025-10-01T17:00:00.000Z,Expense,Primary Account,,Entertainment,,96580,IDR,96580,IDR,,,,,Netflix
+2025-10-03T17:00:00.000Z,Expense,Primary Account,,Personal Care,,181205,IDR,181205,IDR,,,,,Shampoo
+2025-10-04T17:00:00.000Z,Expense,Primary Account,,Personal Care,,66697,IDR,66697,IDR,,,,,Shampoo
+2025-10-04T17:00:00.000Z,Expense,Primary Account,,Groceries,,25580,IDR,25580,IDR,,,,,Alfamart
+2025-10-08T17:00:00.000Z,Expense,Primary Account,,Transport,,186233,IDR,186233,IDR,,,,,Fuel
+2025-10-08T17:00:00.000Z,Expense,Primary Account,,Entertainment,,150352,IDR,150352,IDR,,,,,Spotify
+2025-10-09T17:00:00.000Z,Expense,Primary Account,,Food,,129460,IDR,129460,IDR,,,,,Snack
+2025-10-09T17:00:00.000Z,Expense,Primary Account,,Bills,,164017,IDR,164017,IDR,,,,,Water
+2025-10-10T17:00:00.000Z,Expense,Primary Account,,Health,,181408,IDR,181408,IDR,,,,,Vitamins
+2025-10-10T17:00:00.000Z,Expense,Primary Account,,Groceries,,111134,IDR,111134,IDR,,,,,Supermarket
+2025-10-11T17:00:00.000Z,Expense,Primary Account,,Personal Care,,96352,IDR,96352,IDR,,,,,Soap
+2025-10-12T17:00:00.000Z,Expense,Primary Account,,Health,,25904,IDR,25904,IDR,,,,,Checkup
+2025-10-13T17:00:00.000Z,Expense,Primary Account,,Food,,79265,IDR,79265,IDR,,,,,Coffee
+2025-10-14T17:00:00.000Z,Expense,Primary Account,,Groceries,,167082,IDR,167082,IDR,,,,,Alfamart
+2025-10-14T17:00:00.000Z,Expense,Primary Account,,Bills,,22421,IDR,22421,IDR,,,,,Water
+2025-10-15T17:00:00.000Z,Expense,Primary Account,,Groceries,,188345,IDR,188345,IDR,,,,,Indomaret
+2025-10-16T17:00:00.000Z,Expense,Primary Account,,Others,,132663,IDR,132663,IDR,,,,,Random purchase
+2025-10-18T17:00:00.000Z,Expense,Primary Account,,Bills,,82810,IDR,82810,IDR,,,,,Electricity
+2025-10-22T17:00:00.000Z,Expense,Primary Account,,Others,,60251,IDR,60251,IDR,,,,,Random purchase
+2025-10-23T17:00:00.000Z,Expense,Primary Account,,Bills,,181599,IDR,181599,IDR,,,,,Internet
+2025-10-23T17:00:00.000Z,Expense,Primary Account,,Personal Care,,141763,IDR,141763,IDR,,,,,Skincare
+2025-10-24T17:00:00.000Z,Expense,Primary Account,,Entertainment,,98476,IDR,98476,IDR,,,,,Game top-up
+2025-10-24T17:00:00.000Z,Expense,Primary Account,,Others,,18736,IDR,18736,IDR,,,,,Random purchase
+2025-10-25T17:00:00.000Z,Expense,Primary Account,,Bills,,28885,IDR,28885,IDR,,,,,Water
+2025-10-25T17:00:00.000Z,Expense,Primary Account,,Health,,186863,IDR,186863,IDR,,,,,Checkup
+2025-10-25T17:00:00.000Z,Expense,Primary Account,,Food,,153380,IDR,153380,IDR,,,,,Coffee
+2025-10-25T17:00:00.000Z,Expense,Primary Account,,Personal Care,,122656,IDR,122656,IDR,,,,,Shampoo
+2025-10-25T17:00:00.000Z,Expense,Primary Account,,Personal Care,,132198,IDR,132198,IDR,,,,,Shampoo
+2025-10-27T17:00:00.000Z,Expense,Primary Account,,Transport,,172557,IDR,172557,IDR,,,,,Grab
+2025-10-28T17:00:00.000Z,Expense,Primary Account,,Health,,196028,IDR,196028,IDR,,,,,Checkup
+2025-10-29T17:00:00.000Z,Expense,Primary Account,,Transport,,43402,IDR,43402,IDR,,,,,Busway
+2025-10-29T17:00:00.000Z,Expense,Primary Account,,Transport,,143219,IDR,143219,IDR,,,,,Busway
+2025-10-30T17:00:00.000Z,Expense,Primary Account,,Bills,,72249,IDR,72249,IDR,,,,,Internet
+2025-10-31T17:00:00.000Z,Expense,Primary Account,,Groceries,,142774,IDR,142774,IDR,,,,,Supermarket
+2025-10-31T17:00:00.000Z,Expense,Primary Account,,Health,,160650,IDR,160650,IDR,,,,,Checkup
+2025-11-01T17:00:00.000Z,Income,Company Payroll,,Primary Account,,7000000,IDR,7000000,IDR,,,,,Monthly Salary
+2025-11-01T17:00:00.000Z,Expense,Primary Account,,Food,,187087,IDR,187087,IDR,,,,,Dinner
+2025-11-01T17:00:00.000Z,Expense,Primary Account,,Transport,,52585,IDR,52585,IDR,,,,,MRT
+2025-11-01T17:00:00.000Z,Expense,Primary Account,,Entertainment,,187480,IDR,187480,IDR,,,,,Game top-up
+2025-11-01T17:00:00.000Z,Expense,Primary Account,,Health,,46687,IDR,46687,IDR,,,,,Vitamin
+2025-11-02T17:00:00.000Z,Expense,Primary Account,,Health,,35607,IDR,35607,IDR,,,,,Medicine
+2025-11-02T17:00:00.000Z,Expense,Primary Account,,Personal Care,,29927,IDR,29927,IDR,,,,,Shampoo
+2025-11-03T17:00:00.000Z,Expense,Primary Account,,Personal Care,,17766,IDR,17766,IDR,,,,,Skincare
+2025-11-03T17:00:00.000Z,Expense,Primary Account,,Bills,,138608,IDR,138608,IDR,,,,,Internet
+2025-11-03T17:00:00.000Z,Expense,Primary Account,,Entertainment,,154975,IDR,154975,IDR,,,,,Movie ticket
+2025-11-04T17:00:00.000Z,Expense,Primary Account,,Personal Care,,188177,IDR,188177,IDR,,,,,Shampoo
+2025-11-04T17:00:00.000Z,Expense,Primary Account,,Personal Care,,172166,IDR,172166,IDR,,,,,Soap
+2025-11-04T17:00:00.000Z,Expense,Primary Account,,Bills,,196937,IDR,196937,IDR,,,,,Electricity
+2025-11-05T17:00:00.000Z,Expense,Primary Account,,Personal Care,,112137,IDR,112137,IDR,,,,,Shampoo
+2025-11-05T17:00:00.000Z,Expense,Primary Account,,Transport,,50428,IDR,50428,IDR,,,,,MRT
+2025-11-06T17:00:00.000Z,Expense,Primary Account,,Health,,33991,IDR,33991,IDR,,,,,Medicine
+2025-11-06T17:00:00.000Z,Expense,Primary Account,,Food,,126584,IDR,126584,IDR,,,,,Snack
+2025-11-06T17:00:00.000Z,Expense,Primary Account,,Health,,36799,IDR,36799,IDR,,,,,Vitamin
+2025-11-07T17:00:00.000Z,Expense,Primary Account,,Transport,,122978,IDR,122978,IDR,,,,,Grab
+2025-11-07T17:00:00.000Z,Expense,Primary Account,,Others,,155421,IDR,155421,IDR,,,,,Small stuff
+2025-11-08T17:00:00.000Z,Expense,Primary Account,,Transport,,33493,IDR,33493,IDR,,,,,Gojek
+2025-11-08T17:00:00.000Z,Expense,Primary Account,,Health,,34396,IDR,34396,IDR,,,,,Clinic
+2025-11-08T17:00:00.000Z,Expense,Primary Account,,Health,,13235,IDR,13235,IDR,,,,,Vitamin
+2025-11-09T17:00:00.000Z,Expense,Primary Account,,Entertainment,,189651,IDR,189651,IDR,,,,,Spotify
+2025-11-09T17:00:00.000Z,Expense,Primary Account,,Personal Care,,46396,IDR,46396,IDR,,,,,Shampoo
+2025-11-09T17:00:00.000Z,Expense,Primary Account,,Personal Care,,32203,IDR,32203,IDR,,,,,Toiletries
+2025-11-10T17:00:00.000Z,Expense,Primary Account,,Bills,,139269,IDR,139269,IDR,,,,,Internet
+2025-11-10T17:00:00.000Z,Expense,Primary Account,,Groceries,,53832,IDR,53832,IDR,,,,,Mini market
+2025-11-10T17:00:00.000Z,Expense,Primary Account,,Personal Care,,120389,IDR,120389,IDR,,,,,Skincare
+2025-11-11T17:00:00.000Z,Expense,Primary Account,,Others,,104666,IDR,104666,IDR,,,,,Misc
+2025-11-11T17:00:00.000Z,Expense,Primary Account,,Bills,,198979,IDR,198979,IDR,,,,,Electricity
+2025-11-11T17:00:00.000Z,Expense,Primary Account,,Others,,171656,IDR,171656,IDR,,,,,Small stuff
+2025-11-12T17:00:00.000Z,Expense,Primary Account,,Bills,,113728,IDR,113728,IDR,,,,,Electricity
+2025-11-12T17:00:00.000Z,Expense,Primary Account,,Others,,45517,IDR,45517,IDR,,,,,Misc
+2025-11-13T17:00:00.000Z,Expense,Primary Account,,Personal Care,,125401,IDR,125401,IDR,,,,,Skincare
+2025-11-13T17:00:00.000Z,Expense,Primary Account,,Health,,180665,IDR,180665,IDR,,,,,Vitamin
+2025-11-13T17:00:00.000Z,Expense,Primary Account,,Groceries,,94060,IDR,94060,IDR,,,,,Supermarket
+2025-11-14T17:00:00.000Z,Expense,Primary Account,,Others,,56566,IDR,56566,IDR,,,,,Random purchase
+2025-11-14T17:00:00.000Z,Expense,Primary Account,,Personal Care,,86401,IDR,86401,IDR,,,,,Skincare
+2025-11-15T17:00:00.000Z,Expense,Primary Account,,Entertainment,,108580,IDR,108580,IDR,,,,,Movie ticket
+2025-11-15T17:00:00.000Z,Expense,Primary Account,,Bills,,105686,IDR,105686,IDR,,,,,Internet
+2025-11-15T17:00:00.000Z,Expense,Primary Account,,Transport,,62376,IDR,62376,IDR,,,,,Fuel
+2025-11-16T17:00:00.000Z,Expense,Primary Account,,Entertainment,,86370,IDR,86370,IDR,,,,,Game top-up
+2025-11-16T17:00:00.000Z,Expense,Primary Account,,Food,,195694,IDR,195694,IDR,,,,,Coffee
+2025-11-17T17:00:00.000Z,Expense,Primary Account,,Personal Care,,46484,IDR,46484,IDR,,,,,Toiletries
+2025-11-17T17:00:00.000Z,Expense,Primary Account,,Bills,,76238,IDR,76238,IDR,,,,,Electricity
+2025-11-18T17:00:00.000Z,Expense,Primary Account,,Personal Care,,29389,IDR,29389,IDR,,,,,Toiletries
+2025-11-18T17:00:00.000Z,Expense,Primary Account,,Others,,135628,IDR,135628,IDR,,,,,Small stuff
+2025-11-19T17:00:00.000Z,Expense,Primary Account,,Personal Care,,104248,IDR,104248,IDR,,,,,Soap
+2025-11-19T17:00:00.000Z,Expense,Primary Account,,Transport,,75072,IDR,75072,IDR,,,,,Gojek
+2025-11-19T17:00:00.000Z,Expense,Primary Account,,Health,,179607,IDR,179607,IDR,,,,,Medicine
+2025-11-20T17:00:00.000Z,Expense,Primary Account,,Personal Care,,122841,IDR,122841,IDR,,,,,Skincare
+2025-11-20T17:00:00.000Z,Expense,Primary Account,,Transport,,35849,IDR,35849,IDR,,,,,Gojek
+2025-11-21T17:00:00.000Z,Expense,Primary Account,,Entertainment,,126858,IDR,126858,IDR,,,,,Spotify
+2025-11-21T17:00:00.000Z,Expense,Primary Account,,Health,,131389,IDR,131389,IDR,,,,,Vitamin
+2025-11-21T17:00:00.000Z,Expense,Primary Account,,Groceries,,16438,IDR,16438,IDR,,,,,Supermarket
+2025-11-22T17:00:00.000Z,Expense,Primary Account,,Transport,,119045,IDR,119045,IDR,,,,,MRT
+2025-11-22T17:00:00.000Z,Expense,Primary Account,,Transport,,47139,IDR,47139,IDR,,,,,Gojek
+2025-11-22T17:00:00.000Z,Expense,Primary Account,,Health,,99932,IDR,99932,IDR,,,,,Vitamin
+2025-11-23T17:00:00.000Z,Expense,Primary Account,,Entertainment,,101304,IDR,101304,IDR,,,,,Game top-up
+2025-11-23T17:00:00.000Z,Expense,Primary Account,,Others,,27609,IDR,27609,IDR,,,,,Random purchase
+2025-11-23T17:00:00.000Z,Expense,Primary Account,,Others,,124862,IDR,124862,IDR,,,,,Misc
+2025-11-24T17:00:00.000Z,Expense,Primary Account,,Food,,15920,IDR,15920,IDR,,,,,Lunch
+2025-11-24T17:00:00.000Z,Expense,Primary Account,,Health,,38668,IDR,38668,IDR,,,,,Clinic
+2025-11-24T17:00:00.000Z,Expense,Primary Account,,Groceries,,73940,IDR,73940,IDR,,,,,Fresh veggies
+2025-12-01T17:00:00.000Z,Income,Company Payroll,,Primary Account,,7000000,IDR,7000000,IDR,,,,,Monthly Salary
+2025-12-02T17:00:00.000Z,Expense,Primary Account,,Food,,92097,IDR,92097,IDR,,,,,Lunch
+2025-12-02T17:00:00.000Z,Expense,Primary Account,,Transport,,78513,IDR,78513,IDR,,,,,Gojek
+2025-12-03T17:00:00.000Z,Expense,Primary Account,,Food,,162964,IDR,162964,IDR,,,,,Coffee
+2025-12-05T17:00:00.000Z,Expense,Primary Account,,Food,,44561,IDR,44561,IDR,,,,,Lunch
+2025-12-05T17:00:00.000Z,Expense,Primary Account,,Bills,,145000,IDR,145000,IDR,,,,,Internet
+2025-12-06T17:00:00.000Z,Expense,Primary Account,,Health,,177815,IDR,177815,IDR,,,,,Vitamin
+2025-12-08T17:00:00.000Z,Expense,Primary Account,,Entertainment,,162853,IDR,162853,IDR,,,,,Movie ticket
+2025-12-09T17:00:00.000Z,Expense,Primary Account,,Personal Care,,174472,IDR,174472,IDR,,,,,Toiletries
+2025-12-10T17:00:00.000Z,Expense,Primary Account,,Food,,61853,IDR,61853,IDR,,,,,Lunch

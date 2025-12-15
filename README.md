@@ -134,7 +134,13 @@ cd finance-tracker
 http://localhost:8080
 ```
 
-SQLite will auto-initialize using `schema.sql`.
+## How to use the Application
+### 1️⃣ Get the example data 
+```azure
+example-dummy-data/mony-format-dummy.csv
+```
+### 2️⃣ Drag to import bar
+### 3️⃣ Import CSV
 
 ---
 
